@@ -1,0 +1,29 @@
+extends Label
+class_name inputPrompt
+
+@export var action : String = "MoveRight"
+var device : int = -1
+
+func _ready():
+	var	input = InputHelper.get_keyboard_input_for_action(action)
+	var label : String = InputHelper.get_label_for_input(input)
+	text = str("keyboard_", label)
+	InputHelper.device_changed.connect(_on_input_device_changed)
+func updatePrompt():
+	print_debug(device)
+	var input
+	var label : String
+	##the device is probably a controller
+	if device > 0:
+		input = InputHelper.get_joypad_input_for_action(action)
+		label = InputHelper.get_label_for_input(input)
+		if !InputBindingsAutoloadScene.button_prompt_Dictionary.has(label):
+			return
+		text = InputBindingsAutoloadScene.button_prompt_Dictionary[label]
+	if device <= 0:
+		input = InputHelper.get_keyboard_input_for_action(action)
+		label = InputHelper.get_label_for_input(input)
+		text = str("keyboard_", label)
+##
+func _on_input_device_changed(_device_name: String, device_index: int):
+	device = device_index
