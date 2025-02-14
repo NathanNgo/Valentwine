@@ -5,30 +5,37 @@ var button_on_cooldown : bool = false
 @onready var timer: Timer = $Timer
 
 @export var action : String = "MoveRight"
-@onready var button_prompt: inputPrompt = $ButtonPrompt
-@onready var rebindings_general: TabBar = $"../../../../.."
+@export var actionName : String = "Right"
+@onready var action_name_label: Label = $MarginContainer/ActionName
+@onready var button_prompt: inputPrompt = $MarginContainer/ButtonPrompt
 
 func _ready():
-	rebindings_general.finishedLoading.connect(updatePrompt)
+	action_name_label.text = actionName
+	#rebinding_tab.finishedLoading.connect(updatePrompt)
 	button_prompt.action = action
 	button_prompt.updatePrompt()
-	
-# this method is connected to the parent's "finished loading" signal, and also 
-# is called when a remap finishes
+	visibility_changed.connect(updatePrompt)
+
+
 func updatePrompt():
+	action_name_label.show()
 	text = ""
 	button_prompt.show()
 	button_prompt.updatePrompt()
 	remapping = false
+	#rebinding_tab.saveSettings()
+
 # this method is called upon by the button click
 func startRebind():
+	action_name_label.hide()
 	remapping = true
 	button_on_cooldown = true
 	text = "press button or key ....."
 	button_prompt.hide()
 	timer.start()
-	
-func _unhandled_input(event) -> void:
+
+
+func _input(event) -> void:
 	if !remapping or button_on_cooldown:
 		return
 	if (event is InputEventKey or event is InputEventMouseButton) and event.is_pressed():

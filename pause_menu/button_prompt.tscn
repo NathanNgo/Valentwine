@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://d1o6fct8erxuy"]
 
 [ext_resource type="FontFile" uid="uid://qalmecrbkxyp" path="res://addons/input_prompt_icon_font/icon.ttf" id="1_lpgu4"]
-[ext_resource type="Script" path="res://Pause_menu/Scripts/Inputs/inputPrompt.gd" id="2_pnlq4"]
+[ext_resource type="Script" path="res://pause_menu/scripts/Inputs/input_prompt.gd" id="2_pnlq4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_iy54f"]
 font = ExtResource("1_lpgu4")

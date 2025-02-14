@@ -1,10 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bt2t4n3r71f7w"]
+[gd_scene load_steps=6 format=3 uid="uid://bt2t4n3r71f7w"]
 
-[ext_resource type="Script" path="res://Pause_menu/Scripts/pause_menu.gd" id="1_w6xwl"]
-[ext_resource type="PackedScene" uid="uid://dk730lvcbs6t6" path="res://Pause_menu/ui_animator.tscn" id="2_l6wsp"]
-[ext_resource type="Script" path="res://Pause_menu/Scripts/resume_button.gd" id="2_vyyg6"]
-[ext_resource type="PackedScene" uid="uid://7qkoiudxf7n2" path="res://Pause_menu/input_rebindings_button.tscn" id="4_kpeut"]
-[ext_resource type="Script" path="res://Pause_menu/Scripts/Inputs/rebinding_tab.gd" id="4_xgy3d"]
+[ext_resource type="Script" path="res://pause_menu/scripts/pause_menu.gd" id="1_w6xwl"]
+[ext_resource type="PackedScene" uid="uid://dk730lvcbs6t6" path="res://pause_menu/ui_animator.tscn" id="2_l6wsp"]
+[ext_resource type="Script" path="res://pause_menu/scripts/resume_button.gd" id="2_vyyg6"]
+[ext_resource type="PackedScene" uid="uid://7qkoiudxf7n2" path="res://pause_menu/input_rebindings_button.tscn" id="4_kpeut"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6hjpc"]
 
@@ -139,7 +138,9 @@ current_tab = 0
 
 [node name="Controls" type="TabBar" parent="MarginContainer/TabContainer"]
 layout_mode = 2
-script = ExtResource("4_xgy3d")
+focus_neighbor_right = NodePath("../Audio")
+focus_neighbor_bottom = NodePath("MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveRight")
+focus_next = NodePath("../Audio")
 metadata/_tab_index = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TabContainer/Controls"]
@@ -172,21 +173,79 @@ columns = 2
 [node name="moveRight" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("4_kpeut")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../moveLeft")
+focus_neighbor_top = NodePath("../../../../..")
+focus_neighbor_right = NodePath("../moveLeft")
+focus_neighbor_bottom = NodePath("../moveUp")
+focus_next = NodePath("../moveLeft")
+focus_previous = NodePath("../../../../..")
+
+[node name="Node" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveRight" instance=ExtResource("2_l6wsp")]
+connect_as_button = true
+hover_rotation = 0.25
+entrance_time = 0.2
+entrance_delay = 0.1
+hover_easing = 1
 
 [node name="moveLeft" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("4_kpeut")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../moveRight")
+focus_neighbor_top = NodePath("../../../../..")
+focus_neighbor_right = NodePath("../moveRight")
+focus_neighbor_bottom = NodePath("../moveDown")
+focus_next = NodePath("../moveRight")
+focus_previous = NodePath("../../../../..")
 action = "MoveLeft"
+actionName = "Left"
+
+[node name="Node" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveLeft" instance=ExtResource("2_l6wsp")]
+connect_as_button = true
+hover_rotation = 0.25
+random_entrance = true
+entrance_time = 0.5
+entrance_delay = 0.1
+hover_easing = 1
 
 [node name="moveUp" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("4_kpeut")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../moveDown")
+focus_neighbor_top = NodePath("../moveRight")
+focus_neighbor_right = NodePath("../moveDown")
+focus_neighbor_bottom = NodePath("../../../../..")
+focus_next = NodePath("../moveDown")
+focus_previous = NodePath("../moveRight")
 action = "MoveUp"
+actionName = "Up"
+
+[node name="Node" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveUp" instance=ExtResource("2_l6wsp")]
+connect_as_button = true
+hover_rotation = 0.25
+random_entrance = true
+entrance_time = 0.5
+entrance_delay = 0.1
+hover_easing = 1
 
 [node name="moveDown" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer" instance=ExtResource("4_kpeut")]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../moveUp")
+focus_neighbor_top = NodePath("../moveLeft")
+focus_neighbor_right = NodePath("../moveUp")
+focus_neighbor_bottom = NodePath("../../../../..")
+focus_next = NodePath("../moveUp")
+focus_previous = NodePath("../../../../..")
 action = "MoveDown"
+actionName = "Down"
+
+[node name="Node" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveDown" instance=ExtResource("2_l6wsp")]
+connect_as_button = true
+hover_rotation = 0.25
+random_entrance = true
+entrance_time = 0.5
+entrance_delay = 0.1
+hover_easing = 1
 
 [node name="Audio" type="TabBar" parent="MarginContainer/TabContainer"]
 visible = false

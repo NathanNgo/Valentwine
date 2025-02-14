@@ -73,6 +73,8 @@ func _ready() -> void:
 		target.mouse_exited.connect(on_hover)
 	if wait_for:
 		wait_for.finished_entering.connect(on_enter_deferred)
+
+
 func setup() -> void:
 	if from_center:
 		target.pivot_offset = target.size / 2
@@ -103,10 +105,13 @@ func setup() -> void:
 		"self_modulate" : entrance_modulate
 	}
 	target.visibility_changed.connect(on_enter_deferred)
-		
+
+
 func on_enter_deferred(finished_waiting : bool = false):
 	if get_parent().visible:
 		call_deferred("on_enter",finished_waiting)
+
+
 func on_enter(finished_waiting : bool = false) -> void:
 	if !is_inside_tree():
 		return
@@ -130,6 +135,8 @@ func on_enter(finished_waiting : bool = false) -> void:
 		add_tween(entrance_values, true, 0.0, IMMEDIATE_TRANSITION, hover_easing, 0.0)
 		await get_tree().create_timer(actual_entrance_delay).timeout
 		add_tween(default_values, parallel_animations, actual_entrance_time, entrance_transition, hover_easing, 0.0, true)
+
+
 func exit():
 	var tween = self.create_tween()
 	tween.set_parallel(parallel_animations)
@@ -142,8 +149,12 @@ func exit():
 		tween.play()
 		await tween.finished
 		target.hide()
+
+
 func on_hover() -> void:
 	add_tween(hover_values, parallel_animations, hover_time, hover_transition, hover_easing, hover_delay)
+
+
 func off_hover() -> void:
 	add_tween(default_values, parallel_animations, hover_time, hover_transition, hover_easing, hover_delay)
 	
@@ -152,6 +163,8 @@ func blip() -> void:
 		return
 	var tween = create_tween()
 	tween.tween_property(target,"rotation",default_values["rotation"],hover_time).set_trans(hover_transition).set_ease(hover_easing )
+
+
 func deemphasize():
 	add_tween(deemphasize_values, parallel_animations, deepmhasize_time, hover_transition, hover_easing, deepmhasize_delay)
 
@@ -172,4 +185,3 @@ func add_tween(values : Dictionary, parallel : bool, seconds : float, transition
 	if entering: 
 		await tween.finished
 		finished_entering.emit(true)
-	
