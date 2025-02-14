@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="GWJ"
+run/main_scene="res://source/pause_menu/pause_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
 InputHelper="*res://addons/input_helper/input_helper.gd"
-InputBindingsAutoloadScene="*res://pause_menu/input_bindings_autoload_scene.tscn"
+InputBindingsAutoloadScene="*res://source/pause_menu/input_bindings_autoload_scene.tscn"
 
 [dotnet]
 

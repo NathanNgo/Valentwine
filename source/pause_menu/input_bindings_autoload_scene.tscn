@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://6exg7dqp4xn7"]
 
-[ext_resource type="Script" path="res://pause_menu/scripts/Inputs/input_bindings_autoload.gd" id="1_tr3sb"]
+[ext_resource type="Script" path="res://source/pause_menu/scripts/Inputs/input_bindings_autoload.gd" id="1_tr3sb"]
 
 [node name="InputBindingsAutoloadScene" type="Node"]
 script = ExtResource("1_tr3sb")
