@@ -1,8 +1,6 @@
 extends MarginContainer
 
-
-
-var paused : bool = false
+var paused: bool = false
 @onready var controls: TabBar = $MarginContainer/TabContainer/Controls
 @onready var margin_container: MarginContainer = $MarginContainer
 

@@ -1,13 +1,14 @@
 extends Button
 
-var remapping : bool = false
-var button_on_cooldown : bool = false
+var remapping: bool = false
+var button_on_cooldown: bool = false
 @onready var timer: Timer = $Timer
 
-@export var action : String = "MoveRight"
-@export var actionName : String = "Right"
+@export var action: String = "MoveRight"
+@export var actionName: String = "Right"
 @onready var action_name_label: Label = $MarginContainer/ActionName
 @onready var button_prompt: inputPrompt = $MarginContainer/ButtonPrompt
+
 
 func _ready():
 	action_name_label.text = actionName
@@ -24,6 +25,7 @@ func updatePrompt():
 	button_prompt.updatePrompt()
 	remapping = false
 	#rebinding_tab.saveSettings()
+
 
 # this method is called upon by the button click
 func startRebind():
