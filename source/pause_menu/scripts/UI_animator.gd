@@ -1,6 +1,9 @@
 class_name AnimationComponent extends Node
 
 signal finished_entering
+
+const IMMEDIATE_TRANSITION = Tween.TRANS_LINEAR
+
 @export var connect_as_button: bool = false
 @export var entrance_animation: bool = false
 @export var wait_for: AnimationComponent
@@ -59,8 +62,6 @@ var default_values: Dictionary
 var deemphasize_values: Dictionary
 var entrance_values: Dictionary
 var exit_values: Dictionary
-
-const IMMEDIATE_TRANSITION = Tween.TRANS_LINEAR
 
 
 func _ready() -> void:

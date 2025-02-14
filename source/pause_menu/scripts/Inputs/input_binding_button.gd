@@ -1,34 +1,35 @@
 extends Button
 
+@export var action: String = "MoveRight"
+@export var action_name: String = "Right"
+
 var remapping: bool = false
 var button_on_cooldown: bool = false
-@onready var timer: Timer = $Timer
 
-@export var action: String = "MoveRight"
-@export var actionName: String = "Right"
-@onready var action_name_label: Label = $MarginContainer/ActionName
-@onready var button_prompt: inputPrompt = $MarginContainer/ButtonPrompt
+@onready var timer: Timer = $Timer
+@onready var action_name_label: Label = $MarginContainer/action_name
+@onready var button_prompt: InputPrompt = $MarginContainer/ButtonPrompt
 
 
 func _ready():
-	action_name_label.text = actionName
-	#rebinding_tab.finishedLoading.connect(updatePrompt)
+	action_name_label.text = action_name
+	#rebinding_tab.finishedLoading.connect(update_prompt)
 	button_prompt.action = action
-	button_prompt.updatePrompt()
-	visibility_changed.connect(updatePrompt)
+	button_prompt.update_prompt()
+	visibility_changed.connect(update_prompt)
 
 
-func updatePrompt():
+func update_prompt():
 	action_name_label.show()
 	text = ""
 	button_prompt.show()
-	button_prompt.updatePrompt()
+	button_prompt.update_prompt()
 	remapping = false
 	#rebinding_tab.saveSettings()
 
 
 # this method is called upon by the button click
-func startRebind():
+func start_rebind():
 	action_name_label.hide()
 	remapping = true
 	button_on_cooldown = true
@@ -43,12 +44,12 @@ func _input(event) -> void:
 	if (event is InputEventKey or event is InputEventMouseButton) and event.is_pressed():
 		accept_event()
 		InputHelper.set_keyboard_input_for_action(action, event)
-		updatePrompt()
+		update_prompt()
 
 	if event is InputEventJoypadButton and event.is_pressed():
 		accept_event()
 		InputHelper.set_joypad_input_for_action(action, event)
-		updatePrompt()
+		update_prompt()
 
 
 func _on_timer_timeout() -> void:

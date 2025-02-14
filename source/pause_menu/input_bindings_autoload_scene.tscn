@@ -4,7 +4,7 @@
 
 [node name="InputBindingsAutoloadScene" type="Node"]
 script = ExtResource("1_tr3sb")
-button_prompt_Dictionary = {
+button_prompt_dictionary = {
 "A Button": "xbox_button_a",
 "B Button": "xbox_button_b",
 "Back Button": "xbox_button_back",

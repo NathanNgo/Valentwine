@@ -197,7 +197,7 @@ focus_neighbor_bottom = NodePath("../moveDown")
 focus_next = NodePath("../moveRight")
 focus_previous = NodePath("../../../../..")
 action = "MoveLeft"
-actionName = "Left"
+action_name = "Left"
 
 [node name="Node" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveLeft" instance=ExtResource("2_l6wsp")]
 connect_as_button = true
@@ -217,7 +217,7 @@ focus_neighbor_bottom = NodePath("../../../../..")
 focus_next = NodePath("../moveDown")
 focus_previous = NodePath("../moveRight")
 action = "MoveUp"
-actionName = "Up"
+action_name = "Up"
 
 [node name="Node" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveUp" instance=ExtResource("2_l6wsp")]
 connect_as_button = true
@@ -237,7 +237,7 @@ focus_neighbor_bottom = NodePath("../../../../..")
 focus_next = NodePath("../moveUp")
 focus_previous = NodePath("../../../../..")
 action = "MoveDown"
-actionName = "Down"
+action_name = "Down"
 
 [node name="Node" parent="MarginContainer/TabContainer/Controls/MarginContainer/VBoxContainer/ScrollContainer/GridContainer/moveDown" instance=ExtResource("2_l6wsp")]
 connect_as_button = true
