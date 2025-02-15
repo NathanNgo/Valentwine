@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://cqpbgw8t1hfo2"]
+
+[ext_resource type="Script" path="res://source/player_characters/scripts/control_script.gd" id="1_ugn3d"]
+[ext_resource type="Texture2D" uid="uid://2xvyun86dbvw" path="res://source/player_characters/Test_P1.webp" id="2_j0tg8"]
+[ext_resource type="AudioStream" uid="uid://d3o5jpiwa4xun" path="res://source/player_characters/audio_assets/combat/Punch 2-1.wav" id="3_ina0f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u186d"]
+size = Vector2(200, 200)
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_ugn3d")
+player_number = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 45)
+shape = SubResource("RectangleShape2D_u186d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_j0tg8")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(128, 0)
+
+[node name="audio_streams" type="Node" parent="."]
+
+[node name="punch_audio" type="AudioStreamPlayer" parent="audio_streams"]
+stream = ExtResource("3_ina0f")

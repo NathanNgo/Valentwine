@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://b4tqq5d2xnv75"]
+
+[ext_resource type="Script" path="res://source/player_characters/scripts/line_of_fate_script.gd" id="1_7hmir"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_3221v"]
+
+[node name="line_of_fate" type="Node2D"]
+script = ExtResource("1_7hmir")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+collision_mask = 2
+
+[node name="scalable_parent" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="scalable_parent"]
+position = Vector2(0.5, 0)
+texture = SubResource("PlaceholderTexture2D_3221v")

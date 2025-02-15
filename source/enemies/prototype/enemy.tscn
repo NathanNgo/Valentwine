@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://cugucpjvchljx"]
+
+[ext_resource type="Texture2D" uid="uid://1f6uvovsadte" path="res://source/enemies/prototype/enemy.png" id="1_vg8ym"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m702k"]
+size = Vector2(200, 200)
+
+[node name="enemy" type="StaticBody2D" groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 1)
+shape = SubResource("RectangleShape2D_m702k")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(6.25, 6.25)
+texture = ExtResource("1_vg8ym")
