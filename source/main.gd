@@ -21,7 +21,9 @@ func _ready() -> void:
 
 	for obstacle in obstacles_container.get_children():
 		obstacle.body_hit.connect(_on_body_hit)
-
+	
+	player_one.took_damage.connect(_on_body_hit)
+	player_two.took_damage.connect(_on_body_hit)
 	enemy_spawn_timer.timeout.connect(_on_enemy_spawn_timer_timeout)
 	enemy_spawn_timer.start(SPAWN_TIME)
 	health_bar.value = health
@@ -29,11 +31,11 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	line.set_end_positions(player_one.position, player_two.position)
-	for enemy in get_tree().get_nodes_in_group(EnemyCharacter.enemy_group):
+	for enemy in get_tree().get_nodes_in_group("enemies"):
 		enemy.target(line.line_body.position)
 
 
-func _on_body_hit(damage: int) -> void:
+func _on_body_hit(damage: float) -> void:
 	health -= damage
 	health_bar.value = health
 
