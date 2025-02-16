@@ -10,5 +10,5 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group(PlayerCharacter.PLAYER_GROUP):
+	if body.is_in_group(PlayerCharacter.player_group):
 		body_hit.emit(damage_amount)

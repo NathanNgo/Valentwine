@@ -1,8 +1,8 @@
 class_name EnemyCharacter extends CharacterBody2D
 
-static var ENEMY_GROUP = "enemies"
-
 signal body_hit(damage: int)
+
+static var enemy_group = "enemies"
 
 @export var _collision_area: Area2D
 @export var damage_amount := 10
@@ -21,7 +21,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group(PlayerCharacter.PLAYER_GROUP):
+	if body.is_in_group(PlayerCharacter.player_group):
 		body_hit.emit(damage_amount)
 		queue_free()
 

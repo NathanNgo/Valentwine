@@ -20,7 +20,6 @@ func set_end_positions(position_one: Vector2, position_two: Vector2) -> void:
 	line.points = [position_one, position_two]
 
 
-
 func set_length(position_one: Vector2, position_two: Vector2) -> void:
 	var distance := sqrt(
 		(position_two.x - position_one.x) ** 2 + (position_two.y - position_one.y) ** 2

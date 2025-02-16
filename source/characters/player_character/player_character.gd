@@ -4,7 +4,7 @@ enum Player { FIRST, SECOND }
 
 enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
 
-static var PLAYER_GROUP = "player_objects"
+static var player_group = "player_objects"
 
 @export var _collision_area: Area2D
 @export var _player_one_sprite: Sprite2D
@@ -39,7 +39,7 @@ func _ready() -> void:
 	_collision_area.body_entered.connect(_on_body_entered)
 	_player_one_sprite.hide()
 	_player_two_sprite.hide()
-	
+
 	if player_type == Player.FIRST:
 		_player_one_sprite.show()
 	elif player_type == Player.SECOND:
