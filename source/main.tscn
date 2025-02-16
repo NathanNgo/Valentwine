@@ -1,0 +1,85 @@
+[gd_scene load_steps=7 format=3 uid="uid://cpx6mety5bqcw"]
+
+[ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
+[ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
+[ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/line/line.tscn" id="2_h0bad"]
+[ext_resource type="PackedScene" uid="uid://purqtlnam4ek" path="res://source/characters/enemy_character/enemy_character.tscn" id="2_moq3r"]
+[ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
+
+[sub_resource type="Curve2D" id="Curve2D_hwb4j"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -384, -448, 0, 0, 0, 0, 1536, -448, 0, 0, 0, 0, 1536, 1088, 0, 0, 0, 0, -384, 1088, 0, 0, 0, 0, -384, -448)
+}
+point_count = 5
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "enemy_spawn_timer", "point_sampler", "health_bar")]
+script = ExtResource("1_h5u32")
+line = NodePath("Line")
+player_one = NodePath("PlayerCharacter1")
+player_two = NodePath("PlayerCharacter2")
+enemies_container = NodePath("EnemiesContainer")
+obstacles_container = NodePath("ObstaclesContainer")
+enemy_spawn_timer = NodePath("EnemySpawnTimer")
+enemy_scene = ExtResource("2_moq3r")
+point_sampler = NodePath("Path2D/PathFollow2D")
+health_bar = NodePath("CanvasLayer/ProgressBar")
+
+[node name="PlayerCharacter1" parent="." instance=ExtResource("1_mc5tm")]
+position = Vector2(310, 248)
+
+[node name="PlayerCharacter2" parent="." instance=ExtResource("1_mc5tm")]
+position = Vector2(598, 170)
+player_type = 1
+
+[node name="Line" parent="." instance=ExtResource("2_h0bad")]
+
+[node name="EnemiesContainer" type="Node2D" parent="."]
+
+[node name="ObstaclesContainer" type="Node2D" parent="."]
+
+[node name="Area2D" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(1304, 904)
+
+[node name="Area2D2" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(952, 592)
+
+[node name="Area2D3" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(1152, -152)
+
+[node name="Area2D4" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(80, -240)
+
+[node name="Area2D5" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(432, 704)
+
+[node name="Area2D6" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(-168, 368)
+
+[node name="Area2D7" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(-160, 920)
+
+[node name="Area2D8" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(640, -24)
+
+[node name="Area2D9" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
+position = Vector2(1240, 264)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_hwb4j")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-384, -448)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -324.0
+offset_right = 324.0
+offset_bottom = 40.0
+grow_horizontal = 2
+value = 50.0

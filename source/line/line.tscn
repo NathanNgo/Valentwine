@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvk41vw65rwxo"]
+
+[ext_resource type="Script" path="res://source/line/line.gd" id="1_2os2t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f2i5c"]
+size = Vector2(224, 16)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_collision_shape", "line", "line_body")]
+script = ExtResource("1_2os2t")
+_collision_shape = NodePath("Line/CollisionShape2D")
+line = NodePath("Line2D")
+line_body = NodePath("Line")
+
+[node name="Line" type="CharacterBody2D" parent="." groups=["player_objects"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line"]
+shape = SubResource("RectangleShape2D_f2i5c")
+
+[node name="Camera2D" type="Camera2D" parent="Line"]
+position_smoothing_speed = 3.0
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(-104, 0, 104, 0)
+default_color = Color(0.953058, 0.445445, 0.462838, 1)
