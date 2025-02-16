@@ -111,7 +111,7 @@ _data = {
 "punch2": SubResource("Animation_w6swd")
 }
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_player_one_sprite", "_player_two_sprite", "ray_cast_2d")]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_player_one_sprite", "_player_two_sprite", "ray_cast_2d") groups=["player_character"]]
 script = ExtResource("1_bh3u0")
 _player_one_sprite = NodePath("PlayerOne")
 _player_two_sprite = NodePath("PlayerTwo")

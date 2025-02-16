@@ -51,6 +51,7 @@ player_objects=""
 enemies=""
 obstacle=""
 interactable=""
+player_character=""
 
 [input]
 

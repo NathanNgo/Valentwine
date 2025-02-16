@@ -71,6 +71,8 @@ func _physics_process(_delta: float) -> void:
 		STATE_IDLE:
 			if ray_cast_2d.is_colliding():
 				var attack_target := ray_cast_2d.get_collider()
+				if attack_target == null:
+					return
 				if attack_target.is_in_group("enemies"):
 					attack(attack_target, direction)
 					return
@@ -79,15 +81,18 @@ func _physics_process(_delta: float) -> void:
 			velocity = direction * speed
 	move_and_slide()
 
-func damage(how_much : float):
+func damage(how_much : float, attack_direction : Vector2, stagger : bool):
 	took_damage.emit(how_much)
+	if stagger:
+		global_position = global_position + attack_direction * 150
+		
 	
 
 func attack(attack_target : Node2D, attack_direction : Vector2):
 	grace_between_punches.stop()
 	state = STATE_BLOCKED
 	var damage_done : float = calculate_damage_with_modifiers(punches_in_a_row)
-	attack_target.damage(damage_done)
+	attack_target.damage(damage_done, attack_direction)
 	animation_player.play("punch%s" % [punches_in_a_row])
 	punches_in_a_row = (punches_in_a_row + 1) % punches_in_combo
 	pass
@@ -96,11 +101,11 @@ func attack(attack_target : Node2D, attack_direction : Vector2):
 func calculate_damage_with_modifiers(number_in_combo : int) -> float:
 	var total_damage = 0.0
 	match number_in_combo:
-		1:
+		0:
 			total_damage += 5
-		2:
+		1:
 			total_damage += 10
-		3:
+		2:
 			total_damage += 20
 	return total_damage
 
