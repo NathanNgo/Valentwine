@@ -1,6 +1,6 @@
 class_name EnemyCharacter extends CharacterBody2D
 
-signal body_hit(damage: int)
+signal body_hit(damage: float)
 
 static var enemy_group = "enemies"
 
@@ -24,6 +24,11 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group(PlayerCharacter.player_group):
 		body_hit.emit(damage_amount)
 		queue_free()
+	if body.is_in_group("player_character"):
+		queue_free()
+
+func damage(_damage_done, _damage_direction):
+	queue_free()
 
 
 func target(target_position: Vector2) -> void:

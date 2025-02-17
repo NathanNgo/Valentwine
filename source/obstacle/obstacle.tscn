@@ -6,6 +6,7 @@
 size = Vector2(112, 112)
 
 [node name="Area2D" type="Area2D" groups=["obstacle"]]
+collision_mask = 3
 script = ExtResource("1_4qyvt")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

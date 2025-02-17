@@ -12,11 +12,14 @@ line = NodePath("Line2D")
 line_body = NodePath("Line")
 
 [node name="Line" type="CharacterBody2D" parent="." groups=["player_objects"]]
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Line"]
 shape = SubResource("RectangleShape2D_f2i5c")
 
 [node name="Camera2D" type="Camera2D" parent="Line"]
+zoom = Vector2(0.5, 0.5)
 position_smoothing_speed = 3.0
 
 [node name="Line2D" type="Line2D" parent="."]

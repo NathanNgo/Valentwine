@@ -12,15 +12,24 @@ const SPAWN_TIME = 2
 @export var point_sampler: PathFollow2D
 @export var health_bar: ProgressBar
 
-var health := 100
+var health := 100.0
 
 
 func _ready() -> void:
+	var target_player : int = 0
 	for enemy in enemies_container.get_children():
 		enemy.body_hit.connect(_on_body_hit)
-
+		if target_player == 0:
+			enemy.player = player_one
+		else :
+			enemy.player = player_two
+		target_player = (target_player + 1) % 2
 	for obstacle in obstacles_container.get_children():
 		obstacle.body_hit.connect(_on_body_hit)
+
+	player_one.took_damage.connect(_on_body_hit)
+	player_two.took_damage.connect(_on_body_hit)
+	health_bar.value = health
 
 	enemy_spawn_timer.timeout.connect(_on_enemy_spawn_timer_timeout)
 	enemy_spawn_timer.start(SPAWN_TIME)
@@ -29,11 +38,10 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	line.set_end_positions(player_one.position, player_two.position)
-	for enemy in get_tree().get_nodes_in_group(EnemyCharacter.enemy_group):
+	for enemy in enemies_container.get_children():
 		enemy.target(line.line_body.position)
 
-
-func _on_body_hit(damage: int) -> void:
+func _on_body_hit(damage: float) -> void:
 	health -= damage
 	health_bar.value = health
 

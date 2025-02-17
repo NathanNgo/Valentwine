@@ -1,28 +1,127 @@
-[gd_scene load_steps=6 format=3 uid="uid://cxr5vmhcdk1jp"]
+[gd_scene load_steps=9 format=3 uid="uid://cxr5vmhcdk1jp"]
 
 [ext_resource type="Script" path="res://source/characters/player_character/player_character.gd" id="1_bh3u0"]
 [ext_resource type="Texture2D" uid="uid://dsddhx7yrigia" path="res://assets/Test_P1.png" id="2_ddjy7"]
 [ext_resource type="Texture2D" uid="uid://hb5yy34q1sgr" path="res://assets/Test_P2.png" id="3_vu64w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7o53"]
+radius = 40.0
+height = 140.0
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p4b1x"]
-radius = 48.0
-height = 152.0
+[sub_resource type="Animation" id="Animation_0xdtk"]
+resource_name = "punch0"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_attack"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/PunchSounds/LightPunch")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"play"
+}]
+}
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_collision_area", "_player_one_sprite", "_player_two_sprite")]
+[sub_resource type="Animation" id="Animation_3aauq"]
+resource_name = "punch1"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_attack"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/PunchSounds/MediumPunch")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"play"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_w6swd"]
+resource_name = "punch2"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"finish_attack"
+}]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimationPlayer/PunchSounds/HeavyPunch")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [true],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_blxu0"]
+_data = {
+"punch0": SubResource("Animation_0xdtk"),
+"punch1": SubResource("Animation_3aauq"),
+"punch2": SubResource("Animation_w6swd")
+}
+
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_player_one_sprite", "_player_two_sprite", "ray_cast_2d") groups=["player_character"]]
 script = ExtResource("1_bh3u0")
-_collision_area = NodePath("Area2D")
 _player_one_sprite = NodePath("PlayerOne")
 _player_two_sprite = NodePath("PlayerTwo")
+ray_cast_2d = NodePath("RayCast2D")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://assets/fmod_banks/Desktop/Master.strings.bank", "res://assets/fmod_banks/Desktop/Master.bank", "res://assets/fmod_banks/Desktop/SFX.bank"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_n7o53")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CapsuleShape2D_p4b1x")
 
 [node name="PlayerOne" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
@@ -31,3 +130,29 @@ texture = ExtResource("2_ddjy7")
 [node name="PlayerTwo" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("3_vu64w")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(150, 0)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_blxu0")
+}
+
+[node name="PunchSounds" type="Node" parent="AnimationPlayer"]
+
+[node name="LightPunch" type="FmodEventEmitter2D" parent="AnimationPlayer/PunchSounds"]
+event_name = "event:/LightPunch"
+event_guid = "{4a3f02e6-57f3-409e-905e-5c6309b2a770}"
+
+[node name="MediumPunch" type="FmodEventEmitter2D" parent="AnimationPlayer/PunchSounds"]
+event_name = "event:/MediumPunch"
+event_guid = "{916e3e17-c826-476c-90bb-768330b38696}"
+
+[node name="HeavyPunch" type="FmodEventEmitter2D" parent="AnimationPlayer/PunchSounds"]
+event_name = "event:/HeavyPunch"
+event_guid = "{f7ac2223-ee50-48fe-b1d8-646a51f5a445}"
+
+[node name="grace_between_punches" type="Timer" parent="."]
+
+[connection signal="timeout" from="grace_between_punches" to="." method="_on_grace_between_punches_timeout"]
