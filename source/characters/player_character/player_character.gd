@@ -85,8 +85,8 @@ func damage(how_much : float, attack_direction : Vector2, stagger : bool):
 	took_damage.emit(how_much)
 	if stagger:
 		global_position = global_position + attack_direction * 150
-		
-	
+
+
 
 func attack(attack_target : Node2D, attack_direction : Vector2):
 	grace_between_punches.stop()
@@ -95,7 +95,6 @@ func attack(attack_target : Node2D, attack_direction : Vector2):
 	attack_target.damage(damage_done, attack_direction)
 	animation_player.play("punch%s" % [punches_in_a_row])
 	punches_in_a_row = (punches_in_a_row + 1) % punches_in_combo
-	pass
 
 
 func calculate_damage_with_modifiers(number_in_combo : int) -> float:

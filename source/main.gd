@@ -26,11 +26,11 @@ func _ready() -> void:
 		target_player = (target_player + 1) % 2
 	for obstacle in obstacles_container.get_children():
 		obstacle.body_hit.connect(_on_body_hit)
-	
+
 	player_one.took_damage.connect(_on_body_hit)
 	player_two.took_damage.connect(_on_body_hit)
 	health_bar.value = health
-	
+
 	enemy_spawn_timer.timeout.connect(_on_enemy_spawn_timer_timeout)
 	enemy_spawn_timer.start(SPAWN_TIME)
 	health_bar.value = health

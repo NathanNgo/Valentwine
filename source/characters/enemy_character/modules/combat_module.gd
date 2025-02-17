@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if parent.state != BasicEnemy.states.STATE_IDLE:
+	if parent.state != BasicEnemy.States.STATE_IDLE:
 		return
 	target_position = parent.movement_direction * attack_range
 	if is_colliding():
@@ -29,12 +29,12 @@ func _process(_delta: float) -> void:
 func take_damage(damage_taken, attack_direction):
 	health -= damage_taken
 	if health <= 0:
-		parent.state = BasicEnemy.states.STATE_BLOCKED
+		parent.state = BasicEnemy.States.STATE_BLOCKED
 		die()
-		
+	
 	current_stagger_count += damage_taken
 	if current_stagger_count >= stagger_threshold:
-		parent.state = BasicEnemy.states.STATE_STAGGER
+		parent.state = BasicEnemy.States.STATE_STAGGER
 		parent.position = global_position + attack_direction * 10
 		stagger_timer.start(stagger_time)
 
@@ -44,11 +44,10 @@ func  die():
 
 func start_attack(attack_target : Node2D, attack_direction : Vector2):
 	animation_player.play("attack")
-	parent.state = BasicEnemy.states.STATE_ATTACK
+	parent.state = BasicEnemy.States.STATE_ATTACK
 	attack_target.damage(damage, attack_direction, cause_stagger)
 
 
 func return_to_idle():
-	parent.state = BasicEnemy.states.STATE_IDLE
+	parent.state = BasicEnemy.States.STATE_IDLE
 	current_stagger_count = 0
-	

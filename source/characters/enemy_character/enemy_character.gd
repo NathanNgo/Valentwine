@@ -29,7 +29,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func damage(_damage_done, _damage_direction):
 	queue_free()
-	
+
 
 func target(target_position: Vector2) -> void:
 	_target_position = target_position
