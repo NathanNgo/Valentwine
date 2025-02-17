@@ -111,11 +111,13 @@ _data = {
 "punch2": SubResource("Animation_w6swd")
 }
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_player_one_sprite", "_player_two_sprite", "ray_cast_2d") groups=["player_character"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_player_one_sprite", "_player_two_sprite", "ray_cast_2d", "grace_timer", "animation_player") groups=["player_character"]]
 script = ExtResource("1_bh3u0")
 _player_one_sprite = NodePath("PlayerOne")
 _player_two_sprite = NodePath("PlayerTwo")
 ray_cast_2d = NodePath("RayCast2D")
+grace_timer = NodePath("GraceTimer")
+animation_player = NodePath("AnimationPlayer")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/fmod_banks/Desktop/Master.strings.bank", "res://assets/fmod_banks/Desktop/Master.bank", "res://assets/fmod_banks/Desktop/SFX.bank"]
@@ -153,6 +155,4 @@ event_guid = "{916e3e17-c826-476c-90bb-768330b38696}"
 event_name = "event:/HeavyPunch"
 event_guid = "{f7ac2223-ee50-48fe-b1d8-646a51f5a445}"
 
-[node name="grace_between_punches" type="Timer" parent="."]
-
-[connection signal="timeout" from="grace_between_punches" to="." method="_on_grace_between_punches_timeout"]
+[node name="GraceTimer" type="Timer" parent="."]

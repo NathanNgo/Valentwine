@@ -14,22 +14,15 @@ const SPAWN_TIME = 2
 
 var health := 100.0
 
+@onready var targetable_player_objects: Array[Node2D] = [player_one, player_two, line]
+
 
 func _ready() -> void:
-	var target_player : int = 0
-	for enemy in enemies_container.get_children():
-		enemy.body_hit.connect(_on_body_hit)
-		if target_player == 0:
-			enemy.player = player_one
-		else :
-			enemy.player = player_two
-		target_player = (target_player + 1) % 2
-	for obstacle in obstacles_container.get_children():
-		obstacle.body_hit.connect(_on_body_hit)
+	_assign_enemy_targets()
 
-	player_one.took_damage.connect(_on_body_hit)
-	player_two.took_damage.connect(_on_body_hit)
-	health_bar.value = health
+	player_one.player_damaged.connect(_on_damage_taken)
+	player_two.player_damaged.connect(_on_damage_taken)
+	line.line_body.player_damaged.connect(_on_damage_taken)
 
 	enemy_spawn_timer.timeout.connect(_on_enemy_spawn_timer_timeout)
 	enemy_spawn_timer.start(SPAWN_TIME)
@@ -38,18 +31,22 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	line.set_end_positions(player_one.position, player_two.position)
-	for enemy in enemies_container.get_children():
-		enemy.target(line.line_body.position)
 
-func _on_body_hit(damage: float) -> void:
+
+func _on_damage_taken(damage: float) -> void:
 	health -= damage
 	health_bar.value = health
 
 
-func _on_enemy_spawn_timer_timeout():
+func _on_enemy_spawn_timer_timeout() -> void:
 	enemy_spawn_timer.start(SPAWN_TIME)
-	var enemy_instance = enemy_scene.instantiate()
+	var enemy_instance := enemy_scene.instantiate()
 	enemies_container.add_child(enemy_instance)
 	point_sampler.progress_ratio = randf_range(0.0, 1.0)
 	enemy_instance.position = point_sampler.position
-	enemy_instance.body_hit.connect(_on_body_hit)
+
+
+func _assign_enemy_targets() -> void:
+	for enemy in enemies_container.get_children():
+		var random_target: Node2D = targetable_player_objects.pick_random()
+		enemy.target = random_target

@@ -1,7 +1,5 @@
 extends Area2D
 
-signal body_hit(damage: int)
-
 @export var damage_amount := 10
 
 
@@ -11,4 +9,4 @@ func _ready() -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group(PlayerCharacter.player_group):
-		body_hit.emit(damage_amount)
+		body.damage(damage_amount)
