@@ -1,9 +1,8 @@
-[gd_scene load_steps=21 format=4 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=19 format=4 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
 [ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/line/line.tscn" id="2_h0bad"]
-[ext_resource type="PackedScene" uid="uid://purqtlnam4ek" path="res://source/characters/enemy_character/placeholder_enemy/enemy_character.tscn" id="2_moq3r"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="3_mlksv"]
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
 [ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_character/punchy/punchy.tscn" id="7_a44xj"]
@@ -302,18 +301,14 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_mon25")
 
-[sub_resource type="Curve2D" id="Curve2D_ym4sj"]
-
-[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "enemy_spawn_timer", "point_sampler", "health_bar")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "point_sampler", "health_bar")]
 script = ExtResource("1_h5u32")
 line = NodePath("Line")
 player_one = NodePath("PlayerCharacter1")
 player_two = NodePath("PlayerCharacter2")
 enemies_container = NodePath("EnemiesContainer")
 obstacles_container = NodePath("ObstaclesContainer")
-enemy_spawn_timer = NodePath("EnemySpawnTimer")
-enemy_scene = ExtResource("2_moq3r")
-point_sampler = NodePath("Path2D/PathFollow2D")
+point_sampler = NodePath("")
 health_bar = NodePath("CanvasLayer/ProgressBar")
 
 [node name="TileMaps" type="Node2D" parent="."]
@@ -357,11 +352,3 @@ offset_right = 324.0
 offset_bottom = 40.0
 grow_horizontal = 2
 value = 50.0
-
-[node name="EnemySpawnTimer" type="Timer" parent="."]
-wait_time = 2.0
-
-[node name="Path2D" type="Path2D" parent="."]
-curve = SubResource("Curve2D_ym4sj")
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Path2D"]
