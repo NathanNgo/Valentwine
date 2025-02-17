@@ -1,14 +1,16 @@
 extends RayCast2D
 
 
-@onready var parent: BasicEnemy = $".."
 @export var health : float = 100
 @export var damage : float = 10.0
 @export var stagger_threshold : float = 10
 @export var stagger_time : float = 1.0
-var current_stagger_count : float = 0.0
 @export var attack_range : float = 300.0
 @export var cause_stagger : bool = true
+
+var _current_stagger_count : float = 0.0
+
+@onready var parent: BasicEnemy = $".."
 @onready var animation_player: AnimationPlayer = $"../AnimationPlayer"
 @onready var stagger_timer: Timer = $StaggerTimer
 
@@ -31,14 +33,15 @@ func take_damage(damage_taken, attack_direction):
 	if health <= 0:
 		parent.state = BasicEnemy.States.STATE_BLOCKED
 		die()
-	
-	current_stagger_count += damage_taken
-	if current_stagger_count >= stagger_threshold:
+
+	_current_stagger_count += damage_taken
+	if _current_stagger_count >= stagger_threshold:
 		parent.state = BasicEnemy.States.STATE_STAGGER
 		parent.position = global_position + attack_direction * 10
 		stagger_timer.start(stagger_time)
 
-func  die():
+
+func die():
 	animation_player.play("death")
 
 
@@ -50,4 +53,4 @@ func start_attack(attack_target : Node2D, attack_direction : Vector2):
 
 func return_to_idle():
 	parent.state = BasicEnemy.States.STATE_IDLE
-	current_stagger_count = 0
+	_current_stagger_count = 0
