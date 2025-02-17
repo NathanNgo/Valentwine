@@ -1,6 +1,8 @@
 class_name PlayerCharacter extends CharacterBody2D
 
 signal player_damaged(damage_amount: float)
+signal left_just_pressed
+signal right_just_pressed
 
 enum Player { FIRST, SECOND }
 enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
@@ -58,6 +60,11 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	if Input.is_action_just_pressed(selected_scheme[Controls.LEFT]):
+		left_just_pressed.emit()
+	if Input.is_action_just_pressed(selected_scheme[Controls.RIGHT]):
+		right_just_pressed.emit()
+	
 	var direction := (
 		Vector2(
 			Input.get_axis(

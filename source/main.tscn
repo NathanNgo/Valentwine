@@ -301,14 +301,13 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_mon25")
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "point_sampler", "health_bar")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "health_bar")]
 script = ExtResource("1_h5u32")
 line = NodePath("Line")
 player_one = NodePath("PlayerCharacter1")
 player_two = NodePath("PlayerCharacter2")
 enemies_container = NodePath("EnemiesContainer")
 obstacles_container = NodePath("ObstaclesContainer")
-point_sampler = NodePath("")
 health_bar = NodePath("CanvasLayer/ProgressBar")
 
 [node name="TileMaps" type="Node2D" parent="."]
