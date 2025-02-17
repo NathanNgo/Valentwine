@@ -108,7 +108,6 @@ func attack(attack_target: Node2D, attack_direction: Vector2 = Vector2.ZERO) -> 
 	state = State.BLOCKED
 	var damage_done: float = calculate_damage_with_modifiers(punches_in_a_row)
 
-
 	if attack_target.is_in_group(Enemy.enemy_group):
 		attack_target.damage(damage_done, attack_direction)
 		animation_player.play("punch%s" % [punches_in_a_row])

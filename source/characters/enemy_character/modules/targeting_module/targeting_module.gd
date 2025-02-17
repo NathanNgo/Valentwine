@@ -11,6 +11,8 @@ func _process(_delta: float) -> void:
 
 	global_position = parent.global_position
 	look_at(parent.target.position)
-	var target_distance: float = parent.target.global_position.distance_to(global_position)
+	var target_distance: float = parent.target.global_position.distance_to(
+		global_position
+	)
 	target_distance = min(target_distance, line_length_limit)
 	scale.x = target_distance
