@@ -3,12 +3,9 @@ class_name PlayerCharacter extends CharacterBody2D
 signal took_damage(damage_amount: float)
 
 enum Player { FIRST, SECOND }
-
 enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
 enum { STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK}
-var state = STATE_IDLE
-var punches_in_a_row : int = 0
-var punches_in_combo : int = 3
+
 static var player_group = "player_objects"
 
 
@@ -17,11 +14,10 @@ static var player_group = "player_objects"
 @export var ray_cast_2d: RayCast2D
 @export var player_type := Player.FIRST
 @export var speed := 400
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
 var grace_time_between_punches : float = 1.0
-@onready var grace_between_punches: Timer = $grace_between_punches
-
-
+var state = STATE_IDLE
+var punches_in_a_row : int = 0
+var punches_in_combo : int = 3
 var control_schemes := {
 	Player.FIRST:
 	{
@@ -41,6 +37,8 @@ var control_schemes := {
 	}
 }
 
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var grace_between_punches: Timer = $grace_between_punches
 @onready var selected_scheme: Dictionary = control_schemes[player_type]
 
 

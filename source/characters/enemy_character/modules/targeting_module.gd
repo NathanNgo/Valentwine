@@ -1,7 +1,8 @@
 extends Node2D
 
-@onready var parent: BasicEnemy = $".."
 @export var line_length_limit : float = 300
+
+@onready var parent: BasicEnemy = $".."
 
 func _process(_delta: float) -> void:
 	global_position = parent.global_position

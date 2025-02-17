@@ -2,14 +2,18 @@ class_name BasicEnemy extends CharacterBody2D
 
 signal body_hit(damage: float)
 signal take_damage(damage_done : float, attack_direction : Vector2)
-static var enemy_group = "enemies"
 
 enum States{ STATE_BLOCKED, STATE_IDLE, STATE_WALKING, STATE_ATTACK, STATE_STAGGER}
-var state : States = States.STATE_IDLE
+
+static var enemy_group = "enemies"
+
 @export var speed := 300
 @export var player : Node2D
-@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
+
+var state : States = States.STATE_IDLE
 var movement_direction : Vector2
+
+@onready var navigation_agent_2d: NavigationAgent2D = $NavigationAgent2D
 
 func _physics_process(_delta: float) -> void:
 	if state == States.STATE_IDLE:
