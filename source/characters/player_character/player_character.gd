@@ -112,7 +112,6 @@ func idle(direction: Vector2) -> void:
 		current_interacting_object = attack_target
 		current_interacting_object.finished_interaction.connect(resolve_interaction)
 		attack_target.interact(self)
-		pass
 
 
 func damage(damage_amount: float, attack_direction: Vector2 = Vector2.ZERO) -> void:
