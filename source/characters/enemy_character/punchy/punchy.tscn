@@ -45,7 +45,7 @@ _data = {
 }
 
 [node name="Punchy" node_paths=PackedStringArray("combat_module") instance=ExtResource("1_r863o")]
-speed = 150
+speed = 200
 combat_module = NodePath("CombatModule")
 
 [node name="CombatModule" parent="." index="4" instance=ExtResource("2_5cqtb")]

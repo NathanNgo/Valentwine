@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bps1jw3521rwo"]
+
+[ext_resource type="Texture2D" uid="uid://nino530xqaj2" path="res://assets/tilemap_assets/Wall_6.png" id="1_jvdsb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qos30"]
+size = Vector2(304, 499)
+
+[node name="gate" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_jvdsb")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_qos30")
