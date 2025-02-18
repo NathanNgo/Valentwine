@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=25 format=4 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacle/gate/gate.tscn" id="4_t8qi7"]
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
 [ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_character/punchy/punchy.tscn" id="7_a44xj"]
+[ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_character/grabby/Grabby.tscn" id="7_jf5iv"]
 [ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_s2388"]
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
+[ext_resource type="Script" path="res://source/characters/enemy_character/shooter/shooter.gd" id="12_iwo1m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gh7c8"]
 vertices = PackedVector2Array(100, 100, -100, 100, -100, -100, 100, -100)
@@ -336,6 +338,10 @@ player_type = 1
 [node name="EnemiesContainer" type="Node2D" parent="."]
 
 [node name="Punchy" parent="EnemiesContainer" instance=ExtResource("7_a44xj")]
+position = Vector2(-110, 236)
+
+[node name="Grabby" parent="EnemiesContainer" instance=ExtResource("7_jf5iv")]
+position = Vector2(1129, -186)
 
 [node name="ObstaclesContainer" type="Node2D" parent="."]
 
@@ -345,9 +351,6 @@ position = Vector2(348, -121)
 [node name="Area2D2" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
 position = Vector2(87, 480)
 
-[node name="Area2D3" parent="ObstaclesContainer" instance=ExtResource("5_kgnse")]
-position = Vector2(1152, -152)
-
 [node name="InteractablesContainer" type="Node2D" parent="."]
 
 [node name="lever" parent="InteractablesContainer" instance=ExtResource("7_s2388")]
@@ -355,7 +358,7 @@ texture_filter = 1
 position = Vector2(1694, 898)
 
 [node name="gate" parent="InteractablesContainer/lever" instance=ExtResource("4_t8qi7")]
-position = Vector2(470, -209)
+position = Vector2(464, -221)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -369,16 +372,16 @@ offset_bottom = 40.0
 grow_horizontal = 2
 value = 50.0
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="TempArrow" type="Node2D" parent="."]
 position = Vector2(509, 586)
 
-[node name="Arrow" type="Sprite2D" parent="Node2D"]
+[node name="Arrow" type="Sprite2D" parent="TempArrow"]
 texture_filter = 1
 position = Vector2(303, 0)
 scale = Vector2(20, 20)
 texture = ExtResource("9_pud87")
 
-[node name="Label" type="Label" parent="Node2D"]
+[node name="Label" type="Label" parent="TempArrow"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -392,3 +395,14 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 151
 text = "go right!"
 horizontal_alignment = 1
+
+[node name="TempSpawner" type="Node2D" parent="." node_paths=PackedStringArray("fate_line", "timer")]
+position = Vector2(657, -112)
+script = ExtResource("12_iwo1m")
+fate_line = NodePath("../Line/Line")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="TempSpawner"]
+autostart = true
+
+[editable path="Line"]

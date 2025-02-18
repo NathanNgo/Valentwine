@@ -119,6 +119,11 @@ func idle(direction: Vector2) -> void:
 		current_interacting_object.open_interaction(self)
 
 
+func get_pushed(direction : Vector2) -> void:
+	velocity = direction
+	move_and_slide()
+
+
 func damage(damage_amount: float, attack_direction: Vector2 = Vector2.ZERO) -> void:
 	player_damaged.emit(damage_amount)
 	global_position = global_position + attack_direction * stagger_amount

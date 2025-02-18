@@ -2,10 +2,9 @@
 
 [ext_resource type="Script" path="res://source/characters/enemy_character/modules/combat_module/combat_module.gd" id="1_je48s"]
 
-[node name="CombatModule" type="RayCast2D"]
+[node name="CombatModule" type="RayCast2D" node_paths=PackedStringArray("stagger_timer")]
 script = ExtResource("1_je48s")
 stagger_threshold = 30.0
+stagger_timer = NodePath("StaggerTimer")
 
 [node name="StaggerTimer" type="Timer" parent="."]
-
-[connection signal="timeout" from="StaggerTimer" to="." method="return_to_idle"]
