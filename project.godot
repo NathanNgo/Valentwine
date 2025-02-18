@@ -143,6 +143,10 @@ player_two_interact={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_3="interactables"
+
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
