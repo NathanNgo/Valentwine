@@ -351,6 +351,7 @@ position = Vector2(1152, -152)
 [node name="InteractablesContainer" type="Node2D" parent="."]
 
 [node name="lever" parent="InteractablesContainer" instance=ExtResource("7_s2388")]
+texture_filter = 1
 position = Vector2(1694, 898)
 
 [node name="gate" parent="InteractablesContainer/lever" instance=ExtResource("4_t8qi7")]
