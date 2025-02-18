@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
 [ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/line/line.tscn" id="2_h0bad"]
-[ext_resource type="Script" path="res://source/level1/game_manager.gd" id="2_pkrcj"]
+[ext_resource type="Script" path="res://source/managers/game_manager.gd" id="2_pkrcj"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="3_mlksv"]
-[ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacle/gate.tscn" id="4_t8qi7"]
+[ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacle/gate/gate.tscn" id="4_t8qi7"]
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
 [ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_character/punchy/punchy.tscn" id="7_a44xj"]
-[ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/obstacle/interactable_lever.tscn" id="7_s2388"]
+[ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_s2388"]
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gh7c8"]
@@ -314,9 +314,9 @@ enemies_container = NodePath("EnemiesContainer")
 obstacles_container = NodePath("ObstaclesContainer")
 health_bar = NodePath("CanvasLayer/ProgressBar")
 
-[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("lever1")]
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("lever")]
 script = ExtResource("2_pkrcj")
-lever1 = NodePath("../lever")
+lever = NodePath("../lever")
 
 [node name="TileMaps" type="Node2D" parent="."]
 
@@ -370,6 +370,7 @@ position = Vector2(470, -209)
 position = Vector2(509, 586)
 
 [node name="Arrow" type="Sprite2D" parent="Node2D"]
+texture_filter = 1
 position = Vector2(303, 0)
 scale = Vector2(20, 20)
 texture = ExtResource("9_pud87")

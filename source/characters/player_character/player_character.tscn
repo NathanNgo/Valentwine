@@ -117,9 +117,9 @@ script = ExtResource("1_bh3u0")
 _player_one_sprite = NodePath("PlayerOne")
 _player_two_sprite = NodePath("PlayerTwo")
 ray_cast_2d = NodePath("RayCast2D")
-stun_container = NodePath("stun_container")
-_left_prompt = NodePath("stun_container/left_prompt")
-_right_prompt = NodePath("stun_container/right_prompt")
+stun_container = NodePath("StunContainer")
+_left_prompt = NodePath("StunContainer/left_prompt")
+_right_prompt = NodePath("StunContainer/right_prompt")
 grace_timer = NodePath("GraceTimer")
 animation_player = NodePath("AnimationPlayer")
 
@@ -162,16 +162,18 @@ event_guid = "{f7ac2223-ee50-48fe-b1d8-646a51f5a445}"
 
 [node name="GraceTimer" type="Timer" parent="."]
 
-[node name="stun_container" type="Node2D" parent="."]
+[node name="StunContainer" type="Node2D" parent="."]
 position = Vector2(0, -100)
 
-[node name="left_prompt" type="Sprite2D" parent="stun_container"]
+[node name="left_prompt" type="Sprite2D" parent="StunContainer"]
+texture_filter = 1
 position = Vector2(-50, 0)
 rotation = -3.14159
 scale = Vector2(10, 10)
 texture = ExtResource("4_mvl4h")
 
-[node name="right_prompt" type="Sprite2D" parent="stun_container"]
+[node name="right_prompt" type="Sprite2D" parent="StunContainer"]
+texture_filter = 1
 position = Vector2(50, 0)
 scale = Vector2(10, 10)
 texture = ExtResource("4_mvl4h")

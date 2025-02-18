@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://djakdqjo8fjna"]
 
-[ext_resource type="Script" path="res://source/obstacle/interactable_lever.gd" id="1_aq3x7"]
+[ext_resource type="Script" path="res://source/interactables/interactable.gd" id="1_aq3x7"]
 [ext_resource type="Texture2D" uid="uid://dsywy007ymfjq" path="res://assets/tilemap_assets/lever.png" id="1_cwecd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kbfmd"]
