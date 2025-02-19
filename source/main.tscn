@@ -337,11 +337,11 @@ player_type = 1
 
 [node name="EnemiesContainer" type="Node2D" parent="."]
 
-[node name="Punchy" parent="EnemiesContainer" instance=ExtResource("7_a44xj")]
-position = Vector2(-110, 236)
-
 [node name="Grabby" parent="EnemiesContainer" instance=ExtResource("7_jf5iv")]
 position = Vector2(1129, -186)
+
+[node name="Punchy" parent="EnemiesContainer" instance=ExtResource("7_a44xj")]
+position = Vector2(-19, 260)
 
 [node name="ObstaclesContainer" type="Node2D" parent="."]
 

@@ -5,7 +5,7 @@ signal player_damaged(damage_amount: float)
 
 enum Player { FIRST, SECOND }
 enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
-enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED }
+enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING }
 
 static var player_group := "player_objects"
 
@@ -15,7 +15,8 @@ static var player_group := "player_objects"
 @export var player_type := Player.FIRST
 @export var speed := 400
 @export var grace_time_between_punches := 1.0
-@export var stagger_amount := 150
+@export var stagger_amount : float = 150
+@export var stagger_speed : float = 75
 @export var attack_range := 150
 
 @export var stun_container: Node2D
@@ -24,6 +25,8 @@ static var player_group := "player_objects"
 @export var grace_timer: Timer
 @export var animation_player: AnimationPlayer
 
+var staggering_distance : float = 0.0
+var staggering_towards : Vector2
 var state := State.IDLE
 var current_stun_prompt := Controls.LEFT
 var current_interacting_object: Node2D
@@ -96,7 +99,15 @@ func _physics_process(_delta: float) -> void:
 
 		State.IDLE:
 			idle(direction)
-
+		
+		State.STAGGERING:
+			velocity = staggering_towards * stagger_speed / _delta
+			##how long has the player been pushed
+			staggering_distance += staggering_towards.length() * stagger_speed
+			if staggering_distance >= stagger_amount:
+				state = State.IDLE
+			move_and_slide()
+			return
 	velocity = direction * speed
 	move_and_slide()
 
@@ -126,7 +137,8 @@ func get_pushed(direction : Vector2) -> void:
 
 func damage(damage_amount: float, attack_direction: Vector2 = Vector2.ZERO) -> void:
 	player_damaged.emit(damage_amount)
-	global_position = global_position + attack_direction * stagger_amount
+	state = State.STAGGERING
+	staggering_towards = attack_direction
 	close_interaction()
 
 

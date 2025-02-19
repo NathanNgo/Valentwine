@@ -8,9 +8,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_qdfsq"]
 radius = 147.01
 
-[sub_resource type="Animation" id="Animation_wjx6n"]
-resource_name = "grab"
-
 [sub_resource type="Animation" id="Animation_dyouw"]
 resource_name = "death"
 tracks/0/type = "method"
@@ -27,6 +24,9 @@ tracks/0/keys = {
 "method": &"queue_free"
 }]
 }
+
+[sub_resource type="Animation" id="Animation_wjx6n"]
+resource_name = "grab"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kge1o"]
 _data = {
@@ -54,7 +54,6 @@ interact = NodePath("Interact")
 speed_grabbing = 200
 health = 200.0
 damage_amount = 0.0
-stagger_threshold = 50.0
 stagger_time = 1.5
 animation_player = NodePath("../AnimationPlayer")
 stagger_timer = NodePath("Timer")
