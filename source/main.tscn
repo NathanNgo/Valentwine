@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=27 format=4 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
 [ext_resource type="Script" path="res://source/characters/enemy_characters/ammo/shooter/shooter.gd" id="12_iwo1m"]
 [ext_resource type="PackedScene" uid="uid://824xq6lgf8lg" path="res://source/characters/enemy_characters/ammo/ammo.tscn" id="13_t5358"]
+[ext_resource type="PackedScene" uid="uid://dgo0f408j53ae" path="res://source/lines/trailing_line/trailing_line.tscn" id="14_goyju"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gh7c8"]
 vertices = PackedVector2Array(100, 100, -100, 100, -100, -100, 100, -100)
@@ -308,7 +309,7 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_mon25")
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "health_bar")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "health_bar", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer")]
 script = ExtResource("1_h5u32")
 line = NodePath("Line")
 player_one = NodePath("PlayerCharacter1")
@@ -316,6 +317,9 @@ player_two = NodePath("PlayerCharacter2")
 enemies_container = NodePath("EnemiesContainer")
 obstacles_container = NodePath("ObstaclesContainer")
 health_bar = NodePath("CanvasLayer/ProgressBar")
+trailing_line_one = NodePath("TrailingLine1")
+trailing_line_two = NodePath("TrailingLine2")
+trailing_line_draw_timer = NodePath("TrailingLineDrawTimer")
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("lever")]
 script = ExtResource("2_pkrcj")
@@ -406,5 +410,13 @@ ammo = ExtResource("13_t5358")
 
 [node name="Timer" type="Timer" parent="TempSpawner"]
 autostart = true
+
+[node name="TrailingLine1" parent="." instance=ExtResource("14_goyju")]
+max_points = 80
+
+[node name="TrailingLine2" parent="." instance=ExtResource("14_goyju")]
+max_points = 80
+
+[node name="TrailingLineDrawTimer" type="Timer" parent="."]
 
 [editable path="Line"]

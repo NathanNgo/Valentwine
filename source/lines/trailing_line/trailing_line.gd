@@ -3,6 +3,7 @@ extends Node2D
 const LAST_INDEX = -1
 const SECOND_LAST_INDEX = -2
 const LAST_LINE_FIRST_POINT_OFFSET = 2
+const MINIMUM_NUMBER_OF_POINTS_FOR_INTERSECTION = 4
 
 @export var max_points := 10
 @export var trailing_line: Line2D
@@ -18,6 +19,10 @@ func add_point(point: Vector2) -> Variant:
 		trailing_line_points.push_back(point)
 
 	_redraw_trailing_line()
+	
+	if trailing_line_points.size() < MINIMUM_NUMBER_OF_POINTS_FOR_INTERSECTION:
+		return null
+
 	return _check_all_lines_for_intersection()
 
 
