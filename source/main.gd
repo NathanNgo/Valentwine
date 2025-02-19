@@ -16,7 +16,8 @@ const TRAILING_LINE_DRAW_TIME = 0.05
 
 var health := 100.0
 
-@onready var targetable_player_objects: Array[Node2D] = [player_one, player_two, line.line_body]
+@onready
+var targetable_player_objects: Array[Node2D] = [player_one, player_two, line.line_body]
 
 
 func _ready() -> void:

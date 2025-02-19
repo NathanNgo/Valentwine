@@ -19,7 +19,7 @@ func add_point(point: Vector2) -> Variant:
 		trailing_line_points.push_back(point)
 
 	_redraw_trailing_line()
-	
+
 	if trailing_line_points.size() < MINIMUM_NUMBER_OF_POINTS_FOR_INTERSECTION:
 		return null
 
@@ -27,7 +27,9 @@ func add_point(point: Vector2) -> Variant:
 
 
 func get_closed_polygon(start_and_end_point: Vector2) -> Array[Vector2]:
-	return [start_and_end_point] + trailing_line_points.slice(1, -1) + [start_and_end_point]
+	return (
+		[start_and_end_point] + trailing_line_points.slice(1, -1) + [start_and_end_point]
+	)
 
 
 func _check_all_lines_for_intersection() -> Variant:
@@ -41,7 +43,9 @@ func _check_all_lines_for_intersection() -> Variant:
 		if first_line_end == second_line_start:
 			continue
 
-		var possible_intersection := _check_intersection_between_two_lines(first_line_start, first_line_end, second_line_start, second_line_end)
+		var possible_intersection := _check_intersection_between_two_lines(
+			first_line_start, first_line_end, second_line_start, second_line_end
+		)
 
 		if possible_intersection:
 			return possible_intersection
