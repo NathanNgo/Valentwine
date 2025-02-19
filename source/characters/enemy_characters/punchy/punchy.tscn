@@ -1,9 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://bnqkg78ob8l43"]
 
-[ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_character/enemy.tscn" id="1_r863o"]
+[ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_characters/enemy.tscn" id="1_r863o"]
 [ext_resource type="Texture2D" uid="uid://c5qdnnmci5v0d" path="res://assets/Punchy.png" id="2_4kfbi"]
-[ext_resource type="PackedScene" uid="uid://4dk0tpesyai0" path="res://source/characters/enemy_character/modules/combat_module/combat_module.tscn" id="2_5cqtb"]
-[ext_resource type="PackedScene" uid="uid://bwuho1yld4te7" path="res://source/characters/enemy_character/modules/targeting_module/targeting_module.tscn" id="3_vxc22"]
+[ext_resource type="PackedScene" uid="uid://4dk0tpesyai0" path="res://source/characters/enemy_characters/modules/combat_module/combat_module.tscn" id="2_5cqtb"]
+[ext_resource type="PackedScene" uid="uid://bwuho1yld4te7" path="res://source/characters/enemy_characters/modules/targeting_module/targeting_module.tscn" id="3_vxc22"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_syfmo"]
 radius = 107.52

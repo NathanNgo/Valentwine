@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://je1xgeoe3epq"]
 
-[ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_character/enemy.tscn" id="1_hlvvh"]
+[ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_characters/enemy.tscn" id="1_hlvvh"]
 [ext_resource type="Texture2D" uid="uid://b8cniqo31ybqh" path="res://assets/characters/enemies/grabby_temp.png" id="2_rl2re"]
-[ext_resource type="Script" path="res://source/characters/enemy_character/grabby/grab_module.gd" id="3_tox03"]
+[ext_resource type="Script" path="res://source/characters/enemy_characters/grabby/grab_module.gd" id="3_tox03"]
 [ext_resource type="Script" path="res://source/interactables/interactable.gd" id="4_75tnh"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qdfsq"]

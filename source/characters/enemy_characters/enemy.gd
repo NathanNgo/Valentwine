@@ -25,9 +25,10 @@ func _physics_process(_delta: float) -> void:
 	if state == States.IDLE:
 		velocity = movement_direction * speed
 		move_and_slide()
-	if  state == States.ESCAPING:
+	if state == States.ESCAPING:
 		velocity = -movement_direction * speed
 		move_and_slide()
+
 
 func set_target() -> void:
 	navigation_agent.target_position = target.global_position

@@ -1,17 +1,18 @@
-[gd_scene load_steps=25 format=4 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=26 format=4 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
-[ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/line/line.tscn" id="2_h0bad"]
+[ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/lines/connecting_line/line.tscn" id="2_h0bad"]
 [ext_resource type="Script" path="res://source/managers/game_manager.gd" id="2_pkrcj"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="3_mlksv"]
 [ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacle/gate/gate.tscn" id="4_t8qi7"]
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
-[ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_character/punchy/punchy.tscn" id="7_a44xj"]
-[ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_character/grabby/Grabby.tscn" id="7_jf5iv"]
+[ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_characters/punchy/punchy.tscn" id="7_a44xj"]
+[ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_characters/grabby/grabby.tscn" id="7_jf5iv"]
 [ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_s2388"]
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
-[ext_resource type="Script" path="res://source/characters/enemy_character/shooter/shooter.gd" id="12_iwo1m"]
+[ext_resource type="Script" path="res://source/characters/enemy_characters/ammo/shooter/shooter.gd" id="12_iwo1m"]
+[ext_resource type="PackedScene" uid="uid://824xq6lgf8lg" path="res://source/characters/enemy_characters/ammo/ammo.tscn" id="13_t5358"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gh7c8"]
 vertices = PackedVector2Array(100, 100, -100, 100, -100, -100, 100, -100)
@@ -401,6 +402,7 @@ position = Vector2(657, -112)
 script = ExtResource("12_iwo1m")
 fate_line = NodePath("../Line/Line")
 timer = NodePath("Timer")
+ammo = ExtResource("13_t5358")
 
 [node name="Timer" type="Timer" parent="TempSpawner"]
 autostart = true

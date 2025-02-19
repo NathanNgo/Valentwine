@@ -119,7 +119,7 @@ func idle(direction: Vector2) -> void:
 		current_interacting_object.open_interaction(self)
 
 
-func get_pushed(direction : Vector2) -> void:
+func get_pushed(direction: Vector2) -> void:
 	velocity = direction
 	move_and_slide()
 
