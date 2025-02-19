@@ -20,7 +20,7 @@ func _process(_delta: float) -> void:
 	if parent.state == parent.States.ESCAPING:
 		_grabbed_player.get_pushed(-parent.movement_direction * speed_grabbing)
 		return
-		
+
 	if is_colliding():
 		var attack_target: Node2D = get_collider()
 		if attack_target.is_in_group("player_character"):
