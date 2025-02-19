@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://824xq6lgf8lg"]
+
+[ext_resource type="Texture2D" uid="uid://dycmmuvb7c4l" path="res://assets/characters/enemies/ammo.png" id="1_pkcfg"]
+[ext_resource type="Script" path="res://source/characters/enemy_character/ammo/ammo.gd" id="1_q6q4o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7k2k"]
+size = Vector2(50.1652, 18.249)
+
+[node name="Ammo" type="CharacterBody2D" node_paths=PackedStringArray("_collision_area", "sprite") groups=["enemies"]]
+script = ExtResource("1_q6q4o")
+_collision_area = NodePath("Sprite2D/Area2D")
+damage_amount = 5
+sprite = NodePath("Sprite2D")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 0.34383
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("1_pkcfg")
+
+[node name="Area2D" type="Area2D" parent="Sprite2D"]
+rotation = -0.34383
+scale = Vector2(4, 4)
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Area2D"]
+shape = SubResource("RectangleShape2D_b7k2k")

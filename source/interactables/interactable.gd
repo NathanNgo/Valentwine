@@ -1,4 +1,4 @@
-class_name Interactable extends StaticBody2D
+class_name Interactable extends Node2D
 
 signal interaction_finished
 
@@ -27,6 +27,9 @@ func close_interaction() -> void:
 
 func interact() -> void:
 	_presses += 1
+
+	if _player == null:
+		return
 
 	if _presses != number_of_presses_required:
 		return

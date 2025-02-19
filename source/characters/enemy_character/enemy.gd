@@ -1,6 +1,6 @@
 class_name Enemy extends CharacterBody2D
 
-enum States { BLOCKED, IDLE, WALKING, ATTACK, STAGGERED }
+enum States { BLOCKED, IDLE, WALKING, ATTACK, STAGGERED, ESCAPING }
 
 static var enemy_group := "enemies"
 
@@ -19,13 +19,15 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+	movement_direction = (
+		to_local(navigation_agent.get_next_path_position()).normalized()
+	)
 	if state == States.IDLE:
-		movement_direction = (
-			to_local(navigation_agent.get_next_path_position()).normalized()
-		)
 		velocity = movement_direction * speed
 		move_and_slide()
-
+	if  state == States.ESCAPING:
+		velocity = -movement_direction * speed
+		move_and_slide()
 
 func set_target() -> void:
 	navigation_agent.target_position = target.global_position

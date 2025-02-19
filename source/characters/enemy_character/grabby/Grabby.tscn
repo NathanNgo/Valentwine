@@ -1,0 +1,66 @@
+[gd_scene load_steps=9 format=3 uid="uid://je1xgeoe3epq"]
+
+[ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_character/enemy.tscn" id="1_hlvvh"]
+[ext_resource type="Texture2D" uid="uid://b8cniqo31ybqh" path="res://assets/characters/enemies/grabby_temp.png" id="2_rl2re"]
+[ext_resource type="Script" path="res://source/characters/enemy_character/grabby/grab_module.gd" id="3_tox03"]
+[ext_resource type="Script" path="res://source/interactables/interactable.gd" id="4_75tnh"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qdfsq"]
+radius = 147.01
+
+[sub_resource type="Animation" id="Animation_wjx6n"]
+resource_name = "grab"
+
+[sub_resource type="Animation" id="Animation_dyouw"]
+resource_name = "death"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kge1o"]
+_data = {
+"death": SubResource("Animation_dyouw"),
+"grab": SubResource("Animation_wjx6n")
+}
+
+[node name="Grabby" node_paths=PackedStringArray("combat_module") instance=ExtResource("1_hlvvh")]
+combat_module = NodePath("GrabModule")
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_qdfsq")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_rl2re")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
+libraries = {
+"": SubResource("AnimationLibrary_kge1o")
+}
+
+[node name="GrabModule" type="RayCast2D" parent="." index="5" node_paths=PackedStringArray("interact", "animation_player", "stagger_timer")]
+script = ExtResource("3_tox03")
+interact = NodePath("Interact")
+speed_grabbing = 200
+health = 200.0
+damage_amount = 0.0
+stagger_threshold = 50.0
+stagger_time = 1.5
+animation_player = NodePath("../AnimationPlayer")
+stagger_timer = NodePath("Timer")
+
+[node name="Interact" type="Node2D" parent="GrabModule" index="0"]
+script = ExtResource("4_75tnh")
+number_of_presses_required = 10
+
+[node name="Timer" type="Timer" parent="GrabModule" index="1"]
