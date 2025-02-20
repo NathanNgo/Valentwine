@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://824xq6lgf8lg"]
 
 [ext_resource type="Texture2D" uid="uid://dycmmuvb7c4l" path="res://assets/characters/enemies/ammo.png" id="1_pkcfg"]
-[ext_resource type="Script" path="res://source/characters/enemy_character/ammo/ammo.gd" id="1_q6q4o"]
+[ext_resource type="Script" path="res://source/characters/enemy_characters/ammo/ammo.gd" id="1_q6q4o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7k2k"]
 size = Vector2(50.1652, 18.249)

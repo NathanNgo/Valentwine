@@ -4,11 +4,12 @@ static var enemy_group := "enemies"
 @export var _collision_area: Area2D
 @export var damage_amount := 10
 @export var speed := 300
-@export var sprite : Sprite2D
+@export var sprite: Sprite2D
 
-var target : Node2D
+var target: Node2D
 
 var _target_position: Vector2
+
 
 func _ready() -> void:
 	_collision_area.body_entered.connect(_on_body_entered)
@@ -23,7 +24,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player_objects"):
-		var attack_direction : Vector2 = _target_position - global_position
+		var attack_direction: Vector2 = _target_position - global_position
 		body.damage(damage_amount, attack_direction)
 		queue_free()
 	if body.is_in_group("player_character"):

@@ -35,6 +35,7 @@ func _physics_process(_delta: float) -> void:
 			velocity = -movement_direction * speed
 			move_and_slide()
 
+
 func set_target() -> void:
 	navigation_agent.target_position = target.global_position
 

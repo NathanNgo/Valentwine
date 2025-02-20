@@ -1,12 +1,13 @@
 extends CombatModule
 
-@export var interact : Interactable
-@export var speed_grabbing : int
+@export var interact: Interactable
+@export var speed_grabbing: int
 
-var original_speed : int
-var _grabbed_player : PlayerCharacter
+var original_speed: int
+var _grabbed_player: PlayerCharacter
 
-func  _ready() -> void:
+
+func _ready() -> void:
 	stagger_timer.timeout.connect(return_to_idle)
 	original_speed = parent.speed
 	interact.interaction_finished.connect(stagger_after_grab)
@@ -14,7 +15,7 @@ func  _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if parent.state != Enemy.States.IDLE and parent.state != Enemy.States.ESCAPING :
+	if parent.state != Enemy.States.IDLE and parent.state != Enemy.States.ESCAPING:
 		return
 
 	target_position = parent.movement_direction * attack_range

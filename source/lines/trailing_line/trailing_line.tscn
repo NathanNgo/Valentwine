@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgo0f408j53ae"]
+
+[ext_resource type="Script" path="res://source/lines/trailing_line/trailing_line.gd" id="1_rxln2"]
+
+[node name="TrailingLine" type="Node2D" node_paths=PackedStringArray("trailing_line")]
+script = ExtResource("1_rxln2")
+trailing_line = NodePath("Line2D")
+
+[node name="Line2D" type="Line2D" parent="."]
