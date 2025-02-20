@@ -9,7 +9,7 @@ class_name CombatModule extends RayCast2D
 @export var cause_stagger: bool = true
 @export var animation_player: AnimationPlayer
 @export var stagger_timer: Timer
-
+@export var death_sound : FmodEventEmitter2D
 var _current_stagger_count: float = 0.0
 
 @onready var parent: Enemy = $".."
@@ -17,6 +17,7 @@ var _current_stagger_count: float = 0.0
 
 func _ready() -> void:
 	stagger_timer.timeout.connect(return_to_idle)
+	death_sound.stopped.connect(free_parent)
 
 
 func _process(_delta: float) -> void:
@@ -44,8 +45,14 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 
 
 func die() -> void:
-	animation_player.play("death")
+	var tween : Tween = parent.sprite.create_tween()
+	tween.tween_property(parent.sprite, "scale", Vector2(0,0),0.75).set_trans(Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	death_sound.play()
 
+
+func free_parent() -> void:
+	print_debug("freed")
+	parent.queue_free()
 
 func start_attack(attack_target: Node2D, attack_direction: Vector2) -> void:
 	animation_player.play("attack")

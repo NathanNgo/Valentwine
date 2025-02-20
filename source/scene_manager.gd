@@ -18,7 +18,6 @@ func _ready() -> void:
 
 
 func on_lost() -> void:
-	
 	GameOver_canvas.show()
 	try_again.grab_focus()
 

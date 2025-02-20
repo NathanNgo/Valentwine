@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=4 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=32 format=4 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
 [ext_resource type="Script" path="res://source/UI/pause.gd" id="5_vj4o4"]
 [ext_resource type="Script" path="res://source/UI/focus_grabber.gd" id="6_cgh4m"]
-[ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_character/punchy/punchy.tscn" id="7_a44xj"]
 [ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_character/grabby/Grabby.tscn" id="7_jf5iv"]
 [ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_s2388"]
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
@@ -625,9 +624,6 @@ player_type = 1
 
 [node name="Grabby" parent="EnemiesContainer" instance=ExtResource("7_jf5iv")]
 position = Vector2(1129, -186)
-
-[node name="Punchy" parent="EnemiesContainer" instance=ExtResource("7_a44xj")]
-position = Vector2(-19, 260)
 
 [node name="ObstaclesContainer" type="Node2D" parent="."]
 

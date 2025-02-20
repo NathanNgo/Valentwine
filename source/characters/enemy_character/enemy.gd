@@ -6,6 +6,7 @@ static var enemy_group := "enemies"
 
 @export var speed := 300
 @export var navigation_agent: NavigationAgent2D
+@export var sprite : Sprite2D
 @export var combat_module: CombatModule
 @export var timer: Timer
 
@@ -22,12 +23,17 @@ func _physics_process(_delta: float) -> void:
 	movement_direction = (
 		to_local(navigation_agent.get_next_path_position()).normalized()
 	)
-	if state == States.IDLE:
-		velocity = movement_direction * speed
-		move_and_slide()
-	if  state == States.ESCAPING:
-		velocity = -movement_direction * speed
-		move_and_slide()
+	match state:
+		States.BLOCKED:
+			return
+
+		States.IDLE:
+			velocity = movement_direction * speed
+			move_and_slide()
+
+		States.ESCAPING:
+			velocity = -movement_direction * speed
+			move_and_slide()
 
 func set_target() -> void:
 	navigation_agent.target_position = target.global_position

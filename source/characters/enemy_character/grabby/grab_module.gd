@@ -10,6 +10,7 @@ func  _ready() -> void:
 	stagger_timer.timeout.connect(return_to_idle)
 	original_speed = parent.speed
 	interact.interaction_finished.connect(stagger_after_grab)
+	death_sound.stopped.connect(free_parent)
 
 
 func _process(_delta: float) -> void:

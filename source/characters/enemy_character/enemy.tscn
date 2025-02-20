@@ -6,11 +6,12 @@
 radius = 65.31
 height = 226.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "timer") groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "sprite", "timer") groups=["enemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_fycjq")
 navigation_agent = NodePath("NavigationAgent2D")
+sprite = NodePath("Sprite2D")
 timer = NodePath("Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
