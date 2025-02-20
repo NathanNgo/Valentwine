@@ -1,4 +1,4 @@
-extends Node2D
+class_name TrailingLine extends Node2D
 
 const LAST_INDEX = -1
 const SECOND_LAST_INDEX = -2
@@ -26,9 +26,11 @@ func add_point(point: Vector2) -> Variant:
 	return _check_all_lines_for_intersection()
 
 
-func get_closed_polygon(start_and_end_point: Vector2) -> Array:
+func get_closed_polygon(start_and_end_point: Vector2, second_point_index: int) -> Array:
 	return (
-		[start_and_end_point] + trailing_line_points.slice(1, -1) + [start_and_end_point]
+		[start_and_end_point]
+		+ trailing_line_points.slice(second_point_index, -1)
+		+ [start_and_end_point]
 	)
 
 
@@ -53,7 +55,9 @@ func _check_all_lines_for_intersection() -> Variant:
 		)
 
 		if possible_intersection:
-			return possible_intersection
+			# start_point represents the index of the second point we want in the
+			# closed polygon.
+			return {"intersection": possible_intersection, "start_point": point_index + 1}
 
 	return null
 
@@ -73,7 +77,6 @@ func _check_intersection_between_two_lines(
 
 	if not possible_intersection:
 		return null
-
 
 	if _point_not_contained_in_all_line_segments(
 		possible_intersection,
