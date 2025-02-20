@@ -53,7 +53,6 @@ func _check_all_lines_for_intersection() -> Variant:
 		)
 
 		if possible_intersection:
-			clear_line()
 			return possible_intersection
 
 	return null
