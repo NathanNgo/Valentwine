@@ -26,7 +26,7 @@ func add_point(point: Vector2) -> Variant:
 	return _check_all_lines_for_intersection()
 
 
-func get_closed_polygon(start_and_end_point: Vector2) -> Array[Vector2]:
+func get_closed_polygon(start_and_end_point: Vector2) -> Array:
 	return (
 		[start_and_end_point] + trailing_line_points.slice(1, -1) + [start_and_end_point]
 	)
