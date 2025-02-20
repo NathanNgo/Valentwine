@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
-[ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/line/line.tscn" id="2_h0bad"]
+[ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/lines/connecting_line/line.tscn" id="2_h0bad"]
 [ext_resource type="Script" path="res://source/scene_manager.gd" id="2_ossk5"]
 [ext_resource type="Script" path="res://source/managers/game_manager.gd" id="2_pkrcj"]
 [ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/UI/UIAnimator.tscn" id="3_07hqn"]
@@ -11,11 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
 [ext_resource type="Script" path="res://source/UI/pause.gd" id="5_vj4o4"]
 [ext_resource type="Script" path="res://source/UI/focus_grabber.gd" id="6_cgh4m"]
-[ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_character/grabby/Grabby.tscn" id="7_jf5iv"]
+[ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_characters/grabby/grabby.tscn" id="7_jf5iv"]
 [ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_s2388"]
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
-[ext_resource type="Script" path="res://source/characters/enemy_character/shooter/shooter.gd" id="12_iwo1m"]
 [ext_resource type="Script" path="res://source/UI/health_bar.gd" id="12_o0wvq"]
+[ext_resource type="PackedScene" uid="uid://dgo0f408j53ae" path="res://source/lines/trailing_line/trailing_line.tscn" id="17_h6d1n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hagkn"]
 bg_color = Color(0, 0, 0, 1)
@@ -319,7 +319,7 @@ physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_mon25")
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "health_bar")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "health_bar", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer")]
 script = ExtResource("1_h5u32")
 line = NodePath("Line")
 player_one = NodePath("PlayerCharacter1")
@@ -327,6 +327,9 @@ player_two = NodePath("PlayerCharacter2")
 enemies_container = NodePath("EnemiesContainer")
 obstacles_container = NodePath("ObstaclesContainer")
 health_bar = NodePath("SceneManager/UI/HealthBar")
+trailing_line_one = NodePath("TrailingLine1")
+trailing_line_two = NodePath("TrailingLine2")
+trailing_line_draw_timer = NodePath("TrailingLineDrawTimer")
 
 [node name="SceneManager" type="Node" parent="." node_paths=PackedStringArray("GameOver_canvas", "main_menu", "try_again", "exit_game", "health_bar")]
 script = ExtResource("2_ossk5")
@@ -666,13 +669,18 @@ theme_override_font_sizes/font_size = 151
 text = "go right!"
 horizontal_alignment = 1
 
-[node name="TempSpawner" type="Node2D" parent="." node_paths=PackedStringArray("fate_line", "timer")]
+[node name="TempSpawner" type="Node2D" parent="."]
 position = Vector2(657, -112)
-script = ExtResource("12_iwo1m")
-fate_line = NodePath("../Line/Line")
-timer = NodePath("Timer")
 
 [node name="Timer" type="Timer" parent="TempSpawner"]
 autostart = true
+
+[node name="TrailingLine1" parent="." instance=ExtResource("17_h6d1n")]
+max_points = 80
+
+[node name="TrailingLine2" parent="." instance=ExtResource("17_h6d1n")]
+max_points = 80
+
+[node name="TrailingLineDrawTimer" type="Timer" parent="."]
 
 [editable path="Line"]
