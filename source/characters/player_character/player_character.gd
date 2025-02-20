@@ -8,6 +8,7 @@ enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
 enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING }
 
 static var player_group := "player_objects"
+static  var walking_animation := "walking"
 
 @export var _player_one_sprite: Sprite2D
 @export var _player_two_sprite: Sprite2D
@@ -113,6 +114,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func idle(direction: Vector2) -> void:
+	if !animation_player.is_playing():
+		animation_player.play(walking_animation)
 	if not ray_cast_2d.is_colliding():
 		return
 
@@ -143,6 +146,10 @@ func damage(damage_amount: float, attack_direction: Vector2 = Vector2.ZERO) -> v
 
 
 func attack(attack_target: Node2D, attack_direction: Vector2 = Vector2.ZERO) -> void:
+	if attack_target.is_in_group(Enemy.enemy_group):
+		if attack_target.state == Enemy.States.KO:
+			return
+
 	grace_timer.stop()
 	state = State.BLOCKED
 	var damage_done: float = calculate_damage_with_modifiers(punches_in_a_row)

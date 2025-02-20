@@ -48,23 +48,19 @@ libraries = {
 "": SubResource("AnimationLibrary_kge1o")
 }
 
-[node name="GrabModule" type="RayCast2D" parent="." index="5" node_paths=PackedStringArray("interact", "animation_player", "stagger_timer", "death_sound")]
+[node name="GrabModule" type="RayCast2D" parent="." index="5" node_paths=PackedStringArray("interact", "animation_player", "stagger_timer")]
+collision_mask = 8
 script = ExtResource("3_tox03")
 interact = NodePath("Interact")
 speed_grabbing = 200
-health = 200.0
+health = 30.0
 damage_amount = 0.0
 stagger_time = 1.5
 animation_player = NodePath("../AnimationPlayer")
 stagger_timer = NodePath("Timer")
-death_sound = NodePath("DeathSound")
 
 [node name="Interact" type="Node2D" parent="GrabModule" index="0"]
 script = ExtResource("4_75tnh")
 number_of_presses_required = 10
 
 [node name="Timer" type="Timer" parent="GrabModule" index="1"]
-
-[node name="DeathSound" type="FmodEventEmitter2D" parent="GrabModule" index="2"]
-event_name = "event:/EraserPop"
-event_guid = "{5932a1e1-66c6-49d2-8ea9-788325375a92}"

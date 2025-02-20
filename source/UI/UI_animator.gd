@@ -115,6 +115,8 @@ func on_enter_deferred(finished_waiting : bool = false) -> void:
 
 
 func on_enter(finished_waiting : bool = false) -> void:
+	if !is_inside_tree():
+		return
 	var actual_entrance_time := entrance_time
 	var actual_entrance_delay := entrance_delay
 	if random_entrance:

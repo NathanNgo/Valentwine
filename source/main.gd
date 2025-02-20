@@ -77,4 +77,4 @@ func _kill_circled_enemies(intersection: Vector2, start_point: int) -> void:
 			enemy.global_position,
 			trailing_line_one.get_closed_polygon(intersection, start_point)
 		):
-			enemy.queue_free()
+			enemy.die()

@@ -6,12 +6,13 @@
 radius = 65.31
 height = 226.0
 
-[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "sprite", "timer") groups=["enemies"]]
+[node name="Enemy" type="CharacterBody2D" node_paths=PackedStringArray("navigation_agent", "sprite", "death_sound", "timer") groups=["enemies"]]
 motion_mode = 1
 wall_min_slide_angle = 0.0
 script = ExtResource("1_fycjq")
 navigation_agent = NodePath("NavigationAgent2D")
 sprite = NodePath("Sprite2D")
+death_sound = NodePath("DeathSound")
 timer = NodePath("Timer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -27,3 +28,7 @@ debug_enabled = true
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.25
 autostart = true
+
+[node name="DeathSound" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/EraserPop"
+event_guid = "{5932a1e1-66c6-49d2-8ea9-788325375a92}"

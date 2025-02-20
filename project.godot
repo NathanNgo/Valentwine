@@ -150,8 +150,10 @@ Pause={
 
 [layer_names]
 
+2d_physics/layer_1="general"
 2d_physics/layer_2="line"
 2d_physics/layer_3="interactables"
+2d_physics/layer_4="players"
 
 [rendering]
 

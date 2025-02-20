@@ -11,7 +11,6 @@ func _ready() -> void:
 	stagger_timer.timeout.connect(return_to_idle)
 	original_speed = parent.speed
 	interact.interaction_finished.connect(stagger_after_grab)
-	death_sound.stopped.connect(free_parent)
 
 
 func _process(_delta: float) -> void:
@@ -36,7 +35,7 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 		if _grabbed_player != null:
 			_grabbed_player.close_interaction()
 			_grabbed_player = null
-		die()
+		KO()
 
 	_current_stagger_count += damage_taken
 	if _current_stagger_count >= stagger_threshold:
