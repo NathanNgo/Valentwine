@@ -67,7 +67,7 @@ func _on_trailing_line_draw_timer() -> void:
 			possible_intersection_player_two["intersection"],
 			possible_intersection_player_two["start_point"]
 		)
-		trailing_line_one.clear_line()
+		trailing_line_two.clear_line()
 
 	trailing_line_draw_timer.start(TRAILING_LINE_DRAW_TIME)
 
