@@ -6,10 +6,7 @@ const TRAILING_LINE_DRAW_TIME = 0.05
 @export var line: Node2D
 @export var player_one: CharacterBody2D
 @export var player_two: CharacterBody2D
-@export var enemies_container: Node2D
-@export var obstacles_container: Node2D
-@export var point_sampler: PathFollow2D
-@export var health_bar: ProgressBar
+@export var level: Node2D
 @export var trailing_line_one: Node2D
 @export var trailing_line_two: Node2D
 @export var trailing_line_draw_timer: Timer
@@ -19,6 +16,11 @@ const TRAILING_LINE_DRAW_TIME = 0.05
 var health := 100.0
 
 @onready var targetable_players: Array[Node2D] = [player_one, player_two]
+
+@onready var tile_maps: Node2D = level.tile_maps
+@onready var enemies_container: Node2D = level.enemies_container
+@onready var obstacles_container: Node2D = level.obstacles_container
+@onready var interactables_container: Node2D = level.interactables_container
 
 
 func _ready() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=4 uid="uid://cvy5wrdf8iiqv"]
+[gd_scene load_steps=101 format=4 uid="uid://cvy5wrdf8iiqv"]
 
 [ext_resource type="PackedScene" uid="uid://8a1fxgbl58qp" path="res://source/levels/level.tscn" id="1_ra1kn"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="2_ly4sg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacles/tile_objects/tile_object.tscn" id="5_pd3r0"]
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacles/obstacle.tscn" id="6_sr8wr"]
 [ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_q8oys"]
+[ext_resource type="Script" path="res://source/managers/game_manager/game_manager.gd" id="8_lrd6o"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gh7c8"]
 vertices = PackedVector2Array(100, 100, -100, 100, -100, -100, 100, -100)
@@ -1440,3 +1441,7 @@ position = Vector2(390, -604)
 
 [node name="Spikes6" parent="InteractablesContainer/lever" index="9" instance=ExtResource("5_pd3r0")]
 position = Vector2(394, -799)
+
+[node name="GameManager" type="Node2D" parent="." index="4" node_paths=PackedStringArray("lever")]
+script = ExtResource("8_lrd6o")
+lever = NodePath("../InteractablesContainer/lever")
