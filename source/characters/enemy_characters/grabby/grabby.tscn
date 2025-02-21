@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://je1xgeoe3epq"]
 
 [ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_characters/enemy.tscn" id="1_hlvvh"]
-[ext_resource type="Texture2D" uid="uid://cgult0bmx7ibq" path="res://assets/characters/enemies/E3.png" id="2_47ttr"]
+[ext_resource type="Texture2D" uid="uid://cgult0bmx7ibq" path="res://assets/characters/enemies/grabby/E3.png" id="2_47ttr"]
 [ext_resource type="Script" path="res://source/characters/enemy_characters/grabby/grab_module.gd" id="3_tox03"]
 [ext_resource type="Script" path="res://source/interactables/interactable.gd" id="4_75tnh"]
 
@@ -56,7 +56,7 @@ texture = ExtResource("2_47ttr")
 rotation = 0.0
 shape = SubResource("CapsuleShape2D_ncmb6")
 
-[node name="GrabModule" type="RayCast2D" parent="." index="4" node_paths=PackedStringArray("interact", "special_animation_player", "animation_player", "stagger_timer")]
+[node name="GrabModule" type="RayCast2D" parent="." index="7" node_paths=PackedStringArray("interact", "special_animation_player", "animation_player", "stagger_timer")]
 collision_mask = 8
 script = ExtResource("3_tox03")
 speed_grabbing = 200
@@ -74,7 +74,7 @@ number_of_presses_required = 10
 
 [node name="Timer" type="Timer" parent="GrabModule" index="1"]
 
-[node name="Special_Animation" type="AnimationPlayer" parent="." index="7"]
+[node name="Special_Animation" type="AnimationPlayer" parent="." index="8"]
 libraries = {
 "": SubResource("AnimationLibrary_lp88e")
 }

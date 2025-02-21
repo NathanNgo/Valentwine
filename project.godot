@@ -78,6 +78,10 @@ shader_language/warnings/treat_warnings_as_errors=true
 
 project/assembly_name="GWJ"
 
+[editor]
+
+movie_writer/movie_file="/home/diego/Documents/Videojuego/Movies/GWJ.avi"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/gdLinter/plugin.cfg", "res://addons/softbody2d/plugin.cfg")
