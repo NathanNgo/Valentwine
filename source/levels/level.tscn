@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://8a1fxgbl58qp"]
+
+[node name="Level" type="Node2D"]
+
+[node name="TileMaps" type="Node2D" parent="."]
+
+[node name="EnemiesContainer" type="Node2D" parent="."]
+
+[node name="ObstaclesContainer" type="Node2D" parent="."]
+
+[node name="InteractablesContainer" type="Node2D" parent="."]
