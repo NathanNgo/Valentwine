@@ -13,6 +13,7 @@ const TRAILING_LINE_DRAW_TIME = 0.05
 @export var trailing_line_one: Node2D
 @export var trailing_line_two: Node2D
 @export var trailing_line_draw_timer: Timer
+@export var ui_manager: Node
 
 
 var health := 100.0
@@ -27,7 +28,7 @@ func _ready() -> void:
 	player_two.player_damaged.connect(_on_damage_taken)
 	line.line_body.player_damaged.connect(_on_damage_taken)
 
-	health_bar.value = health
+	ui_manager.health_bar.value = health
 
 	trailing_line_draw_timer.timeout.connect(_on_trailing_line_draw_timer)
 	trailing_line_draw_timer.start(TRAILING_LINE_DRAW_TIME)
@@ -39,7 +40,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_damage_taken(damage: float) -> void:
 	health -= damage
-	health_bar.value = health
+	ui_manager.health_bar.value = health
 
 
 func _assign_enemy_targets() -> void:

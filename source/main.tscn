@@ -1,30 +1,18 @@
-[gd_scene load_steps=113 format=4 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=106 format=4 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
+[ext_resource type="PackedScene" uid="uid://d2e82dnr1fdae" path="res://source/managers/ui_manager/ui_manager.tscn" id="2_0qhe6"]
 [ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/lines/connecting_line/line.tscn" id="2_h0bad"]
-[ext_resource type="Script" path="res://source/scene_manager.gd" id="2_ossk5"]
-[ext_resource type="Script" path="res://source/managers/game_manager.gd" id="2_pkrcj"]
-[ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/UI/UIAnimator.tscn" id="3_07hqn"]
+[ext_resource type="Script" path="res://source/managers/game_manager/game_manager.gd" id="2_pkrcj"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="3_mlksv"]
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacle/obstacle.tscn" id="5_kgnse"]
-[ext_resource type="Script" path="res://source/UI/pause.gd" id="5_vj4o4"]
-[ext_resource type="Script" path="res://source/UI/focus_grabber.gd" id="6_cgh4m"]
 [ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_s2388"]
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
 [ext_resource type="Texture2D" uid="uid://p7811gjdoqx8" path="res://assets/tilemap_assets/Tileset_20.2.25_22.44.png" id="9_wpen0"]
-[ext_resource type="Script" path="res://source/UI/health_bar.gd" id="12_o0wvq"]
 [ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_characters/punchy/punchy.tscn" id="13_fna4c"]
 [ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacle/tile_objects/tile_object.tscn" id="15_p3b34"]
 [ext_resource type="PackedScene" uid="uid://dgo0f408j53ae" path="res://source/lines/trailing_line/trailing_line.tscn" id="17_h6d1n"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hagkn"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5ngv7"]
-bg_color = Color(1, 1, 1, 1)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lgegv"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gh7c8"]
 vertices = PackedVector2Array(100, 100, -100, 100, -100, -100, 100, -100)
@@ -1383,7 +1371,7 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_mon25")
 sources/1 = SubResource("TileSetAtlasSource_quw7l")
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "health_bar", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer", "ui_manager")]
 y_sort_enabled = true
 script = ExtResource("1_h5u32")
 line = NodePath("Line")
@@ -1391,283 +1379,12 @@ player_one = NodePath("PlayerCharacter1")
 player_two = NodePath("PlayerCharacter2")
 enemies_container = NodePath("EnemiesContainer")
 obstacles_container = NodePath("ObstaclesContainer")
-health_bar = NodePath("SceneManager/UI/HealthBar")
 trailing_line_one = NodePath("TrailingLine1")
 trailing_line_two = NodePath("TrailingLine2")
 trailing_line_draw_timer = NodePath("TrailingLineDrawTimer")
+ui_manager = NodePath("UIManager")
 
-[node name="SceneManager" type="Node" parent="." node_paths=PackedStringArray("game_over_canvas", "main_menu", "try_again", "exit_game", "health_bar")]
-script = ExtResource("2_ossk5")
-game_over_canvas = NodePath("GameOver")
-main_menu = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/MainMenu")
-try_again = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/TryAgain")
-exit_game = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/ExitGame")
-health_bar = NodePath("UI/HealthBar")
-
-[node name="GameOver" type="CanvasLayer" parent="SceneManager"]
-process_mode = 3
-layer = 128
-
-[node name="MarginContainer" type="MarginContainer" parent="SceneManager/GameOver"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="Panel" type="Panel" parent="SceneManager/GameOver/MarginContainer"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hagkn")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SceneManager/GameOver/MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="SceneManager/GameOver/MarginContainer/Panel/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 140
-text = "Story erased!"
-horizontal_alignment = 1
-
-[node name="MarginContainer" type="MarginContainer" parent="SceneManager/GameOver/MarginContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 175
-theme_override_constants/margin_right = 175
-theme_override_constants/margin_bottom = 50
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_constants/separation = 10
-
-[node name="TryAgain" type="Button" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.45098, 0.45098, 0.45098, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_5ngv7")
-text = "Try again"
-
-[node name="UIAnimator" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/TryAgain" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
-connect_as_button = true
-entrance_animation = true
-wait_for = NodePath("../../../../../UIAnimator")
-hover_rotation = 0.25
-entrance_scale = Vector2(1, 1)
-entrance_modulate = Color(1, 1, 1, 0)
-entrance_time = 0.5
-
-[node name="MainMenu" type="Button" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.450648, 0.450648, 0.450648, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_5ngv7")
-text = "Main menu"
-
-[node name="UIAnimator" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/MainMenu" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
-connect_as_button = true
-entrance_animation = true
-wait_for = NodePath("../../../../../UIAnimator")
-hover_rotation = 0.25
-entrance_scale = Vector2(1, 1)
-entrance_modulate = Color(1, 1, 1, 0)
-entrance_time = 0.5
-
-[node name="ExitGame" type="Button" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0.45098, 0.45098, 0.45098, 1)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 70
-theme_override_styles/normal = SubResource("StyleBoxFlat_5ngv7")
-text = "Exit game"
-
-[node name="UIAnimator" parent="SceneManager/GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/ExitGame" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
-connect_as_button = true
-entrance_animation = true
-wait_for = NodePath("../../../../../UIAnimator")
-hover_rotation = 0.25
-entrance_scale = Vector2(1, 1)
-entrance_modulate = Color(1, 1, 1, 0)
-entrance_time = 0.5
-
-[node name="UIAnimator" parent="SceneManager/GameOver/MarginContainer/Panel" instance=ExtResource("3_07hqn")]
-entrance_animation = true
-entrance_scale = Vector2(1, 1)
-entrance_modulate = Color(1, 1, 1, 0)
-entrance_time = 1.0
-entrance_transition = 2
-
-[node name="UI" type="CanvasLayer" parent="SceneManager"]
-
-[node name="HealthBar" type="ProgressBar" parent="SceneManager/UI"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -324.0
-offset_right = 324.0
-offset_bottom = 40.0
-grow_horizontal = 2
-value = 50.0
-script = ExtResource("12_o0wvq")
-
-[node name="Pause" type="CanvasLayer" parent="SceneManager" node_paths=PackedStringArray("resume_button", "main_menu_button", "restart_button", "exit_button")]
-process_mode = 3
-script = ExtResource("5_vj4o4")
-resume_button = NodePath("MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Resume")
-main_menu_button = NodePath("MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MainMenu")
-restart_button = NodePath("MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Restart")
-exit_button = NodePath("MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Exit")
-
-[node name="MarginContainer" type="MarginContainer" parent="SceneManager/Pause"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="TextureRect" type="TextureRect" parent="SceneManager/Pause/MarginContainer"]
-layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_lgegv")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SceneManager/Pause/MarginContainer/TextureRect"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -173.5
-offset_right = 173.5
-offset_bottom = 165.0
-grow_horizontal = 2
-
-[node name="Label" type="Label" parent="SceneManager/Pause/MarginContainer/TextureRect/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 120
-text = "Pause"
-
-[node name="UIAnimator" parent="SceneManager/Pause/MarginContainer/TextureRect" instance=ExtResource("3_07hqn")]
-entrance_animation = true
-entrance_time = 0.2
-entrance_delay = 0.0
-entrance_transition = 11
-
-[node name="MarginContainer" type="MarginContainer" parent="SceneManager/Pause/MarginContainer/TextureRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_bottom = 20
-
-[node name="HBoxContainer" type="HBoxContainer" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer"]
-layout_mode = 2
-size_flags_vertical = 8
-alignment = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="Resume" type="Button" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("ui_node")]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 70
-text = "Resume"
-script = ExtResource("6_cgh4m")
-ui_node = NodePath("UIAnimator")
-
-[node name="UIAnimator" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Resume" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
-connect_as_button = true
-entrance_animation = true
-wait_for = NodePath("../../../../../UIAnimator")
-hover_rotation = 0.25
-random_entrance = true
-entrance_time = 0.5
-entrance_delay = 0.1
-entrance_transition = 11
-hover_easing = 1
-
-[node name="MainMenu" type="Button" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 70
-text = "Main menu"
-
-[node name="UIAnimator" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MainMenu" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
-connect_as_button = true
-entrance_animation = true
-wait_for = NodePath("../../../../../UIAnimator")
-hover_rotation = 0.25
-random_entrance = true
-entrance_time = 0.5
-entrance_delay = 0.1
-entrance_transition = 11
-hover_easing = 1
-
-[node name="Restart" type="Button" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 70
-text = "Restart"
-
-[node name="UIAnimator" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Restart" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
-connect_as_button = true
-entrance_animation = true
-wait_for = NodePath("../../../../../UIAnimator")
-hover_rotation = 0.25
-random_entrance = true
-entrance_time = 0.5
-entrance_delay = 0.1
-entrance_transition = 11
-hover_easing = 1
-
-[node name="Exit" type="Button" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 70
-text = "Exit game"
-
-[node name="UIAnimator" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Exit" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
-connect_as_button = true
-entrance_animation = true
-wait_for = NodePath("../../../../../UIAnimator")
-hover_rotation = 0.25
-random_entrance = true
-entrance_time = 0.5
-entrance_delay = 0.1
-entrance_transition = 11
-hover_easing = 1
-
-[node name="Separator" type="Control" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-tooltip_text = "Nothing to see down here"
+[node name="UIManager" parent="." instance=ExtResource("2_0qhe6")]
 
 [node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("lever")]
 script = ExtResource("2_pkrcj")
@@ -1789,12 +1506,6 @@ theme_override_font_sizes/font_size = 100
 text = "Oh, no!
 They took our guests!"
 horizontal_alignment = 1
-
-[node name="TempSpawner" type="Node2D" parent="."]
-position = Vector2(657, -112)
-
-[node name="Timer" type="Timer" parent="TempSpawner"]
-autostart = true
 
 [node name="TrailingLine1" parent="." instance=ExtResource("17_h6d1n")]
 max_points = 80
