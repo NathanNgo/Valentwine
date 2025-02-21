@@ -3,7 +3,7 @@ extends CombatModule
 @export var interact: Interactable
 @export var speed_grabbing: int
 
-@export var special_animation_player : AnimationPlayer
+@export var special_animation_player: AnimationPlayer
 
 var original_speed: int
 var _grabbed_player: PlayerCharacter
@@ -70,7 +70,6 @@ func return_to_idle() -> void:
 	parent.state = Enemy.States.IDLE
 	_current_stagger_count = 0
 	parent.speed = original_speed
-
 
 
 func die() -> void:

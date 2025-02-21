@@ -6,8 +6,8 @@ static var enemy_group := "enemies"
 
 @export var speed := 300
 @export var navigation_agent: NavigationAgent2D
-@export var sprite : Sprite2D
-@export var death_sound : FmodEventEmitter2D
+@export var sprite: Sprite2D
+@export var death_sound: FmodEventEmitter2D
 @export var combat_module: CombatModule
 @export var timer: Timer
 
@@ -52,7 +52,11 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 
 func die() -> void:
 	combat_module.die()
-	var tween : Tween = sprite.create_tween()
-	tween.tween_property(sprite, "scale", Vector2(0,0),0.75).set_trans(
-		Tween.TRANS_EXPO).set_ease(Tween.EASE_IN)
+	var tween: Tween = sprite.create_tween()
+	(
+		tween
+		. tween_property(sprite, "scale", Vector2(0, 0), 0.75)
+		. set_trans(Tween.TRANS_EXPO)
+		. set_ease(Tween.EASE_IN)
+	)
 	death_sound.play()

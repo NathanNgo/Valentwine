@@ -6,5 +6,6 @@ extends Button
 func _ready() -> void:
 	ui_node.finished_entering.connect(finished_entering)
 
-func finished_entering(_finished : bool) -> void:
+
+func finished_entering(_finished: bool) -> void:
 	call_deferred("grab_focus")

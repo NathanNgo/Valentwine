@@ -1,18 +1,18 @@
 class_name CombatModule extends RayCast2D
 
 static var idle_animation := "idle"
-static  var attack_animation := "attack"
+static var attack_animation := "attack"
 @export var health: float = 100
 @export var damage_amount: float = 10.0
 @export var stagger_threshold: float = 10
 ##how long they get staggered when they receive enough damage
 @export var stagger_time: float = 1.0
-@export var ko_time : float = 5.0
+@export var ko_time: float = 5.0
 @export var attack_range: float = 300.0
 @export var cause_stagger: bool = true
 @export var animation_player: AnimationPlayer
 @export var stagger_timer: Timer
-@export var death_sound : FmodEventEmitter2D
+@export var death_sound: FmodEventEmitter2D
 var _current_stagger_count: float = 0.0
 
 @onready var parent: Enemy = $".."
@@ -61,7 +61,6 @@ func return_to_idle() -> void:
 	animation_player.play(idle_animation)
 	parent.state = Enemy.States.IDLE
 	_current_stagger_count = 0
-
 
 
 func die() -> void:
