@@ -1,6 +1,13 @@
-[gd_scene format=3 uid="uid://8a1fxgbl58qp"]
+[gd_scene load_steps=2 format=3 uid="uid://8a1fxgbl58qp"]
 
-[node name="Level" type="Node2D"]
+[ext_resource type="Script" path="res://source/levels/level.gd" id="1_mtaei"]
+
+[node name="Level" type="Node2D" node_paths=PackedStringArray("tile_maps", "enemies_container", "obstacles_container", "interactables_container")]
+script = ExtResource("1_mtaei")
+tile_maps = NodePath("TileMaps")
+enemies_container = NodePath("EnemiesContainer")
+obstacles_container = NodePath("ObstaclesContainer")
+interactables_container = NodePath("InteractablesContainer")
 
 [node name="TileMaps" type="Node2D" parent="."]
 
