@@ -1,13 +1,14 @@
 extends MarginContainer
 
-@export var level1 : String = "res://source/main.tscn"
-@export var start_button : Button
-@export var how_to_play : Button
-@export var exit_button : Button
+@export var level1: String = "res://source/main.tscn"
+@export var start_button: Button
+@export var how_to_play: Button
+@export var exit_button: Button
 
-@export var how_to_panel : Panel
+@export var how_to_panel: Panel
 
-var showing_panel : bool = false
+var showing_panel: bool = false
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,7 +32,7 @@ func exit() -> void:
 	get_tree().quit()
 
 
-func  _unhandled_key_input(_event: InputEvent) -> void:
+func _unhandled_key_input(_event: InputEvent) -> void:
 	if showing_panel:
 		how_to_panel.hide()
 		showing_panel = false

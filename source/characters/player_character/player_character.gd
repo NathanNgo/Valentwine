@@ -8,7 +8,7 @@ enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
 enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING }
 
 static var player_group := "player_objects"
-static  var walking_animation := "walking"
+static var walking_animation := "walking"
 
 @export var _player_one_sprite: Sprite2D
 @export var _player_two_sprite: Sprite2D
@@ -16,8 +16,8 @@ static  var walking_animation := "walking"
 @export var player_type := Player.FIRST
 @export var speed := 400
 @export var grace_time_between_punches := 1.0
-@export var stagger_amount : float = 150
-@export var stagger_speed : float = 75
+@export var stagger_amount: float = 150
+@export var stagger_speed: float = 75
 @export var attack_range := 150
 
 @export var stun_container: Node2D
@@ -27,8 +27,8 @@ static  var walking_animation := "walking"
 @export var animation_player: AnimationPlayer
 @export var draw_point: Node2D
 
-var staggering_distance : float = 0.0
-var staggering_towards : Vector2
+var staggering_distance: float = 0.0
+var staggering_towards: Vector2
 var state := State.IDLE
 var current_stun_prompt := Controls.LEFT
 var current_interacting_object: Node2D

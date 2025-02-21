@@ -1,15 +1,16 @@
 extends CanvasLayer
 
+@export var main_menu_scene: String = "res://source/UI/main_menu.tscn"
+@export var resume_button: Button
+@export var main_menu_button: Button
+@export var restart_button: Button
+@export var exit_button: Button
 
-@export var main_menu_scene : String = "res://source/UI/main_menu.tscn"
-@export var resume_button : Button
-@export var main_menu_button : Button
-@export var restart_button : Button
-@export var exit_button : Button
+var paused: bool = false
+var delay: float = 0.5
+var time_since_last_direction: float = 0
 
-var paused : bool = false
-var delay : float = 0.5
-var time_since_last_direction : float = 0
+
 func _ready() -> void:
 	resume_button.button_up.connect(swap_pause_state)
 	main_menu_button.button_up.connect(_on_main_menu_button_up)
@@ -19,7 +20,7 @@ func _ready() -> void:
 	call_deferred("unpause")
 
 
-func _input(event : InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Pause"):
 		swap_pause_state()
 

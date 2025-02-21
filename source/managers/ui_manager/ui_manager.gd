@@ -1,13 +1,14 @@
 extends Node
 
-@export var main_menu_scene : String = "res://source/UI/main_menu.tscn"
+@export var main_menu_scene: String = "res://source/UI/main_menu.tscn"
 
-@export var game_over_canvas : CanvasLayer
-@export var main_menu : Button
-@export var try_again : Button
-@export var exit_game : Button
+@export var game_over_canvas: CanvasLayer
+@export var main_menu: Button
+@export var try_again: Button
+@export var exit_game: Button
 
-@export var health_bar : ProgressBar
+@export var health_bar: ProgressBar
+
 
 func _ready() -> void:
 	main_menu.button_up.connect(to_main_menu)

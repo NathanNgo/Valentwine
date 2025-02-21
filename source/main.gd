@@ -12,7 +12,6 @@ const TRAILING_LINE_DRAW_TIME = 0.05
 @export var trailing_line_draw_timer: Timer
 @export var ui_manager: Node
 
-
 var health := 100.0
 
 @onready var targetable_players: Array[Node2D] = [player_one, player_two]
