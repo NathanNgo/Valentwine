@@ -25,6 +25,7 @@ static  var walking_animation := "walking"
 @export var _right_prompt: Sprite2D
 @export var grace_timer: Timer
 @export var animation_player: AnimationPlayer
+@export var draw_point: Node2D
 
 var staggering_distance : float = 0.0
 var staggering_towards : Vector2

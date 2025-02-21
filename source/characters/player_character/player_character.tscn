@@ -170,7 +170,8 @@ _data = {
 "walking": SubResource("Animation_12w2s")
 }
 
-[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_player_one_sprite", "_player_two_sprite", "ray_cast_2d", "stun_container", "_left_prompt", "_right_prompt", "grace_timer", "animation_player") groups=["player_character"]]
+[node name="PlayerCharacter" type="CharacterBody2D" node_paths=PackedStringArray("_player_one_sprite", "_player_two_sprite", "ray_cast_2d", "stun_container", "_left_prompt", "_right_prompt", "grace_timer", "animation_player", "draw_point") groups=["player_character"]]
+y_sort_enabled = true
 collision_layer = 8
 script = ExtResource("1_bh3u0")
 _player_one_sprite = NodePath("PlayerOne")
@@ -181,6 +182,7 @@ _left_prompt = NodePath("StunContainer/left_prompt")
 _right_prompt = NodePath("StunContainer/right_prompt")
 grace_timer = NodePath("GraceTimer")
 animation_player = NodePath("AnimationPlayer")
+draw_point = NodePath("DrawPoint")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
 bank_paths = ["res://assets/fmod_banks/Desktop/Master.strings.bank", "res://assets/fmod_banks/Desktop/Master.bank", "res://assets/fmod_banks/Desktop/SFX.bank"]
@@ -191,6 +193,7 @@ texture = ExtResource("2_boqdc")
 hframes = 6
 
 [node name="PlayerTwo" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 texture = ExtResource("3_5538s")
 hframes = 6
@@ -238,3 +241,7 @@ texture_filter = 1
 position = Vector2(50, 0)
 scale = Vector2(10, 10)
 texture = ExtResource("4_mvl4h")
+
+[node name="DrawPoint" type="Node2D" parent="."]
+y_sort_enabled = true
+position = Vector2(-8, 64)

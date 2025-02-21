@@ -50,7 +50,7 @@ func _assign_enemy_targets() -> void:
 
 func _on_trailing_line_draw_timer() -> void:
 	var possible_intersection_player_one: Variant = trailing_line_one.add_point(
-		player_one.global_position
+		player_one.draw_point.global_position
 	)
 	if possible_intersection_player_one:
 		_kill_circled_enemies(
@@ -60,7 +60,7 @@ func _on_trailing_line_draw_timer() -> void:
 		trailing_line_one.clear_line()
 
 	var possible_intersection_player_two: Variant = trailing_line_two.add_point(
-		player_two.global_position
+		player_two.draw_point.global_position
 	)
 	if possible_intersection_player_two:
 		_kill_circled_enemies(

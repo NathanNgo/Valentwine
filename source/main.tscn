@@ -1384,6 +1384,7 @@ sources/0 = SubResource("TileSetAtlasSource_mon25")
 sources/1 = SubResource("TileSetAtlasSource_quw7l")
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "enemies_container", "obstacles_container", "health_bar", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer")]
+y_sort_enabled = true
 script = ExtResource("1_h5u32")
 line = NodePath("Line")
 player_one = NodePath("PlayerCharacter1")
