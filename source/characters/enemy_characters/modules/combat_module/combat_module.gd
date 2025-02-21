@@ -7,7 +7,7 @@ static  var attack_animation := "attack"
 @export var stagger_threshold: float = 10
 ##how long they get staggered when they receive enough damage
 @export var stagger_time: float = 1.0
-@export var KO_time : float = 5.0
+@export var ko_time : float = 5.0
 @export var attack_range: float = 300.0
 @export var cause_stagger: bool = true
 @export var animation_player: AnimationPlayer
@@ -37,7 +37,7 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 	health -= damage_taken
 	if health <= 0:
 		parent.state = Enemy.States.BLOCKED
-		KO()
+		ko()
 
 	_current_stagger_count += damage_taken
 	if _current_stagger_count >= stagger_threshold:
@@ -46,9 +46,9 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 		stagger_timer.start(stagger_time)
 
 
-func KO() -> void:
+func ko() -> void:
 	parent.state = Enemy.States.KO
-	stagger_timer.start(KO_time)
+	stagger_timer.start(ko_time)
 
 
 func start_attack(attack_target: Node2D, attack_direction: Vector2) -> void:

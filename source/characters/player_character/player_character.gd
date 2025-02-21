@@ -100,7 +100,7 @@ func _physics_process(_delta: float) -> void:
 
 		State.IDLE:
 			idle(direction)
-		
+
 		State.STAGGERING:
 			velocity = staggering_towards * stagger_speed / _delta
 			##how long has the player been pushed

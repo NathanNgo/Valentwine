@@ -4,7 +4,7 @@ extends Node2D
 
 func _ready() -> void:
 	lever.interaction_finished.connect(_on_interaction_finished)
-	
+
 
 
 func _on_interaction_finished() -> void:

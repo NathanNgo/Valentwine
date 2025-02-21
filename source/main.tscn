@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=4 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=113 format=4 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="9_pud87"]
 [ext_resource type="Texture2D" uid="uid://p7811gjdoqx8" path="res://assets/tilemap_assets/Tileset_20.2.25_22.44.png" id="9_wpen0"]
 [ext_resource type="Script" path="res://source/UI/health_bar.gd" id="12_o0wvq"]
+[ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_characters/punchy/punchy.tscn" id="13_fna4c"]
 [ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacle/tile_objects/tile_object.tscn" id="15_p3b34"]
 [ext_resource type="PackedScene" uid="uid://dgo0f408j53ae" path="res://source/lines/trailing_line/trailing_line.tscn" id="17_h6d1n"]
 
@@ -1394,9 +1395,9 @@ trailing_line_one = NodePath("TrailingLine1")
 trailing_line_two = NodePath("TrailingLine2")
 trailing_line_draw_timer = NodePath("TrailingLineDrawTimer")
 
-[node name="SceneManager" type="Node" parent="." node_paths=PackedStringArray("GameOver_canvas", "main_menu", "try_again", "exit_game", "health_bar")]
+[node name="SceneManager" type="Node" parent="." node_paths=PackedStringArray("game_over_canvas", "main_menu", "try_again", "exit_game", "health_bar")]
 script = ExtResource("2_ossk5")
-GameOver_canvas = NodePath("GameOver")
+game_over_canvas = NodePath("GameOver")
 main_menu = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/MainMenu")
 try_again = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/TryAgain")
 exit_game = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/ExitGame")
@@ -1592,13 +1593,13 @@ alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer"]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("UI_node")]
+[node name="Resume" type="Button" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer" node_paths=PackedStringArray("ui_node")]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
 text = "Resume"
 script = ExtResource("6_cgh4m")
-UI_node = NodePath("UIAnimator")
+ui_node = NodePath("UIAnimator")
 
 [node name="UIAnimator" parent="SceneManager/Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Resume" node_paths=PackedStringArray("wait_for") instance=ExtResource("3_07hqn")]
 connect_as_button = true
@@ -1691,6 +1692,9 @@ player_type = 1
 [node name="Line" parent="." instance=ExtResource("2_h0bad")]
 
 [node name="EnemiesContainer" type="Node2D" parent="."]
+
+[node name="Punchy" parent="EnemiesContainer" instance=ExtResource("13_fna4c")]
+position = Vector2(3690, -1886)
 
 [node name="ObstaclesContainer" type="Node2D" parent="."]
 

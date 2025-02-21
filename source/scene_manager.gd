@@ -2,7 +2,7 @@ extends Node
 
 @export var main_menu_scene : String = "res://source/UI/main_menu.tscn"
 
-@export var GameOver_canvas : CanvasLayer
+@export var game_over_canvas : CanvasLayer
 @export var main_menu : Button
 @export var try_again : Button
 @export var exit_game : Button
@@ -14,11 +14,11 @@ func _ready() -> void:
 	try_again.button_up.connect(reload_level)
 	exit_game.button_up.connect(exit)
 	health_bar.died.connect(on_lost)
-	GameOver_canvas.call_deferred("hide")
+	game_over_canvas.call_deferred("hide")
 
 
 func on_lost() -> void:
-	GameOver_canvas.show()
+	game_over_canvas.show()
 	try_again.grab_focus()
 
 

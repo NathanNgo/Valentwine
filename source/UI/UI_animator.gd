@@ -82,29 +82,30 @@ func setup() -> void:
 	if from_center:
 		target.pivot_offset = target.size / 2
 	default_scale = target.scale
-	default_values = {"scale" : target.scale, "position" : target.position, "rotation" : target.rotation, "size" : target.size, "self_modulate" : target.modulate}
-	hover_values = {"scale" : target.scale + hover_scale, 
-			"position" : target.position + hover_position, 
-			"rotation" : target.rotation + hover_rotation, 
-			"size" : target.size +  hover_size, 
+	default_values = {"scale" : target.scale, "position" : target.position,
+	"rotation" : target.rotation, "size" : target.size, "self_modulate" : target.modulate}
+	hover_values = {"scale" : target.scale + hover_scale,
+			"position" : target.position + hover_position,
+			"rotation" : target.rotation + hover_rotation,
+			"size" : target.size +  hover_size,
 			"self_modulate" : hover_modulate
 	}
-	deemphasize_values = {"scale" : target.scale + deepmhasize_scale, 
-		"position" : target.position + deepmhasize_position, 
-		"rotation" : target.rotation + deepmhasize_rotation, 
-		"size" : target.size +  deepmhasize_size, 
+	deemphasize_values = {"scale" : target.scale + deepmhasize_scale,
+		"position" : target.position + deepmhasize_position,
+		"rotation" : target.rotation + deepmhasize_rotation,
+		"size" : target.size +  deepmhasize_size,
 		"self_modulate" : deepmhasize_modulate
 	}
-	entrance_values = {"scale" : entrance_scale, 
-		"position" : target.position + entrance_position, 
-		"rotation" : target.rotation + entrance_rotation, 
-		"size" : target.size +  entrance_size, 
+	entrance_values = {"scale" : entrance_scale,
+		"position" : target.position + entrance_position,
+		"rotation" : target.rotation + entrance_rotation,
+		"size" : target.size +  entrance_size,
 		"self_modulate" : entrance_modulate
 	}
-	exit_values = {"scale" : entrance_scale, 
-		"position" : target.position + entrance_position, 
-		"rotation" : target.rotation + entrance_rotation, 
-		"size" : target.size +  entrance_size, 
+	exit_values = {"scale" : entrance_scale,
+		"position" : target.position + entrance_position,
+		"rotation" : target.rotation + entrance_rotation,
+		"size" : target.size +  entrance_size,
 		"self_modulate" : entrance_modulate
 	}
 	target.visibility_changed.connect(on_enter_deferred)
@@ -127,26 +128,29 @@ func on_enter(finished_waiting : bool = false) -> void:
 	if !entrance_animation:
 		finished_entering.emit(true)
 		return
-	
+
 	if wait_for:
 		if !finished_waiting:
 			add_tween(entrance_values, true, 0.0, IMMEDIATE_TRANSITION, hover_easing, 0.0)
 		else:
 			await get_tree().create_timer(actual_entrance_delay).timeout
-			add_tween(default_values, parallel_animations, actual_entrance_time, entrance_transition, hover_easing, 0.0, true)
+			add_tween(default_values, parallel_animations, actual_entrance_time,
+			entrance_transition, hover_easing, 0.0, true)
 	else:
 		add_tween(entrance_values, true, 0.0, IMMEDIATE_TRANSITION, hover_easing, 0.0)
 		await get_tree().create_timer(actual_entrance_delay).timeout
-		add_tween(default_values, parallel_animations, actual_entrance_time, entrance_transition, hover_easing, 0.0, true)
+		add_tween(default_values, parallel_animations, actual_entrance_time,
+		entrance_transition, hover_easing, 0.0, true)
 
 
 func exit() -> void:
 	var tween := self.create_tween()
 	tween.set_parallel(parallel_animations)
 	tween.pause()
-	
+
 	for property in properties:
-		tween.tween_property(target, property, exit_values[property], exit_time).set_trans(exit_transition).set_ease(hover_easing)
+		tween.tween_property(target, property, exit_values[property], exit_time).set_trans(
+			exit_transition).set_ease(hover_easing)
 	if get_tree() != null:
 		await get_tree().create_timer(exit_delay).timeout
 		tween.play()
@@ -155,30 +159,37 @@ func exit() -> void:
 
 
 func on_hover() -> void:
-	add_tween(hover_values, parallel_animations, hover_time, hover_transition, hover_easing, hover_delay)
+	add_tween(hover_values, parallel_animations, hover_time, hover_transition,
+	hover_easing, hover_delay)
 
 
 func off_hover() -> void:
-	add_tween(default_values, parallel_animations, hover_time, hover_transition, hover_easing, hover_delay)
+	add_tween(default_values, parallel_animations, hover_time, hover_transition,
+	hover_easing, hover_delay)
 
 
 func blip() -> void:
 	if hover_rotation == 0.0:
 		return
 	var tween := create_tween()
-	tween.tween_property(target,"rotation",default_values["rotation"],hover_time).set_trans(hover_transition).set_ease(hover_easing )
+	tween.tween_property(target,"rotation",default_values["rotation"],hover_time).set_trans(
+		hover_transition).set_ease(hover_easing )
 
 
 func deemphasize() -> void:
-	add_tween(deemphasize_values, parallel_animations, deepmhasize_time, hover_transition, hover_easing, deepmhasize_delay)
+	add_tween(deemphasize_values, parallel_animations, deepmhasize_time, hover_transition,
+	hover_easing, deepmhasize_delay)
 
 
-func add_tween(values : Dictionary, parallel : bool, seconds : float, transition : Tween.TransitionType, easing : Tween.EaseType, delay : float, entering : bool = false) -> void:
+func add_tween(values : Dictionary, parallel : bool, seconds : float,
+transition : Tween.TransitionType, easing : Tween.EaseType, delay : float,
+entering : bool = false) -> void:
 	var tween := self.create_tween()
 	tween.set_parallel(parallel)
 	tween.pause()
 	for property in properties:
-		tween.tween_property(target, property, values[property], seconds).set_trans(transition).set_ease(easing)
+		tween.tween_property(target, property, values[property], seconds).set_trans(
+			transition).set_ease(easing)
 	if !entering:
 		tween.tween_callback(blip)
 	if !is_inside_tree():
@@ -186,7 +197,6 @@ func add_tween(values : Dictionary, parallel : bool, seconds : float, transition
 	if get_tree() != null:
 		await get_tree().create_timer(delay).timeout
 		tween.play()
-	if entering: 
+	if entering:
 		await tween.finished
 		finished_entering.emit(true)
-	
