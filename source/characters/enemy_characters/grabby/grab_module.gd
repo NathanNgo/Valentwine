@@ -3,6 +3,8 @@ extends CombatModule
 @export var interact: Interactable
 @export var speed_grabbing: int
 
+@export var special_animation_player : AnimationPlayer
+
 var original_speed: int
 var _grabbed_player: PlayerCharacter
 
@@ -48,7 +50,7 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 
 
 func start_attack(attack_target: Node2D, _attack_direction: Vector2) -> void:
-	animation_player.play("grab")
+	special_animation_player.play("grab")
 	parent.state = Enemy.States.ESCAPING
 	attack_target.current_interacting_object = interact
 	interact.open_interaction(attack_target)
@@ -64,6 +66,14 @@ func stagger_after_grab() -> void:
 
 
 func return_to_idle() -> void:
+	animation_player.play(idle_animation)
 	parent.state = Enemy.States.IDLE
 	_current_stagger_count = 0
 	parent.speed = original_speed
+
+
+
+func die() -> void:
+	if _grabbed_player != null:
+		_grabbed_player.close_interaction()
+		_grabbed_player = null
