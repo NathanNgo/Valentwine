@@ -14,10 +14,10 @@ const TRAILING_LINE_DRAW_TIME = 0.05
 @export var trailing_line_two: Node2D
 @export var trailing_line_draw_timer: Timer
 
+
 var health := 100.0
 
-@onready
-var targetable_player_objects: Array[Node2D] = [player_one, player_two, line.line_body]
+@onready var targetable_players: Array[Node2D] = [player_one, player_two]
 
 
 func _ready() -> void:
@@ -44,7 +44,7 @@ func _on_damage_taken(damage: float) -> void:
 
 func _assign_enemy_targets() -> void:
 	for enemy in enemies_container.get_children():
-		var random_target: Node2D = targetable_player_objects.pick_random()
+		var random_target: Node2D = targetable_players.pick_random()
 		enemy.target = random_target
 
 
@@ -78,4 +78,4 @@ func _kill_circled_enemies(intersection: Vector2, start_point: int) -> void:
 			enemy.global_position,
 			trailing_line_one.get_closed_polygon(intersection, start_point)
 		):
-			enemy.queue_free()
+			enemy.die()

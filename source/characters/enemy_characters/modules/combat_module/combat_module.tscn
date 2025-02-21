@@ -2,9 +2,15 @@
 
 [ext_resource type="Script" path="res://source/characters/enemy_characters/modules/combat_module/combat_module.gd" id="1_je48s"]
 
-[node name="CombatModule" type="RayCast2D" node_paths=PackedStringArray("stagger_timer")]
+[node name="CombatModule" type="RayCast2D" node_paths=PackedStringArray("stagger_timer", "death_sound")]
+collision_mask = 8
 script = ExtResource("1_je48s")
 stagger_threshold = 30.0
 stagger_timer = NodePath("StaggerTimer")
+death_sound = NodePath("DeathSound")
 
 [node name="StaggerTimer" type="Timer" parent="."]
+
+[node name="DeathSound" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/EraserPop"
+event_guid = "{5932a1e1-66c6-49d2-8ea9-788325375a92}"
