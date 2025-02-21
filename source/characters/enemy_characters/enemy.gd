@@ -1,5 +1,7 @@
 class_name Enemy extends CharacterBody2D
 
+signal died()
+
 enum States { BLOCKED, IDLE, WALKING, ATTACK, STAGGERED, ESCAPING, KO }
 
 static var enemy_group := "enemies"
@@ -9,6 +11,8 @@ static var enemy_group := "enemies"
 @export var sprite: Sprite2D
 @export var death_sound: FmodEventEmitter2D
 @export var combat_module: CombatModule
+@export var animation_player : AnimationPlayer
+@export var death_sprite : Sprite2D
 @export var timer: Timer
 
 var target: Node2D
@@ -19,6 +23,7 @@ var movement_direction: Vector2
 func _ready() -> void:
 	timer.timeout.connect(_on_timer_timeout)
 	death_sound.stopped.connect(queue_free)
+	death_sprite.hide()
 
 
 func _physics_process(_delta: float) -> void:
@@ -51,12 +56,9 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 
 
 func die() -> void:
+	death_sprite.show()
 	combat_module.die()
-	var tween: Tween = sprite.create_tween()
-	(
-		tween
-		. tween_property(sprite, "scale", Vector2(0, 0), 0.75)
-		. set_trans(Tween.TRANS_EXPO)
-		. set_ease(Tween.EASE_IN)
-	)
+	var animation_number := randi_range(1,4)
+	animation_player.play("death%s" % [animation_number])
 	death_sound.play()
+	died.emit()

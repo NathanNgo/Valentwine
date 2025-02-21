@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coo5080oisyij"
-path="res://.godot/imported/P2.png-bf0249f1f0be5914228f44c208808235.ctex"
+uid="uid://cw6dkswdu1gqu"
+path="res://.godot/imported/Scratch2.png-74c199c6751d0817c9603f3c101676c6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/characters/characters/P2.png"
-dest_files=["res://.godot/imported/P2.png-bf0249f1f0be5914228f44c208808235.ctex"]
+source_file="res://assets/characters/enemies/Scratch2.png"
+dest_files=["res://.godot/imported/Scratch2.png-74c199c6751d0817c9603f3c101676c6.ctex"]
 
 [params]
 
