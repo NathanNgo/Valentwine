@@ -1441,8 +1441,7 @@ script = ExtResource("9_d0ld8")
 position = Vector2(4099.5, -2000)
 shape = SubResource("RectangleShape2D_8n8ru")
 
-[node name="SpawnEnemiesWithTimer" parent="GameEventsContainer" index="0" node_paths=PackedStringArray("spawn_locations") instance=ExtResource("9_f7vmw")]
-spawn_locations = [NodePath("SpawnLocation"), NodePath("SpawnLocation2")]
+[node name="SpawnEnemiesWithTimer" parent="GameEventsContainer" index="0" instance=ExtResource("9_f7vmw")]
 enemies = Array[PackedScene]([ExtResource("10_yp1t3")])
 spawn_time = 8.0
 
@@ -1452,9 +1451,7 @@ position = Vector2(2600, -1600)
 [node name="SpawnLocation2" type="Node2D" parent="GameEventsContainer/SpawnEnemiesWithTimer" index="2"]
 position = Vector2(5600, -1000)
 
-[node name="SetEnemiesTargetWithArea" parent="GameEventsContainer" index="1" node_paths=PackedStringArray("trigger_areas", "effected_areas") instance=ExtResource("11_dx18o")]
-trigger_areas = [NodePath("TriggerArea")]
-effected_areas = [NodePath("EffectedArea")]
+[node name="SetEnemiesTargetWithArea" parent="GameEventsContainer" index="1" instance=ExtResource("11_dx18o")]
 activation_time_limit = 2.0
 enable_activation_time_limit = true
 
@@ -1470,9 +1467,7 @@ shape = SubResource("RectangleShape2D_ulblh")
 position = Vector2(4003, -1097)
 shape = SubResource("RectangleShape2D_5qarf")
 
-[node name="SpawnEnemiesAfterEnemiesInsideAreaDefeated" parent="GameEventsContainer" index="2" node_paths=PackedStringArray("trigger_areas", "spawn_locations") instance=ExtResource("12_mr2vc")]
-trigger_areas = [NodePath("TriggerArea")]
-spawn_locations = [NodePath("SpawnLocation"), NodePath("SpawnLocation2"), NodePath("SpawnLocation3"), NodePath("SpawnLocation4")]
+[node name="SpawnEnemiesAfterEnemiesInsideAreaDefeated" parent="GameEventsContainer" index="2" instance=ExtResource("12_mr2vc")]
 enemies = Array[PackedScene]([ExtResource("4_5vkbp")])
 activation_time_limit = 4.0
 

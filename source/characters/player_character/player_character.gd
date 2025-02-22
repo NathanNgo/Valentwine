@@ -31,6 +31,7 @@ static var walking_animation := "walking"
 @export var line_point_one: Node2D
 @export var line_point_two: Node2D
 
+var grabbing_object: Enemy = null
 var staggering_distance: float = 0.0
 var staggering_towards: Vector2
 var state := State.IDLE
@@ -93,6 +94,9 @@ func _physics_process(_delta: float) -> void:
 	match state:
 		State.GRABBED:
 			grabbed()
+			move_and_slide()
+			return
+
 		State.BLOCKED:
 			return
 
@@ -219,7 +223,8 @@ func stun(button_pressed: Controls) -> void:
 
 
 func grabbed() -> void:
-
+	if escape_requirement == 0 and grabbing_object:
+		grabbing_object.player_escaped()
 
 	stun_container.show()
 
@@ -229,11 +234,6 @@ func grabbed() -> void:
 
 	if Input.is_action_just_pressed(selected_scheme[Controls.RIGHT] and current_stun_prompt == Controls.RIGHT):
 		escape_requirement -= 1
-
-	if 
-
-
-	move_and_slide()
 
 
 func _on_grace_timer_timeout() -> void:
