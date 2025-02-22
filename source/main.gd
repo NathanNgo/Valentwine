@@ -36,7 +36,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	line.set_end_positions(player_one.position, player_two.position)
+	line.set_end_positions(player_one.line_point.global_position, player_two.line_point.global_position)
 
 
 func _on_damage_taken(damage: float) -> void:

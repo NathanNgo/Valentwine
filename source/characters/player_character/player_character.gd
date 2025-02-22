@@ -26,6 +26,8 @@ static var walking_animation := "walking"
 @export var grace_timer: Timer
 @export var animation_player: AnimationPlayer
 @export var draw_point: Node2D
+@export var line_point_one: Node2D
+@export var line_point_two: Node2D
 
 var staggering_distance: float = 0.0
 var staggering_towards: Vector2
@@ -54,6 +56,7 @@ var control_schemes := {
 }
 
 @onready var selected_scheme: Dictionary = control_schemes[player_type]
+@onready var line_point: Node2D = line_point_one if player_type == Player.FIRST else line_point_two
 
 
 func _ready() -> void:
