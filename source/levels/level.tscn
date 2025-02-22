@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="3_xed2x"]
 [ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/lines/connecting_line/line.tscn" id="4_2xfjj"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("tile_maps", "enemies_container", "non_player_characters_container", "obstacles_container", "interactables_container", "game_events_container", "line", "player_one", "player_two", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("tile_maps", "enemies_container", "non_player_characters_container", "obstacles_container", "interactables_container", "portals_container", "game_events_container", "line", "player_one", "player_two", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer")]
 y_sort_enabled = true
 script = ExtResource("1_mtaei")
 tile_maps = NodePath("TileMaps")
@@ -13,6 +13,7 @@ enemies_container = NodePath("EnemiesContainer")
 non_player_characters_container = NodePath("NonPlayerCharactersContainer")
 obstacles_container = NodePath("ObstaclesContainer")
 interactables_container = NodePath("InteractablesContainer")
+portals_container = NodePath("PortalsContainer")
 game_events_container = NodePath("GameEventsContainer")
 line = NodePath("PlayerCharactersContainer/Line")
 player_one = NodePath("PlayerCharactersContainer/PlayerCharacter1")
@@ -58,6 +59,8 @@ y_sort_enabled = true
 [node name="ObstaclesContainer" type="Node2D" parent="."]
 
 [node name="InteractablesContainer" type="Node2D" parent="."]
+
+[node name="PortalsContainer" type="Node2D" parent="."]
 
 [node name="GameEventsContainer" type="Node2D" parent="."]
 

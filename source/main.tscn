@@ -1,14 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=7 format=3 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
 [ext_resource type="PackedScene" uid="uid://d2e82dnr1fdae" path="res://source/managers/ui_manager/ui_manager.tscn" id="2_0qhe6"]
+[ext_resource type="PackedScene" uid="uid://o0c2010xrmrx" path="res://source/levels/level_garden/level_garden.tscn" id="3_gsn8o"]
+[ext_resource type="PackedScene" uid="uid://r5skhi5mrcmq" path="res://source/levels/level_kitchen/level_kitchen.tscn" id="4_dmxw4"]
 [ext_resource type="PackedScene" uid="uid://cvy5wrdf8iiqv" path="res://source/levels/level_introduction/level_introduction.tscn" id="4_sw1s8"]
+[ext_resource type="PackedScene" uid="uid://ypt417ttqcqb" path="res://source/levels/level_final/level_final.tscn" id="5_jedus"]
 
 [node name="Main" type="Node2D" node_paths=PackedStringArray("level", "ui_manager")]
 y_sort_enabled = true
 script = ExtResource("1_h5u32")
 level = NodePath("LevelIntroduction")
 ui_manager = NodePath("UIManager")
+levels = Array[PackedScene]([ExtResource("4_sw1s8"), ExtResource("3_gsn8o"), ExtResource("4_dmxw4"), ExtResource("5_jedus")])
 
 [node name="UIManager" parent="." instance=ExtResource("2_0qhe6")]
 

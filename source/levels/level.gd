@@ -1,12 +1,14 @@
 class_name Level extends Node2D
 
 signal damage_taken(damage: float)
+signal transition_level
 
 @export var tile_maps: Node2D
 @export var enemies_container: Node2D
 @export var non_player_characters_container: Node2D
 @export var obstacles_container: Node2D
 @export var interactables_container: Node2D
+@export var portals_container: Node2D
 @export var game_events_container: Node2D
 
 @export var line: Node2D
@@ -37,6 +39,9 @@ func _ready() -> void:
 
 	trailing_line_draw_timer.timeout.connect(_on_trailing_line_draw_timer)
 	trailing_line_draw_timer.start(trailing_line_draw_time)
+
+	for portal in portals_container.get_children():
+		portal.transition_level.connect(_on_transition_level)
 
 
 func _physics_process(_delta: float) -> void:
@@ -137,3 +142,7 @@ func _kill_circled_enemies(
 			trailing_line.get_closed_polygon(intersection, start_point)
 		):
 			enemy.die()
+
+
+func _on_transition_level() -> void:
+	transition_level.emit()
