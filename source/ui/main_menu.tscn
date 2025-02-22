@@ -1,6 +1,5 @@
-[gd_scene load_steps=4 format=3 uid="uid://625grcpxl8cb"]
+[gd_scene load_steps=3 format=3 uid="uid://625grcpxl8cb"]
 
-[ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/UI/UIAnimator.tscn" id="1_djnnq"]
 [ext_resource type="Script" path="res://source/ui/main_menu.gd" id="1_ytv0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfujg"]
@@ -67,27 +66,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "Start"
 
-[node name="UIAnimator" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/StartGame" instance=ExtResource("1_djnnq")]
-connect_as_button = true
-hover_rotation = 0.25
-
 [node name="HowToPlay" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "How to play"
 
-[node name="UIAnimator" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/HowToPlay" instance=ExtResource("1_djnnq")]
-connect_as_button = true
-hover_rotation = 0.25
-
 [node name="Exit" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 80
 text = "Exit"
-
-[node name="UIAnimator" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Exit" instance=ExtResource("1_djnnq")]
-connect_as_button = true
-hover_rotation = 0.25
 
 [node name="HowToPanel" type="Panel" parent="."]
 visible = false
