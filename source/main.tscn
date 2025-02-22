@@ -24,10 +24,10 @@ ui_manager = NodePath("UIManager")
 [node name="LevelIntroduction" parent="." instance=ExtResource("4_sw1s8")]
 
 [node name="TrailingLine1" parent="." instance=ExtResource("17_h6d1n")]
-max_points = 80
+max_points = 100
 
 [node name="TrailingLine2" parent="." instance=ExtResource("17_h6d1n")]
-max_points = 80
+max_points = 100
 
 [node name="TrailingLineDrawTimer" type="Timer" parent="."]
 
