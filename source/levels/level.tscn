@@ -30,6 +30,9 @@ max_points = 100
 [node name="TrailingLine2" parent="PlayerCharactersContainer" instance=ExtResource("2_mlmk4")]
 max_points = 100
 
+[node name="Line2D" parent="PlayerCharactersContainer/TrailingLine2" index="0"]
+default_color = Color(0.335122, 0.655187, 0.983494, 1)
+
 [node name="TrailingLineDrawTimer" type="Timer" parent="PlayerCharactersContainer"]
 
 [node name="PlayerCharacter1" parent="PlayerCharactersContainer" instance=ExtResource("3_xed2x")]
@@ -57,3 +60,5 @@ y_sort_enabled = true
 [node name="InteractablesContainer" type="Node2D" parent="."]
 
 [node name="GameEventsContainer" type="Node2D" parent="."]
+
+[editable path="PlayerCharactersContainer/TrailingLine2"]
