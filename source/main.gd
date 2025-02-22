@@ -57,7 +57,8 @@ func _on_trailing_line_draw_timer() -> void:
 	if possible_intersection_player_one:
 		_kill_circled_enemies(
 			possible_intersection_player_one["intersection"],
-			possible_intersection_player_one["start_point"]
+			possible_intersection_player_one["start_point"],
+			trailing_line_one
 		)
 		trailing_line_one.clear_line()
 
@@ -67,17 +68,18 @@ func _on_trailing_line_draw_timer() -> void:
 	if possible_intersection_player_two:
 		_kill_circled_enemies(
 			possible_intersection_player_two["intersection"],
-			possible_intersection_player_two["start_point"]
+			possible_intersection_player_two["start_point"],
+			trailing_line_two
 		)
 		trailing_line_two.clear_line()
 
 	trailing_line_draw_timer.start(TRAILING_LINE_DRAW_TIME)
 
 
-func _kill_circled_enemies(intersection: Vector2, start_point: int) -> void:
+func _kill_circled_enemies(intersection: Vector2, start_point: int, trailing_line: TrailingLine) -> void:
 	for enemy in enemies_container.get_children():
 		if Geometry2D.is_point_in_polygon(
 			enemy.global_position,
-			trailing_line_one.get_closed_polygon(intersection, start_point)
+			trailing_line.get_closed_polygon(intersection, start_point)
 		):
 			enemy.die()

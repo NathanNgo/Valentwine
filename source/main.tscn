@@ -34,11 +34,13 @@ max_points = 80
 [node name="PlayerCharacter1" parent="." instance=ExtResource("1_mc5tm")]
 z_index = 1
 position = Vector2(261, 1092)
+speed = 600
 
 [node name="PlayerCharacter2" parent="." instance=ExtResource("1_mc5tm")]
 z_index = 1
 position = Vector2(252, 417)
 player_type = 1
+speed = 600
 
 [node name="Line" parent="." instance=ExtResource("2_h0bad")]
 
