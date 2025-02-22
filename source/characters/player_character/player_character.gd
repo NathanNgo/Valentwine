@@ -189,6 +189,7 @@ func close_interaction() -> void:
 
 	state = State.IDLE
 	current_interacting_object = null
+	current_stun_prompt = Controls.UP
 
 
 func stun(button_pressed: Controls) -> void:
