@@ -1,10 +1,10 @@
 [gd_scene load_steps=9 format=3 uid="uid://d2e82dnr1fdae"]
 
 [ext_resource type="Script" path="res://source/managers/ui_manager/ui_manager.gd" id="1_k6hxb"]
-[ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/UI/UIAnimator.tscn" id="2_ebdms"]
-[ext_resource type="Script" path="res://source/UI/health_bar.gd" id="3_j8epo"]
-[ext_resource type="Script" path="res://source/UI/pause.gd" id="4_rqrfe"]
-[ext_resource type="Script" path="res://source/UI/focus_grabber.gd" id="5_h80id"]
+[ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/ui/UIAnimator.tscn" id="2_ebdms"]
+[ext_resource type="Script" path="res://source/ui/health_bar.gd" id="3_j8epo"]
+[ext_resource type="Script" path="res://source/ui/pause.gd" id="4_rqrfe"]
+[ext_resource type="Script" path="res://source/ui/focus_grabber.gd" id="5_h80id"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hagkn"]
 bg_color = Color(0, 0, 0, 1)

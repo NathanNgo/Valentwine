@@ -5,28 +5,24 @@
 [ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="3_xed2x"]
 [ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/lines/connecting_line/line.tscn" id="4_2xfjj"]
 
-[node name="Level" type="Node2D" node_paths=PackedStringArray("tile_maps", "enemies_container", "obstacles_container", "interactables_container")]
+[node name="Level" type="Node2D" node_paths=PackedStringArray("tile_maps", "enemies_container", "non_player_characters_container", "obstacles_container", "interactables_container", "game_events_container", "line", "player_one", "player_two", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer")]
 y_sort_enabled = true
 script = ExtResource("1_mtaei")
 tile_maps = NodePath("TileMaps")
 enemies_container = NodePath("EnemiesContainer")
+non_player_characters_container = NodePath("NonPlayerCharactersContainer")
 obstacles_container = NodePath("ObstaclesContainer")
 interactables_container = NodePath("InteractablesContainer")
-
-[node name="TileMaps" type="Node2D" parent="."]
-y_sort_enabled = true
-
-[node name="EnemiesContainer" type="Node2D" parent="."]
-
-[node name="NonPlayerCharactersContainer" type="Node2D" parent="."]
-
-[node name="ObstaclesContainer" type="Node2D" parent="."]
-
-[node name="InteractablesContainer" type="Node2D" parent="."]
-
-[node name="GameEventsContainer" type="Node2D" parent="."]
+game_events_container = NodePath("GameEventsContainer")
+line = NodePath("PlayerCharactersContainer/Line")
+player_one = NodePath("PlayerCharactersContainer/PlayerCharacter1")
+player_two = NodePath("PlayerCharactersContainer/PlayerCharacter2")
+trailing_line_one = NodePath("PlayerCharactersContainer/TrailingLine1")
+trailing_line_two = NodePath("PlayerCharactersContainer/TrailingLine2")
+trailing_line_draw_timer = NodePath("PlayerCharactersContainer/TrailingLineDrawTimer")
 
 [node name="PlayerCharactersContainer" type="Node2D" parent="."]
+y_sort_enabled = true
 
 [node name="TrailingLine1" parent="PlayerCharactersContainer" instance=ExtResource("2_mlmk4")]
 max_points = 100
@@ -48,3 +44,16 @@ player_type = 1
 speed = 600
 
 [node name="Line" parent="PlayerCharactersContainer" instance=ExtResource("4_2xfjj")]
+
+[node name="TileMaps" type="Node2D" parent="."]
+y_sort_enabled = true
+
+[node name="EnemiesContainer" type="Node2D" parent="."]
+
+[node name="NonPlayerCharactersContainer" type="Node2D" parent="."]
+
+[node name="ObstaclesContainer" type="Node2D" parent="."]
+
+[node name="InteractablesContainer" type="Node2D" parent="."]
+
+[node name="GameEventsContainer" type="Node2D" parent="."]

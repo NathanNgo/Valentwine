@@ -1,5 +1,7 @@
 class_name Interactable extends Node2D
 
+signal interaction_finished
+
 static var interactable_group := "interactable"
 
 @export var number_of_presses_required: int = 5
@@ -35,6 +37,10 @@ func interact() -> void:
 		return
 
 	_player.close_interaction()
+	# We should remove this signal. This is just here so that everything doesn't break at
+	# the moment.
+	interaction_finished.emit()
+	_finish_interaction()
 
 
 func _finish_interaction() -> void:

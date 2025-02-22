@@ -1,47 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://cpx6mety5bqcw"]
+[gd_scene load_steps=4 format=3 uid="uid://cpx6mety5bqcw"]
 
 [ext_resource type="Script" path="res://source/main.gd" id="1_h5u32"]
-[ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="1_mc5tm"]
 [ext_resource type="PackedScene" uid="uid://d2e82dnr1fdae" path="res://source/managers/ui_manager/ui_manager.tscn" id="2_0qhe6"]
-[ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/lines/connecting_line/line.tscn" id="2_h0bad"]
 [ext_resource type="PackedScene" uid="uid://cvy5wrdf8iiqv" path="res://source/levels/level_introduction/level_introduction.tscn" id="4_sw1s8"]
-[ext_resource type="PackedScene" uid="uid://dgo0f408j53ae" path="res://source/lines/trailing_line/trailing_line.tscn" id="17_h6d1n"]
 
-[node name="Main" type="Node2D" node_paths=PackedStringArray("line", "player_one", "player_two", "level", "trailing_line_one", "trailing_line_two", "trailing_line_draw_timer", "ui_manager")]
+[node name="Main" type="Node2D" node_paths=PackedStringArray("level", "ui_manager")]
 y_sort_enabled = true
 script = ExtResource("1_h5u32")
-line = NodePath("Line")
-player_one = NodePath("PlayerCharacter1")
-player_two = NodePath("PlayerCharacter2")
 level = NodePath("LevelIntroduction")
-trailing_line_one = NodePath("TrailingLine1")
-trailing_line_two = NodePath("TrailingLine2")
-trailing_line_draw_timer = NodePath("TrailingLineDrawTimer")
 ui_manager = NodePath("UIManager")
 
 [node name="UIManager" parent="." instance=ExtResource("2_0qhe6")]
 
 [node name="LevelIntroduction" parent="." instance=ExtResource("4_sw1s8")]
-
-[node name="TrailingLine1" parent="." instance=ExtResource("17_h6d1n")]
-max_points = 100
-
-[node name="TrailingLine2" parent="." instance=ExtResource("17_h6d1n")]
-max_points = 100
-
-[node name="TrailingLineDrawTimer" type="Timer" parent="."]
-
-[node name="PlayerCharacter1" parent="." instance=ExtResource("1_mc5tm")]
-z_index = 1
-position = Vector2(261, 1092)
-speed = 600
-
-[node name="PlayerCharacter2" parent="." instance=ExtResource("1_mc5tm")]
-z_index = 1
-position = Vector2(252, 417)
-player_type = 1
-speed = 600
-
-[node name="Line" parent="." instance=ExtResource("2_h0bad")]
-
-[editable path="Line"]

@@ -8,6 +8,7 @@ enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
 enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING }
 
 static var player_group := "player_objects"
+static var player_collision_layer := 4
 static var walking_animation := "walking"
 
 @export var _player_one_sprite: Sprite2D
@@ -186,7 +187,6 @@ func close_interaction() -> void:
 	if not current_interacting_object:
 		return
 
-	current_interacting_object.close_interaction()
 	state = State.IDLE
 	current_interacting_object = null
 

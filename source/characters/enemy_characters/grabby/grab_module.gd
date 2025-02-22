@@ -19,15 +19,18 @@ func _process(_delta: float) -> void:
 	if parent.state != Enemy.States.IDLE and parent.state != Enemy.States.ESCAPING:
 		return
 
-	target_position = parent.movement_direction * attack_range
-	if parent.state == parent.States.ESCAPING:
-		_grabbed_player.get_pushed(-parent.movement_direction * speed_grabbing)
-		return
-
 	if is_colliding():
 		var attack_target: Node2D = get_collider()
 		if attack_target.is_in_group("player_character"):
 			start_attack(attack_target, parent.movement_direction)
+
+	target_position = parent.movement_direction * attack_range
+	if parent.state == parent.States.ESCAPING:
+		if not _grabbed_player:
+			return
+
+		_grabbed_player.get_pushed(-parent.movement_direction * speed_grabbing)
+		return
 
 
 func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> void:
@@ -37,7 +40,6 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 		if _grabbed_player != null:
 			_grabbed_player.close_interaction()
 			_grabbed_player = null
-		KO()
 
 	_current_stagger_count += damage_taken
 	if _current_stagger_count >= stagger_threshold:

@@ -5,6 +5,7 @@ signal died
 enum States { BLOCKED, IDLE, WALKING, ATTACK, STAGGERED, ESCAPING, KO }
 
 static var enemy_group := "enemies"
+static var enemy_collision_layer := 1
 
 @export var speed := 300
 @export var navigation_agent: NavigationAgent2D
@@ -44,7 +45,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_target() -> void:
-	navigation_agent.target_position = target.global_position
+	if target:
+		navigation_agent.target_position = target.global_position
 
 
 func _on_timer_timeout() -> void:
