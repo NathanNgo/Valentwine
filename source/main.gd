@@ -1,7 +1,6 @@
 extends Node2D
 
 const SPAWN_TIME = 2
-const TRAILING_LINE_DRAW_TIME = 0.05
 
 @export var line: Node2D
 @export var player_one: CharacterBody2D
@@ -11,6 +10,7 @@ const TRAILING_LINE_DRAW_TIME = 0.05
 @export var trailing_line_two: Node2D
 @export var trailing_line_draw_timer: Timer
 @export var ui_manager: Node
+@export var trailing_line_draw_time := 0.05
 
 var health := 100.0
 
@@ -32,11 +32,13 @@ func _ready() -> void:
 	ui_manager.health_bar.value = health
 
 	trailing_line_draw_timer.timeout.connect(_on_trailing_line_draw_timer)
-	trailing_line_draw_timer.start(TRAILING_LINE_DRAW_TIME)
+	trailing_line_draw_timer.start(trailing_line_draw_time)
 
 
 func _physics_process(_delta: float) -> void:
-	line.set_end_positions(player_one.line_point.global_position, player_two.line_point.global_position)
+	line.set_end_positions(
+		player_one.line_point.global_position, player_two.line_point.global_position
+	)
 
 
 func _on_damage_taken(damage: float) -> void:
@@ -73,10 +75,12 @@ func _on_trailing_line_draw_timer() -> void:
 		)
 		trailing_line_two.clear_line()
 
-	trailing_line_draw_timer.start(TRAILING_LINE_DRAW_TIME)
+	trailing_line_draw_timer.start(trailing_line_draw_time)
 
 
-func _kill_circled_enemies(intersection: Vector2, start_point: int, trailing_line: TrailingLine) -> void:
+func _kill_circled_enemies(
+	intersection: Vector2, start_point: int, trailing_line: TrailingLine
+) -> void:
 	for enemy in enemies_container.get_children():
 		if Geometry2D.is_point_in_polygon(
 			enemy.global_position,

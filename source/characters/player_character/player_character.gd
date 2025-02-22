@@ -56,7 +56,8 @@ var control_schemes := {
 }
 
 @onready var selected_scheme: Dictionary = control_schemes[player_type]
-@onready var line_point: Node2D = line_point_one if player_type == Player.FIRST else line_point_two
+@onready
+var line_point: Node2D = line_point_one if player_type == Player.FIRST else line_point_two
 
 
 func _ready() -> void:

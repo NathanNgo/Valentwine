@@ -25,6 +25,7 @@ health_bar = NodePath("UI/HealthBar")
 [node name="GameOver" type="CanvasLayer" parent="."]
 process_mode = 3
 layer = 128
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="GameOver"]
 anchors_preset = 15
@@ -139,6 +140,7 @@ entrance_time = 1.0
 entrance_transition = 2
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="UI"]
 anchors_preset = 5
@@ -153,6 +155,7 @@ script = ExtResource("3_j8epo")
 
 [node name="Pause" type="CanvasLayer" parent="." node_paths=PackedStringArray("resume_button", "main_menu_button", "restart_button", "exit_button")]
 process_mode = 3
+visible = false
 script = ExtResource("4_rqrfe")
 resume_button = NodePath("MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Resume")
 main_menu_button = NodePath("MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MainMenu")

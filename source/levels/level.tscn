@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://8a1fxgbl58qp"]
+[gd_scene load_steps=5 format=3 uid="uid://8a1fxgbl58qp"]
 
 [ext_resource type="Script" path="res://source/levels/level.gd" id="1_mtaei"]
+[ext_resource type="PackedScene" uid="uid://dgo0f408j53ae" path="res://source/lines/trailing_line/trailing_line.tscn" id="2_mlmk4"]
+[ext_resource type="PackedScene" uid="uid://cxr5vmhcdk1jp" path="res://source/characters/player_character/player_character.tscn" id="3_xed2x"]
+[ext_resource type="PackedScene" uid="uid://bvk41vw65rwxo" path="res://source/lines/connecting_line/line.tscn" id="4_2xfjj"]
 
 [node name="Level" type="Node2D" node_paths=PackedStringArray("tile_maps", "enemies_container", "obstacles_container", "interactables_container")]
 y_sort_enabled = true
@@ -15,6 +18,33 @@ y_sort_enabled = true
 
 [node name="EnemiesContainer" type="Node2D" parent="."]
 
+[node name="NonPlayerCharactersContainer" type="Node2D" parent="."]
+
 [node name="ObstaclesContainer" type="Node2D" parent="."]
 
 [node name="InteractablesContainer" type="Node2D" parent="."]
+
+[node name="GameEventsContainer" type="Node2D" parent="."]
+
+[node name="PlayerCharactersContainer" type="Node2D" parent="."]
+
+[node name="TrailingLine1" parent="PlayerCharactersContainer" instance=ExtResource("2_mlmk4")]
+max_points = 100
+
+[node name="TrailingLine2" parent="PlayerCharactersContainer" instance=ExtResource("2_mlmk4")]
+max_points = 100
+
+[node name="TrailingLineDrawTimer" type="Timer" parent="PlayerCharactersContainer"]
+
+[node name="PlayerCharacter1" parent="PlayerCharactersContainer" instance=ExtResource("3_xed2x")]
+z_index = 1
+position = Vector2(261, 1092)
+speed = 600
+
+[node name="PlayerCharacter2" parent="PlayerCharactersContainer" instance=ExtResource("3_xed2x")]
+z_index = 1
+position = Vector2(252, 417)
+player_type = 1
+speed = 600
+
+[node name="Line" parent="PlayerCharactersContainer" instance=ExtResource("4_2xfjj")]
