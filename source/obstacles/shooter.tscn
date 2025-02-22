@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cebywpds5xqet"]
+
+[ext_resource type="Script" path="res://source/characters/enemy_characters/ammo/shooter/shooter.gd" id="1_tekij"]
+[ext_resource type="PackedScene" uid="uid://824xq6lgf8lg" path="res://source/characters/enemy_characters/ammo/ammo.tscn" id="2_0kmi4"]
+
+[node name="Shooter" type="Node2D" node_paths=PackedStringArray("timer", "trigger_area")]
+script = ExtResource("1_tekij")
+timer = NodePath("Timer")
+ammo = ExtResource("2_0kmi4")
+trigger_area = NodePath("")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

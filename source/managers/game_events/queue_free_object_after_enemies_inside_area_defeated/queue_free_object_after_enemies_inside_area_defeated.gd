@@ -1,6 +1,6 @@
 extends GameEvent
 
-@export var trigger_areas: Array[Area2D]
+@export var effect_areas: Array[Area2D]
 @export var objects_to_free: Array[Node2D]
 @export var activation_timer : Timer
 @export var delay_before_queue_free : float = 1.0
@@ -9,7 +9,7 @@ var alive_enemies: Array[Enemy] = []
 var previously_triggered : bool = false
 
 func _ready() -> void:
-	for trigger_area in trigger_areas:
+	for trigger_area in effect_areas:
 		trigger_area.body_entered.connect(_on_body_entered_trigger_area)
 		trigger_area.body_exited.connect(_on_body_exited_trigger_area)
 		trigger_area.set_collision_mask_value(Enemy.enemy_collision_layer, true)
@@ -35,7 +35,7 @@ func _on_body_exited_trigger_area(body: Node2D) -> void:
 		alive_enemies.erase(body)
 
 	if alive_enemies.size() == 0:
-		activation_timer.start()
+		activation_timer.start(delay_before_queue_free)
 
 
 func _on_activation_timer_timeout() -> void:

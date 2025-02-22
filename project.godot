@@ -26,6 +26,11 @@ DSP/dsp_buffer_count=4
 "3D Settings/distance_factor"=1.0
 "3D Settings/rolloff_scale"=1.0
 
+[addons]
+
+instance_dock/scene_data_file="res://InstanceDockSceneData.txt"
+instance_dock/preview_resolution=Vector2i(64, 64)
+
 [application]
 
 config/name="GWJ"
@@ -78,7 +83,11 @@ shader_language/warnings/treat_warnings_as_errors=true
 [display]
 
 window/size/mode=3
+window/size/resizable=false
+window/size/borderless=true
+window/size/always_on_top=true
 window/size/transparent=true
+window/dpi/allow_hidpi=false
 window/per_pixel_transparency/allowed=true
 
 [dotnet]
@@ -91,7 +100,7 @@ movie_writer/movie_file="/home/diego/Documents/Videojuego/Movies/GWJ.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdLinter/plugin.cfg", "res://addons/softbody2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/gdLinter/plugin.cfg", "res://addons/softbody2d/plugin.cfg")
 
 [global_group]
 
@@ -169,3 +178,4 @@ Pause={
 [rendering]
 
 textures/vram_compression/import_etc2_astc=true
+viewport/transparent_background=true

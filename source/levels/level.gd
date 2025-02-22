@@ -25,6 +25,7 @@ var non_player_characters: Array[Node] = non_player_characters_container.get_chi
 
 
 func _ready() -> void:
+	get_viewport().transparent_bg = true
 	for game_event in game_events_container.get_children():
 		game_event.spawn_enemies.connect(_on_spawn_enemies)
 		game_event.target_player.connect(_on_target_player)

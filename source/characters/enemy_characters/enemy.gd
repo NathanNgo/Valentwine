@@ -15,8 +15,8 @@ static var enemy_collision_layer := 1
 @export var animation_player: AnimationPlayer
 @export var death_sprite: Sprite2D
 @export var timer: Timer
+@export var target: Node2D
 
-var target: Node2D
 var state: States = States.IDLE
 var movement_direction: Vector2
 

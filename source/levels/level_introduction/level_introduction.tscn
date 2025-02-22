@@ -1383,7 +1383,10 @@ size = Vector2(4202, 1810)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jk8nq"]
 size = Vector2(4201, 1801)
 
-[node name="LevelIntroduction" instance=ExtResource("1_ra1kn")]
+[node name="LevelIntroduction2" instance=ExtResource("1_ra1kn")]
+
+[node name="PlayerCharacter1" parent="PlayerCharactersContainer" index="3"]
+position = Vector2(-176, 520)
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" index="0"]
 z_index = -1

@@ -109,13 +109,18 @@ func _physics_process(_delta: float) -> void:
 
 		State.STAGGERING:
 			velocity = staggering_towards * stagger_speed / _delta
-			##how long has the player been pushed
+			# how long has the player been pushed
 			staggering_distance += staggering_towards.length() * stagger_speed
+
 			if staggering_distance >= stagger_amount:
 				state = State.IDLE
+
 			move_and_slide()
+
 			return
+
 	velocity = direction * speed
+
 	move_and_slide()
 
 
@@ -189,7 +194,7 @@ func close_interaction() -> void:
 
 	state = State.IDLE
 	current_interacting_object = null
-	current_stun_prompt = Controls.UP
+	current_stun_prompt = Controls.LEFT
 
 
 func stun(button_pressed: Controls) -> void:

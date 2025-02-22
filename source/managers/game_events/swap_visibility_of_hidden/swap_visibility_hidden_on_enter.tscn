@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7glalxrrmg7k"]
+
+[ext_resource type="Script" path="res://source/managers/game_events/swap_visibility_of_hidden/swap_visibility_hidden_on_enter.gd" id="1_vnfl4"]
+
+[node name="swap_visibility_hidden_on_enter" type="Node2D" node_paths=PackedStringArray("timer")]
+script = ExtResource("1_vnfl4")
+timer = NodePath("Timer")
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true

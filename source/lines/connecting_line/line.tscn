@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvk41vw65rwxo"]
+[gd_scene load_steps=5 format=3 uid="uid://bvk41vw65rwxo"]
 
 [ext_resource type="Script" path="res://source/lines/connecting_line/line.gd" id="1_2os2t"]
 [ext_resource type="Script" path="res://source/lines/connecting_line/line_body.gd" id="2_pt525"]
@@ -6,11 +6,15 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f2i5c"]
 size = Vector2(224, 16)
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_collision_shape", "line", "line_body")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4mjn"]
+size = Vector2(16, 1408)
+
+[node name="Node2D" type="Node2D" node_paths=PackedStringArray("_collision_shape", "line", "line_body", "dividing_line")]
 script = ExtResource("1_2os2t")
 _collision_shape = NodePath("Line/CollisionShape2D")
 line = NodePath("Line2D")
 line_body = NodePath("Line")
+dividing_line = NodePath("DividingLine")
 
 [node name="Line" type="CharacterBody2D" parent="." groups=["player_objects"]]
 collision_layer = 2
@@ -28,3 +32,15 @@ position_smoothing_speed = 3.0
 points = PackedVector2Array(-104, 0, 104, 0)
 width = 8.0
 default_color = Color(1, 1, 1, 0.34902)
+
+[node name="DividingLine" type="StaticBody2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DividingLine"]
+visible = false
+shape = SubResource("RectangleShape2D_c4mjn")
+
+[node name="Line2D" type="Line2D" parent="DividingLine"]
+points = PackedVector2Array(2, 692, 1, -699)
+default_color = Color(0.239216, 0.239216, 0.239216, 0.117647)
