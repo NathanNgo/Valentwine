@@ -9,4 +9,4 @@ trailing_line = NodePath("Line2D")
 
 [node name="Line2D" type="Line2D" parent="."]
 y_sort_enabled = true
-default_color = Color(0.818111, 0.379116, 0.394106, 1)
+default_color = Color(0.951886, 0.332002, 0.429556, 1)
