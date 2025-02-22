@@ -74,7 +74,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gdfn7"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f6ug7"]
 texture = ExtResource("2_ly4sg")
 texture_region_size = Vector2i(200, 200)
 0:0/0 = 0
@@ -744,7 +744,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-100, -100, 100, -100, 100, 100, -100, 100)])
 agent_radius = 0.0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xklbb"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pn0x1"]
 texture = ExtResource("3_5velh")
 texture_region_size = Vector2i(200, 200)
 0:0/0 = 0
@@ -1368,8 +1368,8 @@ texture_region_size = Vector2i(200, 200)
 tile_size = Vector2i(200, 200)
 physics_layer_0/collision_layer = 1
 navigation_layer_0/layers = 1
-sources/0 = SubResource("TileSetAtlasSource_gdfn7")
-sources/1 = SubResource("TileSetAtlasSource_xklbb")
+sources/0 = SubResource("TileSetAtlasSource_f6ug7")
+sources/1 = SubResource("TileSetAtlasSource_pn0x1")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8n8ru"]
 size = Vector2(361, 207)

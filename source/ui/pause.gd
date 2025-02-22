@@ -31,6 +31,7 @@ func swap_pause_state() -> void:
 		show()
 		get_tree().paused = true
 		paused = true
+		resume_button.grab_focus()
 	else:
 		unpause()
 
