@@ -16,6 +16,7 @@ func _ready() -> void:
 	spawn_timer.timeout.connect(_on_spawn_timer_timeout)
 	spawn_timer.start(spawn_time)
 	activation_timer.timeout.connect(_on_activation_timer_timeout)
+	activation_timer.start(activation_time_limit)
 
 
 func activate() -> void:

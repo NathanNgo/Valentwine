@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://625grcpxl8cb"]
 
-[ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/ui/UIAnimator.tscn" id="1_djnnq"]
+[ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/UI/UIAnimator.tscn" id="1_djnnq"]
 [ext_resource type="Script" path="res://source/ui/main_menu.gd" id="1_ytv0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfujg"]
