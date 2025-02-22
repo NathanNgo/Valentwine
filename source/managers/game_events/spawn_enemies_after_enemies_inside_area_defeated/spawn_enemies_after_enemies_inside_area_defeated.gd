@@ -8,10 +8,12 @@ extends GameEvent
 
 @export var spawn_time: float = 1.0
 @export var activation_time_limit := 10.0
-@export var enable_activation_time_limit := false
+@export var enable_activation_time_limit := true
+@export var one_shot := true
 
 var trigger_activated := false
 var alive_enemies: Array[Enemy] = []
+var previously_triggered := false
 
 
 func _ready() -> void:
@@ -38,11 +40,15 @@ func _on_body_entered_trigger_area(body: Node2D) -> void:
 
 
 func _on_body_exited_trigger_area(body: Node2D) -> void:
+	if one_shot and previously_triggered:
+		return
+
 	if body.is_in_group(Enemy.enemy_group):
 		alive_enemies.erase(body)
 
 	if alive_enemies.size() == 0:
 		trigger_activated = true
+		previously_triggered = true
 		spawn_timer.start(spawn_time)
 		activate()
 

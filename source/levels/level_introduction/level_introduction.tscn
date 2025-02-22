@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=4 uid="uid://cvy5wrdf8iiqv"]
+[gd_scene load_steps=108 format=4 uid="uid://cvy5wrdf8iiqv"]
 
 [ext_resource type="PackedScene" uid="uid://8a1fxgbl58qp" path="res://source/levels/level.tscn" id="1_ra1kn"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="2_ly4sg"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ceewpcetnxwvg" path="res://source/managers/game_events/spawn_enemies_with_timer/spawn_enemies_with_timer.tscn" id="9_f7vmw"]
 [ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_characters/grabby/grabby.tscn" id="10_yp1t3"]
 [ext_resource type="PackedScene" uid="uid://clf7mvg86ldf6" path="res://source/managers/game_events/set_enemies_target_with_area/set_enemies_target_with_area.tscn" id="11_dx18o"]
+[ext_resource type="PackedScene" uid="uid://cst3wet5gftuj" path="res://source/managers/game_events/spawn_enemies_after_enemies_inside_area_defeated/spawn_enemies_after_enemies_inside_area_defeated.tscn" id="12_mr2vc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_gh7c8"]
 vertices = PackedVector2Array(100, 100, -100, 100, -100, -100, 100, -100)
@@ -1375,6 +1376,9 @@ size = Vector2(256, 20)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5qarf"]
 size = Vector2(4202, 1810)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jk8nq"]
+size = Vector2(4201, 1801)
+
 [node name="LevelIntroduction" instance=ExtResource("1_ra1kn")]
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" index="0"]
@@ -1481,3 +1485,27 @@ shape = SubResource("RectangleShape2D_ulblh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/SetEnemiesTargetWithArea/EffectedArea" index="0"]
 position = Vector2(4003, -1097)
 shape = SubResource("RectangleShape2D_5qarf")
+
+[node name="SpawnEnemiesAfterEnemiesInsideAreaDefeated" parent="GameEventsContainer" index="2" node_paths=PackedStringArray("trigger_areas", "spawn_locations") instance=ExtResource("12_mr2vc")]
+trigger_areas = [NodePath("TriggerArea")]
+spawn_locations = [NodePath("SpawnLocation"), NodePath("SpawnLocation2"), NodePath("SpawnLocation3"), NodePath("SpawnLocation4")]
+enemies = Array[PackedScene]([ExtResource("4_5vkbp")])
+activation_time_limit = 4.0
+
+[node name="SpawnLocation" type="Node2D" parent="GameEventsContainer/SpawnEnemiesAfterEnemiesInsideAreaDefeated" index="2"]
+position = Vector2(2592, -640)
+
+[node name="SpawnLocation2" type="Node2D" parent="GameEventsContainer/SpawnEnemiesAfterEnemiesInsideAreaDefeated" index="3"]
+position = Vector2(2632, -1296)
+
+[node name="SpawnLocation3" type="Node2D" parent="GameEventsContainer/SpawnEnemiesAfterEnemiesInsideAreaDefeated" index="4"]
+position = Vector2(5592, -1600)
+
+[node name="SpawnLocation4" type="Node2D" parent="GameEventsContainer/SpawnEnemiesAfterEnemiesInsideAreaDefeated" index="5"]
+position = Vector2(5600, -400)
+
+[node name="TriggerArea" type="Area2D" parent="GameEventsContainer/SpawnEnemiesAfterEnemiesInsideAreaDefeated" index="6"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/SpawnEnemiesAfterEnemiesInsideAreaDefeated/TriggerArea" index="0"]
+position = Vector2(4003.5, -1100.5)
+shape = SubResource("RectangleShape2D_jk8nq")
