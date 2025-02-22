@@ -1,18 +1,19 @@
 class_name Enemy extends CharacterBody2D
 
-signal died()
+signal died
 
 enum States { BLOCKED, IDLE, WALKING, ATTACK, STAGGERED, ESCAPING, KO }
 
 static var enemy_group := "enemies"
+static var enemy_collision_layer := 1
 
 @export var speed := 300
 @export var navigation_agent: NavigationAgent2D
 @export var sprite: Sprite2D
 @export var death_sound: FmodEventEmitter2D
 @export var combat_module: CombatModule
-@export var animation_player : AnimationPlayer
-@export var death_sprite : Sprite2D
+@export var animation_player: AnimationPlayer
+@export var death_sprite: Sprite2D
 @export var timer: Timer
 
 var target: Node2D
@@ -44,7 +45,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func set_target() -> void:
-	navigation_agent.target_position = target.global_position
+	if target:
+		navigation_agent.target_position = target.global_position
 
 
 func _on_timer_timeout() -> void:
@@ -58,7 +60,7 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 func die() -> void:
 	death_sprite.show()
 	combat_module.die()
-	var animation_number := randi_range(1,4)
+	var animation_number := randi_range(1, 4)
 	animation_player.play("death%s" % [animation_number])
 	death_sound.play()
 	died.emit()

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bkxhbdxfu1ak6"]
 
-[ext_resource type="Script" path="res://source/UI/UI_animator.gd" id="1_d4rir"]
+[ext_resource type="Script" path="res://source/ui/UI_animator.gd" id="1_d4rir"]
 
 [node name="UIAnimator" type="Node"]
 script = ExtResource("1_d4rir")

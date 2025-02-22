@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ceewpcetnxwvg"]
+
+[ext_resource type="Script" path="res://source/managers/game_events/spawn_enemies_with_timer/spawn_enemies_with_timer.gd" id="1_4hofd"]
+
+[node name="SpawnEnemiesWithTimer" type="Node2D" node_paths=PackedStringArray("spawn_timer")]
+script = ExtResource("1_4hofd")
+spawn_timer = NodePath("SpawnTimer")
+
+[node name="SpawnTimer" type="Timer" parent="."]

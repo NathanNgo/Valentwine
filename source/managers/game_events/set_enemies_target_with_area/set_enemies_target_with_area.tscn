@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://clf7mvg86ldf6"]
+
+[ext_resource type="Script" path="res://source/managers/game_events/set_enemies_target_with_area/set_enemies_target_with_area.gd" id="1_t0kto"]
+
+[node name="SetEnemiesTargetWithArea" type="Node2D" node_paths=PackedStringArray("activation_timer")]
+script = ExtResource("1_t0kto")
+activation_timer = NodePath("ActivationTimer")
+
+[node name="ActivationTimer" type="Timer" parent="."]

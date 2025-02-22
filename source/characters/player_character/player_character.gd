@@ -8,6 +8,7 @@ enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
 enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING }
 
 static var player_group := "player_objects"
+static var player_collision_layer := 4
 static var walking_animation := "walking"
 
 @export var _player_one_sprite: Sprite2D
@@ -56,7 +57,8 @@ var control_schemes := {
 }
 
 @onready var selected_scheme: Dictionary = control_schemes[player_type]
-@onready var line_point: Node2D = line_point_one if player_type == Player.FIRST else line_point_two
+@onready
+var line_point: Node2D = line_point_one if player_type == Player.FIRST else line_point_two
 
 
 func _ready() -> void:
@@ -185,7 +187,6 @@ func close_interaction() -> void:
 	if not current_interacting_object:
 		return
 
-	current_interacting_object.close_interaction()
 	state = State.IDLE
 	current_interacting_object = null
 

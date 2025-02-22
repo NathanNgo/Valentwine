@@ -22,7 +22,6 @@ func open_interaction(player: PlayerCharacter) -> void:
 func close_interaction() -> void:
 	_presses = 0
 	_player = null
-	interaction_finished.emit()
 
 
 func interact() -> void:
@@ -38,3 +37,12 @@ func interact() -> void:
 		return
 
 	_player.close_interaction()
+	# We should remove this signal. This is just here so that everything doesn't break at
+	# the moment.
+	interaction_finished.emit()
+	_finish_interaction()
+
+
+func _finish_interaction() -> void:
+	# Implemented by sub-classes.
+	pass

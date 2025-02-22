@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://cst3wet5gftuj"]
+
+[ext_resource type="Script" path="res://source/managers/game_events/spawn_enemies_after_enemies_inside_area_defeated/spawn_enemies_after_enemies_inside_area_defeated.gd" id="1_qecux"]
+
+[node name="SpawnEnemiesAfterEnemiesInsideAreaDefeated" type="Node2D" node_paths=PackedStringArray("activation_timer", "spawn_timer")]
+script = ExtResource("1_qecux")
+activation_timer = NodePath("ActivationTimer")
+spawn_timer = NodePath("SpawnTimer")
+
+[node name="ActivationTimer" type="Timer" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
