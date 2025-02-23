@@ -1,0 +1,16 @@
+[{
+"name": "instances",
+"scenes": [{
+"scene": "res://source/obstacles/damage_to_players.tscn"
+}, {
+"scene": "res://source/obstacles/tile_objects/tile_object.tscn"
+}, {
+"scene": "res://source/obstacles/shooter.tscn"
+}, {
+"scene": "res://source/interactables/lever/lever.tscn"
+}, {
+"scene": "res://source/characters/enemy_characters/grabby/grabby.tscn"
+}, {
+"scene": "res://source/characters/enemy_characters/punchy/punchy.tscn"
+}]
+}]

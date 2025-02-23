@@ -48,6 +48,10 @@ func activate() -> void:
 		effected_bodies.erase(effected_body)
 
 
+func first_activation() -> void:
+	activate()
+
+
 func _on_body_entered_trigger_area(body: Node2D) -> void:
 	if body.is_in_group(PlayerCharacter.player_group):
 		trigger_activated = true

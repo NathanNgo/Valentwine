@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs2phfkhf5li0"]
+
+[ext_resource type="Script" path="res://source/managers/game_events/queue_free_object_after_enemies_inside_area_defeated/queue_free_object_after_enemies_inside_area_defeated.gd" id="1_vkr14"]
+
+[node name="queue_free_object_after_enemies_inside_area_defeated" type="Node2D" node_paths=PackedStringArray("activation_timer")]
+script = ExtResource("1_vkr14")
+activation_timer = NodePath("ActivationTimer")
+
+[node name="ActivationTimer" type="Timer" parent="."]

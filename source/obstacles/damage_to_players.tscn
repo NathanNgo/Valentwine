@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://bftw74lkxgntk"]
+
+[ext_resource type="Script" path="res://source/obstacles/damage_to_players.gd" id="1_t11dm"]
+[ext_resource type="Texture2D" uid="uid://2lmujlllkqiw" path="res://assets/tilemap_assets/Tile_Valentwine.png" id="2_4d5qj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lsf8"]
+size = Vector2(130, 122)
+
+[node name="Node2D" type="Area2D"]
+script = ExtResource("1_t11dm")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_4d5qj")
+hframes = 27
+vframes = 18
+frame = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-6, -3)
+shape = SubResource("RectangleShape2D_3lsf8")

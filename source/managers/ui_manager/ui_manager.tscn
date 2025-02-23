@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2e82dnr1fdae"]
+[gd_scene load_steps=6 format=3 uid="uid://d2e82dnr1fdae"]
 
 [ext_resource type="Script" path="res://source/managers/ui_manager/ui_manager.gd" id="1_k6hxb"]
-[ext_resource type="PackedScene" uid="uid://bkxhbdxfu1ak6" path="res://source/ui/UIAnimator.tscn" id="2_ebdms"]
 [ext_resource type="Script" path="res://source/ui/health_bar.gd" id="2_i8d0i"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hagkn"]
@@ -12,9 +11,15 @@ bg_color = Color(1, 1, 1, 1)
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lgegv"]
 
-[node name="UIManager" type="Node" node_paths=PackedStringArray("game_over_canvas", "main_menu", "try_again", "exit_game", "health_bar")]
+[node name="UIManager" type="Node" node_paths=PackedStringArray("game_over_canvas", "pause_menu", "resume_button", "pause_main_menu", "pause_retry", "pause_exit", "main_menu", "try_again", "exit_game", "health_bar")]
+process_mode = 3
 script = ExtResource("1_k6hxb")
 game_over_canvas = NodePath("GameOver")
+pause_menu = NodePath("Pause")
+resume_button = NodePath("Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Resume")
+pause_main_menu = NodePath("Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MainMenu")
+pause_retry = NodePath("Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Restart")
+pause_exit = NodePath("Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Exit")
 main_menu = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/MainMenu")
 try_again = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/TryAgain")
 exit_game = NodePath("GameOver/MarginContainer/Panel/MarginContainer/HBoxContainer/VBoxContainer/ExitGame")
@@ -104,7 +109,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_5ngv7")
 text = "Exit game"
 
 [node name="UI" type="CanvasLayer" parent="."]
-visible = false
 
 [node name="HealthBar" type="ProgressBar" parent="UI"]
 anchors_preset = 5
@@ -151,9 +155,6 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 120
 text = "Pause"
 
-[node name="UIAnimator" parent="Pause/MarginContainer/TextureRect" instance=ExtResource("2_ebdms")]
-script = null
-
 [node name="MarginContainer" type="MarginContainer" parent="Pause/MarginContainer/TextureRect"]
 layout_mode = 1
 anchors_preset = 15
@@ -177,17 +178,11 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
 text = "Resume"
 
-[node name="UIAnimator" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Resume" instance=ExtResource("2_ebdms")]
-script = null
-
 [node name="MainMenu" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
 text = "Main menu"
-
-[node name="UIAnimator" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/MainMenu" instance=ExtResource("2_ebdms")]
-script = null
 
 [node name="Restart" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -195,17 +190,11 @@ size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
 text = "Restart"
 
-[node name="UIAnimator" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Restart" instance=ExtResource("2_ebdms")]
-script = null
-
 [node name="Exit" type="Button" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/font_size = 70
 text = "Exit game"
-
-[node name="UIAnimator" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Exit" instance=ExtResource("2_ebdms")]
-script = null
 
 [node name="Separator" type="Control" parent="Pause/MarginContainer/TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2

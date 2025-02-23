@@ -1,6 +1,6 @@
 extends MarginContainer
 
-@export var level1: String = "res://source/main.tscn"
+@export var level1: String = "res://source/levels/level_garden/level_garden.tscn"
 @export var start_button: Button
 @export var how_to_play: Button
 @export var exit_button: Button
