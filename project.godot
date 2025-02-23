@@ -168,6 +168,7 @@ Pause={
 2d_physics/layer_2="line"
 2d_physics/layer_3="interactables"
 2d_physics/layer_4="players"
+2d_physics/layer_5="onlyplayer1"
 
 [rendering]
 

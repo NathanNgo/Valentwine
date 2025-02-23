@@ -2,6 +2,7 @@ class_name CombatModule extends RayCast2D
 
 static var idle_animation := "idle"
 static var attack_animation := "attack"
+static var stun_animation := "stun"
 @export var health: float = 100
 @export var damage_amount: float = 10.0
 @export var stagger_threshold: float = 10
@@ -42,13 +43,20 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 	_current_stagger_count += damage_taken
 	if _current_stagger_count >= stagger_threshold:
 		parent.state = Enemy.States.STAGGERED
-		parent.position = global_position + attack_direction * 10
+		parent.position = global_position + attack_direction
 		stagger_timer.start(stagger_time)
 
 
 func ko() -> void:
-	parent.state = Enemy.States.KO
+	animation_player.play(stun_animation)
+	
+	if stagger_timer.is_stopped():
+		stagger_timer.start(ko_time)
+
+	else:
+		await stagger_timer.timeout
 	stagger_timer.start(ko_time)
+	parent.state = Enemy.States.KO
 
 
 func start_attack(attack_target: Node2D, attack_direction: Vector2) -> void:

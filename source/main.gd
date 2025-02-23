@@ -7,6 +7,7 @@ const SPAWN_TIME = 2
 @export var levels: Array[PackedScene] = []
 
 var health := 100.0
+var max_health := 100.0
 var current_level := 0
 
 
@@ -17,7 +18,7 @@ func _ready() -> void:
 
 
 func _on_damage_taken(damage: float) -> void:
-	health -= damage
+	health = min(health - damage, max_health)
 	ui_manager.health_bar.value = health
 
 

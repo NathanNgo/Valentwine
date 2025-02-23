@@ -8,5 +8,5 @@ func _ready() -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group(PlayerCharacter.player_group):
+	if body.is_in_group("player_objects"):
 		body.damage(damage_amount)
