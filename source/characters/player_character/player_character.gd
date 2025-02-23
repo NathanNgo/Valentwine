@@ -8,7 +8,7 @@ enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
 enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING, GRABBED }
 
 static var player_group := "player_objects"
-static var player_character_group := "player_characters"
+static var player_character_group := "player_character"
 static var player_collision_layer := 4
 static var walking_animation := "walking"
 
@@ -225,15 +225,27 @@ func stun(button_pressed: Controls) -> void:
 func grabbed() -> void:
 	if escape_requirement == 0 and grabbing_object:
 		grabbing_object.player_escaped()
+		return
 
 	stun_container.show()
+	if current_stun_prompt == Controls.LEFT:
+		_left_prompt.show()
+		_right_prompt.hide()
+	else:
+		_left_prompt.hide()
+		_right_prompt.show()
 
-	if Input.is_action_just_pressed(selected_scheme[Controls.LEFT] and current_stun_prompt == Controls.LEFT):
+	if Input.is_action_just_pressed(selected_scheme[Controls.LEFT]) and current_stun_prompt == Controls.LEFT:
 		escape_requirement -= 1
+		current_stun_prompt = Controls.RIGHT
+		_left_prompt.hide()
+		_right_prompt.show()
 
-
-	if Input.is_action_just_pressed(selected_scheme[Controls.RIGHT] and current_stun_prompt == Controls.RIGHT):
+	if Input.is_action_just_pressed(selected_scheme[Controls.RIGHT]) and current_stun_prompt == Controls.RIGHT:
 		escape_requirement -= 1
+		current_stun_prompt = Controls.LEFT
+		_left_prompt.show()
+		_right_prompt.hide()
 
 
 func _on_grace_timer_timeout() -> void:

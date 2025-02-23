@@ -1,14 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://je1xgeoe3epq"]
+[gd_scene load_steps=5 format=3 uid="uid://je1xgeoe3epq"]
 
 [ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_characters/enemy.tscn" id="1_hlvvh"]
 [ext_resource type="Texture2D" uid="uid://cgult0bmx7ibq" path="res://assets/characters/enemies/grabby/E3.png" id="2_47ttr"]
+[ext_resource type="Script" path="res://source/characters/enemy_characters/grabby/grabby.gd" id="2_si8ks"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ncmb6"]
 radius = 70.0
 height = 180.0
 
-[node name="Grabby" node_paths=PackedStringArray("combat_module") instance=ExtResource("1_hlvvh")]
-combat_module = NodePath("")
+[node name="Grabby" node_paths=PackedStringArray("ray_cast", "grace_timer") instance=ExtResource("1_hlvvh")]
+script = ExtResource("2_si8ks")
+ray_cast = NodePath("RayCast2D")
+attack_range = 300.0
+escape_requirement = 10
+grace_timer = NodePath("GraceTimer")
+grace_time = 3.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_47ttr")
@@ -16,3 +22,9 @@ texture = ExtResource("2_47ttr")
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 0.0
 shape = SubResource("CapsuleShape2D_ncmb6")
+
+[node name="RayCast2D" type="RayCast2D" parent="." index="7"]
+target_position = Vector2(192, 0)
+collision_mask = 9
+
+[node name="GraceTimer" type="Timer" parent="." index="8"]
