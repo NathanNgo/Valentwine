@@ -1,4 +1,4 @@
-class_name EnemyCharacter extends CharacterBody2D
+class_name Ammo extends CharacterBody2D
 static var enemy_group := "enemies"
 
 @export var _collision_area: Area2D

@@ -5,9 +5,10 @@ signal player_damaged(damage_amount: float)
 
 enum Player { FIRST, SECOND }
 enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
-enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING }
+enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING, GRABBED }
 
 static var player_group := "player_objects"
+static var player_character_group := "player_character"
 static var player_collision_layer := 4
 static var walking_animation := "walking"
 
@@ -30,9 +31,11 @@ static var walking_animation := "walking"
 @export var line_point_one: Node2D
 @export var line_point_two: Node2D
 
+var grabbing_object: Enemy = null
 var staggering_distance: float = 0.0
 var staggering_towards: Vector2
 var state := State.IDLE
+var escape_requirement := 0
 var current_stun_prompt := Controls.LEFT
 var current_interacting_object: Node2D
 var punches_in_a_row: int = 0
@@ -89,6 +92,11 @@ func _physics_process(_delta: float) -> void:
 	stun_container.hide()
 
 	match state:
+		State.GRABBED:
+			grabbed()
+			move_and_slide()
+			return
+
 		State.BLOCKED:
 			return
 
@@ -194,7 +202,6 @@ func close_interaction() -> void:
 
 	state = State.IDLE
 	current_interacting_object = null
-	current_stun_prompt = Controls.UP
 
 
 func stun(button_pressed: Controls) -> void:
@@ -213,6 +220,43 @@ func stun(button_pressed: Controls) -> void:
 	if button_pressed == current_stun_prompt and current_stun_prompt == Controls.RIGHT:
 		current_stun_prompt = Controls.LEFT
 		current_interacting_object.interact()
+
+
+func grabbed() -> void:
+	if not grabbing_object:
+		state = State.IDLE
+		stun_container.hide()
+		escape_requirement = 0
+
+	if escape_requirement == 0 and grabbing_object:
+		grabbing_object.player_escaped()
+		return
+
+	stun_container.show()
+	if current_stun_prompt == Controls.LEFT:
+		_left_prompt.show()
+		_right_prompt.hide()
+	else:
+		_left_prompt.hide()
+		_right_prompt.show()
+
+	if (
+		Input.is_action_just_pressed(selected_scheme[Controls.LEFT])
+		and current_stun_prompt == Controls.LEFT
+	):
+		escape_requirement -= 1
+		current_stun_prompt = Controls.RIGHT
+		_left_prompt.hide()
+		_right_prompt.show()
+
+	if (
+		Input.is_action_just_pressed(selected_scheme[Controls.RIGHT])
+		and current_stun_prompt == Controls.RIGHT
+	):
+		escape_requirement -= 1
+		current_stun_prompt = Controls.LEFT
+		_left_prompt.show()
+		_right_prompt.hide()
 
 
 func _on_grace_timer_timeout() -> void:

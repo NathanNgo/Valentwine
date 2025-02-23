@@ -1,8 +1,6 @@
 extends GameEvent
 
-enum TargetingModes {
-	RANDOM, CLOSEST
-}
+enum TargetingModes { RANDOM, CLOSEST }
 
 @export var trigger_areas: Array[Area2D]
 @export var effected_areas: Array[Area2D]
@@ -19,7 +17,9 @@ var effected_bodies: Array[Enemy] = []
 func _ready() -> void:
 	for trigger_area in trigger_areas:
 		trigger_area.body_entered.connect(_on_body_entered_trigger_area)
-		trigger_area.set_collision_mask_value(PlayerCharacter.player_collision_layer, true)
+		trigger_area.set_collision_mask_value(
+			PlayerCharacter.player_collision_layer, true
+		)
 
 	for effected_area in effected_areas:
 		effected_area.body_entered.connect(_on_body_entered_effected_area)

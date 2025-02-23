@@ -1,4 +1,4 @@
-[gd_scene load_steps=110 format=4 uid="uid://cvy5wrdf8iiqv"]
+[gd_scene load_steps=108 format=4 uid="uid://cvy5wrdf8iiqv"]
 
 [ext_resource type="PackedScene" uid="uid://8a1fxgbl58qp" path="res://source/levels/level.tscn" id="1_ra1kn"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="2_ly4sg"]
@@ -6,8 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_characters/punchy/punchy.tscn" id="4_5vkbp"]
 [ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacles/tile_objects/tile_object.tscn" id="5_pd3r0"]
 [ext_resource type="PackedScene" uid="uid://bg2713am26l10" path="res://source/obstacles/obstacle.tscn" id="6_sr8wr"]
-[ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="7_q8oys"]
-[ext_resource type="Script" path="res://source/interactables/lever/lever.gd" id="8_cojj6"]
 [ext_resource type="Script" path="res://source/portals/transition_to_next_level_portal.gd" id="9_d0ld8"]
 [ext_resource type="PackedScene" uid="uid://ceewpcetnxwvg" path="res://source/managers/game_events/spawn_enemies_with_timer/spawn_enemies_with_timer.tscn" id="9_f7vmw"]
 [ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_characters/grabby/grabby.tscn" id="10_yp1t3"]
@@ -1436,35 +1434,6 @@ tile_coordinates = Vector2(14, 9)
 [node name="Area2D" parent="ObstaclesContainer/FirstCorridor/TileObject5" index="2" instance=ExtResource("6_sr8wr")]
 visible = false
 
-[node name="lever" parent="InteractablesContainer" index="0" instance=ExtResource("7_q8oys")]
-texture_filter = 1
-position = Vector2(1694, 898)
-script = ExtResource("8_cojj6")
-
-[node name="Spikes" parent="InteractablesContainer/lever" index="2" instance=ExtResource("5_pd3r0")]
-position = Vector2(392, -431)
-
-[node name="Spikes2" parent="InteractablesContainer/lever" index="3" instance=ExtResource("5_pd3r0")]
-position = Vector2(390, -251)
-
-[node name="Spikes3" parent="InteractablesContainer/lever" index="4" instance=ExtResource("5_pd3r0")]
-position = Vector2(394, -84)
-
-[node name="Spikes4" parent="InteractablesContainer/lever" index="5" instance=ExtResource("5_pd3r0")]
-position = Vector2(394, 77)
-
-[node name="Spikes7" parent="InteractablesContainer/lever" index="6" instance=ExtResource("5_pd3r0")]
-position = Vector2(389, 253)
-
-[node name="Spikes8" parent="InteractablesContainer/lever" index="7" instance=ExtResource("5_pd3r0")]
-position = Vector2(399, 427)
-
-[node name="Spikes5" parent="InteractablesContainer/lever" index="8" instance=ExtResource("5_pd3r0")]
-position = Vector2(390, -604)
-
-[node name="Spikes6" parent="InteractablesContainer/lever" index="9" instance=ExtResource("5_pd3r0")]
-position = Vector2(394, -799)
-
 [node name="TransitionToNextLevelPortal" type="Area2D" parent="PortalsContainer" index="0"]
 script = ExtResource("9_d0ld8")
 
@@ -1474,12 +1443,13 @@ shape = SubResource("RectangleShape2D_8n8ru")
 
 [node name="SpawnEnemiesWithTimer" parent="GameEventsContainer" index="0" node_paths=PackedStringArray("spawn_locations") instance=ExtResource("9_f7vmw")]
 spawn_locations = [NodePath("SpawnLocation"), NodePath("SpawnLocation2")]
-enemies = Array[PackedScene]([ExtResource("10_yp1t3"), ExtResource("4_5vkbp")])
+enemies = Array[PackedScene]([ExtResource("10_yp1t3")])
+spawn_time = 8.0
 
 [node name="SpawnLocation" type="Node2D" parent="GameEventsContainer/SpawnEnemiesWithTimer" index="1"]
 position = Vector2(2600, -1600)
 
-[node name="SpawnLocation2" type="Node2D" parent="GameEventsContainer/SpawnEnemiesWithTimer" index="2"]
+[node name="SpawnLocation2" type="Node2D" parent="GameEventsContainer/SpawnEnemiesWithTimer" index="3"]
 position = Vector2(5600, -1000)
 
 [node name="SetEnemiesTargetWithArea" parent="GameEventsContainer" index="1" node_paths=PackedStringArray("trigger_areas", "effected_areas") instance=ExtResource("11_dx18o")]

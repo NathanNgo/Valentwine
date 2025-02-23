@@ -9,6 +9,7 @@ const SPAWN_TIME = 2
 var health := 100.0
 var current_level := 0
 
+
 func _ready() -> void:
 	ui_manager.health_bar.value = health
 	level.damage_taken.connect(_on_damage_taken)
