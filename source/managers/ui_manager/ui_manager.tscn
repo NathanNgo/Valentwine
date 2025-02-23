@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bv1nmao4ons8f" path="res://assets/UI/HealthBar_Back.png" id="2_82j8v"]
 [ext_resource type="Texture2D" uid="uid://dxkp132urw0t5" path="res://assets/UI/HealthBar_Front.png" id="2_gis80"]
 [ext_resource type="Script" path="res://source/ui/health_bar.gd" id="2_i8d0i"]
+[ext_resource type="Texture2D" uid="uid://chovhjhgg1dx1" path="res://assets/UI/title_screen/TitleScreen_BG.png" id="5_fxt13"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hagkn"]
 bg_color = Color(0, 0, 0, 1)
@@ -20,8 +21,6 @@ corner_radius_bottom_right = 710
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7y02j"]
 bg_color = Color(0.886, 0.196, 0.196, 1)
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_lgegv"]
 
 [node name="UIManager" type="Node" node_paths=PackedStringArray("game_over_canvas", "pause_menu", "resume_button", "pause_main_menu", "pause_retry", "pause_exit", "main_menu", "try_again", "exit_game", "health_bar")]
 process_mode = 3
@@ -204,7 +203,8 @@ theme_override_constants/margin_bottom = 10
 
 [node name="TextureRect" type="TextureRect" parent="Pause/MarginContainer"]
 layout_mode = 2
-texture = SubResource("PlaceholderTexture2D_lgegv")
+texture = ExtResource("5_fxt13")
+expand_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Pause/MarginContainer/TextureRect"]
 layout_mode = 1
@@ -218,6 +218,7 @@ grow_horizontal = 2
 
 [node name="Label" type="Label" parent="Pause/MarginContainer/TextureRect/VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 120
 text = "Pause"
 

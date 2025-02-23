@@ -43,9 +43,11 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6j617"]
 size = Vector2(110, 131)
 
-[node name="Hiding" type="Area2D" node_paths=PackedStringArray("animation_player")]
+[node name="Hiding" type="Area2D" node_paths=PackedStringArray("animation_player", "sound")]
+collision_mask = 8
 script = ExtResource("1_rxlil")
 animation_player = NodePath("AnimationPlayer")
+sound = NodePath("FmodEventEmitter2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_jpct7")
@@ -60,3 +62,7 @@ libraries = {
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(4, 0.5)
 shape = SubResource("RectangleShape2D_6j617")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Success"
+event_guid = "{3a18f254-b756-4627-bc06-ebcd074204f6}"

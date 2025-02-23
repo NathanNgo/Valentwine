@@ -1,12 +1,16 @@
-[gd_scene load_steps=19 format=3 uid="uid://625grcpxl8cb"]
+[gd_scene load_steps=27 format=3 uid="uid://625grcpxl8cb"]
 
 [ext_resource type="Script" path="res://source/ui/main_menu.gd" id="1_ytv0u"]
 [ext_resource type="Texture2D" uid="uid://cwjb8pqj1q1ub" path="res://assets/comic/drive-download-20250223T085544Z-001/01.PNG" id="2_btqgm"]
 [ext_resource type="Texture2D" uid="uid://chovhjhgg1dx1" path="res://assets/UI/title_screen/TitleScreen_BG.png" id="2_f5h2f"]
 [ext_resource type="Texture2D" uid="uid://dwxxov6f42y8b" path="res://assets/comic/drive-download-20250223T085544Z-001/02.PNG" id="3_8o4cp"]
+[ext_resource type="Texture2D" uid="uid://ee8ssrwc5r1r" path="res://assets/UI/title_screen/Button_Start_1b.png" id="3_rnmj1"]
 [ext_resource type="Texture2D" uid="uid://bdivscf2li371" path="res://assets/comic/drive-download-20250223T085544Z-001/03.PNG" id="4_f3ju7"]
+[ext_resource type="Texture2D" uid="uid://sghqq8l5tfoe" path="res://assets/UI/title_screen/Button_HowToPlay_1b.png" id="4_kbi65"]
 [ext_resource type="Texture2D" uid="uid://bb4yn62gv6sh7" path="res://assets/comic/drive-download-20250223T085544Z-001/04.PNG" id="5_0iusf"]
+[ext_resource type="Texture2D" uid="uid://dyrtnxh0kmous" path="res://assets/UI/title_screen/Button_Exit_1b.png" id="5_42pub"]
 [ext_resource type="Texture2D" uid="uid://ci1ygii3ditge" path="res://assets/comic/drive-download-20250223T085544Z-001/05.PNG" id="6_6is70"]
+[ext_resource type="Texture2D" uid="uid://difciweehjnqq" path="res://assets/UI/title_screen/Overview_HowToPlay.png" id="6_q5ksm"]
 [ext_resource type="Texture2D" uid="uid://csla2phkdnxjb" path="res://assets/comic/drive-download-20250223T085544Z-001/06.PNG" id="7_d4rif"]
 [ext_resource type="Texture2D" uid="uid://b8ghfti6h0ojh" path="res://assets/comic/drive-download-20250223T085544Z-001/07.PNG" id="8_dlab5"]
 [ext_resource type="Texture2D" uid="uid://b6yshrgmebb1c" path="res://assets/comic/drive-download-20250223T085544Z-001/08.PNG" id="9_j2se6"]
@@ -18,8 +22,19 @@
 [ext_resource type="Texture2D" uid="uid://cgkdkmqtilrc4" path="res://assets/UI/arrow_right.png" id="15_p44fu"]
 [ext_resource type="AudioStream" uid="uid://bcj40qqmgsck0" path="res://assets/music/Game Jam Church Main Menu.wav" id="17_yh8gr"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dfujg"]
-bg_color = Color(0.207512, 0.207512, 0.207512, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mtqh0"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_601kw"]
+texture = ExtResource("3_rnmj1")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e2dkc"]
+texture = ExtResource("4_kbi65")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3iy4v"]
+texture = ExtResource("5_42pub")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4hurv"]
+texture = ExtResource("6_q5ksm")
 
 [node name="MainMenu" type="MarginContainer" node_paths=PackedStringArray("start_button", "how_to_play", "exit_button", "comic", "skip_label", "how_to_panel")]
 anchors_preset = 15
@@ -32,9 +47,9 @@ theme_override_constants/margin_top = 10
 theme_override_constants/margin_right = 10
 theme_override_constants/margin_bottom = 10
 script = ExtResource("1_ytv0u")
-start_button = NodePath("TextureRect/MarginContainer/HBoxContainer/VBoxContainer/StartGame")
-how_to_play = NodePath("TextureRect/MarginContainer/HBoxContainer/VBoxContainer/HowToPlay")
-exit_button = NodePath("TextureRect/MarginContainer/HBoxContainer/VBoxContainer/Exit")
+start_button = NodePath("TextureRect/MarginContainer/VBoxContainer/StartGame")
+how_to_play = NodePath("TextureRect/MarginContainer/VBoxContainer/HowToPlay")
+exit_button = NodePath("TextureRect/MarginContainer/VBoxContainer/Exit")
 comic = NodePath("Comic")
 skip_label = NodePath("SkipLabel")
 how_to_panel = NodePath("HowToPanel")
@@ -51,49 +66,59 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 175
-theme_override_constants/margin_right = 175
-theme_override_constants/margin_bottom = 50
+theme_override_constants/margin_left = 390
+theme_override_constants/margin_top = 315
+theme_override_constants/margin_right = 330
+theme_override_constants/margin_bottom = 75
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer"]
 layout_mode = 2
-size_flags_vertical = 8
-alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/MarginContainer/HBoxContainer"]
+[node name="Separator" type="Control" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 8
-theme_override_constants/separation = 10
+size_flags_vertical = 3
 
-[node name="StartGame" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="StartGame" type="Button" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "Start"
+size_flags_vertical = 3
+theme_override_styles/hover = SubResource("StyleBoxTexture_mtqh0")
+theme_override_styles/normal = SubResource("StyleBoxTexture_601kw")
 
-[node name="HowToPlay" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="HowToPlay" type="Button" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "How to play"
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_e2dkc")
 
-[node name="Exit" type="Button" parent="TextureRect/MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Exit" type="Button" parent="TextureRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 80
-text = "Exit"
+size_flags_vertical = 3
+theme_override_styles/normal = SubResource("StyleBoxTexture_3iy4v")
+
+[node name="Separator2" type="Control" parent="TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HowToPanel" type="Panel" parent="."]
 visible = false
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_dfujg")
+theme_override_styles/panel = SubResource("StyleBoxTexture_4hurv")
 
-[node name="Label" type="Label" parent="HowToPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="HowToPanel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 85
+theme_override_constants/margin_right = 195
+theme_override_constants/margin_bottom = 50
+
+[node name="Label" type="Label" parent="HowToPanel/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 55
 text = "WASD and IJKL to move.
 Encircle erasers to delete them.
 Encircle your friends IRL to tell them you love them."

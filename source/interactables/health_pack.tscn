@@ -6,10 +6,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ackg7"]
 size = Vector2(82, 118)
 
-[node name="Health" type="Area2D"]
+[node name="Health" type="Area2D" node_paths=PackedStringArray("sound")]
 collision_layer = 8
 collision_mask = 8
 script = ExtResource("1_n5ijn")
+sound = NodePath("FmodEventEmitter2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_6qvpj")
@@ -17,3 +18,7 @@ texture = ExtResource("1_6qvpj")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_ackg7")
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Health"
+event_guid = "{eb71e2c1-2257-49be-82d8-5cb89c1f2d96}"

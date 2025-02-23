@@ -5,10 +5,11 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gegtq"]
 size = Vector2(112, 112)
 
-[node name="Area2D" type="Area2D" groups=["obstacle"]]
+[node name="Area2D" type="Area2D" node_paths=PackedStringArray("sound") groups=["obstacle"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_4qyvt")
+sound = NodePath("FmodEventEmitter2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gegtq")
@@ -19,3 +20,7 @@ offset_top = -56.0
 offset_right = 56.0
 offset_bottom = 56.0
 color = Color(0.287563, 0.523591, 0.289751, 1)
+
+[node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+event_name = "event:/Cut"
+event_guid = "{15a4f716-65d0-4be4-9ac3-d18b60270270}"
