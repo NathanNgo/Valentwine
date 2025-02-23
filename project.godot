@@ -82,12 +82,6 @@ shader_language/warnings/treat_warnings_as_errors=true
 
 [display]
 
-window/size/mode=3
-window/size/resizable=false
-window/size/borderless=true
-window/size/always_on_top=true
-window/size/transparent=true
-window/dpi/allow_hidpi=false
 window/per_pixel_transparency/allowed=true
 
 [dotnet]
