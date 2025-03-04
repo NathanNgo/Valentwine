@@ -14,10 +14,12 @@ ray_cast = NodePath("RayCast2D")
 attack_range = 300.0
 escape_requirement = 10
 grace_timer = NodePath("GraceTimer")
-grace_time = 3.0
+grace_time = 3.01
+health = 100.0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_47ttr")
+hframes = 6
 
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 0.0

@@ -5,7 +5,8 @@ class_name Grabby extends Enemy
 @export var escape_requirement := 10
 @export var grabbed_player: PlayerCharacter = null
 @export var grace_timer: Timer
-@export var grace_time: float = 3.0
+@export var grace_time: float = 3.01
+@export var health : float =  100
 var has_player_escaped := false
 
 
@@ -44,7 +45,8 @@ func _physics_process(delta: float) -> void:
 
 	if not collider.is_in_group(PlayerCharacter.player_character_group):
 		return
-
+	if state == States.KO:
+		return
 	state = States.ESCAPING
 	collider.escape_requirement = escape_requirement
 	collider.grabbing_object = self
@@ -72,8 +74,13 @@ func die() -> void:
 
 
 func damage(_damage_taken: float, _attack_direction: Vector2 = Vector2.ZERO) -> void:
-	pass
+	health-= _damage_taken
+	if health <= 0:
+		animation_player.play("stun")
+		state = States.KO
+		grace_timer.start(grace_time * 2)
 
 
 func _on_grace_timer_timeout() -> void:
 	state = States.IDLE
+	animation_player.play("idle")

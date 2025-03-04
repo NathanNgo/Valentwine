@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh6w4uwdsykph"]
+
+[ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_characters/enemy.tscn" id="1_pwjl6"]
+[ext_resource type="Texture2D" uid="uid://c7fr32avtw3w7" path="res://assets/characters/enemies/big_punchy/drive-download-20250223T093858Z-001/big_punchy.png" id="2_nt4ep"]
+[ext_resource type="PackedScene" uid="uid://4dk0tpesyai0" path="res://source/characters/enemy_characters/modules/combat_module/combat_module.tscn" id="3_f3bhn"]
+[ext_resource type="PackedScene" uid="uid://bwuho1yld4te7" path="res://source/characters/enemy_characters/modules/targeting_module/targeting_module.tscn" id="4_hvmbx"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bj0o3"]
+radius = 41.0
+height = 136.0
+
+[node name="BigPunchy" node_paths=PackedStringArray("combat_module") instance=ExtResource("1_pwjl6")]
+combat_module = NodePath("CombatModule")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_nt4ep")
+hframes = 5
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-3, 1)
+rotation = 0.0
+shape = SubResource("CapsuleShape2D_bj0o3")
+
+[node name="NavigationAgent2D" parent="." index="2"]
+path_postprocessing = 1
+
+[node name="CombatModule" parent="." index="4" node_paths=PackedStringArray("animation_player") instance=ExtResource("3_f3bhn")]
+health = 30.0
+damage_amount = 5.0
+stagger_threshold = 5.0
+stagger_time = 0.7
+attack_range = 200.0
+animation_player = NodePath("../AnimationPlayer")
+
+[node name="TargetingModule" parent="." index="5" instance=ExtResource("4_hvmbx")]
+line_length_limit = 200.0
+
+[node name="EnemyPop" parent="DeathSprite" index="0"]
+visible = false

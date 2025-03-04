@@ -118,7 +118,7 @@ func _physics_process(_delta: float) -> void:
 		State.STAGGERING:
 			velocity = staggering_towards * stagger_speed / _delta
 			# how long has the player been pushed
-			staggering_distance += staggering_towards.length() * stagger_speed
+			staggering_distance += stagger_speed
 
 			if staggering_distance >= stagger_amount:
 				state = State.IDLE
@@ -162,6 +162,8 @@ func damage(damage_amount: float, attack_direction: Vector2 = Vector2.ZERO) -> v
 	state = State.STAGGERING
 	staggering_towards = attack_direction
 	close_interaction()
+	if grabbing_object:
+		grabbing_object.player_escaped()
 
 
 func attack(attack_target: Node2D, attack_direction: Vector2 = Vector2.ZERO) -> void:

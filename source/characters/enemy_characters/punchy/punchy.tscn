@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://bnqkg78ob8l43"]
+[gd_scene load_steps=5 format=3 uid="uid://bnqkg78ob8l43"]
 
 [ext_resource type="PackedScene" uid="uid://2xec1tsfin3i" path="res://source/characters/enemy_characters/enemy.tscn" id="1_r863o"]
 [ext_resource type="PackedScene" uid="uid://4dk0tpesyai0" path="res://source/characters/enemy_characters/modules/combat_module/combat_module.tscn" id="2_5cqtb"]
-[ext_resource type="Texture2D" uid="uid://b6o4r00blx3pd" path="res://assets/characters/enemies/E1.png" id="2_6415v"]
 [ext_resource type="PackedScene" uid="uid://bwuho1yld4te7" path="res://source/characters/enemy_characters/modules/targeting_module/targeting_module.tscn" id="3_vxc22"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bj0o3"]
@@ -13,9 +12,6 @@ height = 136.0
 speed = 200
 combat_module = NodePath("CombatModule")
 
-[node name="Sprite2D" parent="." index="0"]
-texture = ExtResource("2_6415v")
-
 [node name="CollisionShape2D" parent="." index="1"]
 position = Vector2(-3, 1)
 rotation = 0.0
@@ -25,12 +21,13 @@ shape = SubResource("CapsuleShape2D_bj0o3")
 path_postprocessing = 1
 
 [node name="CombatModule" parent="." index="4" node_paths=PackedStringArray("animation_player") instance=ExtResource("2_5cqtb")]
-health = 15.0
-attack_range = 120.0
+health = 5.0
+damage_amount = 2.5
+attack_range = 150.0
 animation_player = NodePath("../AnimationPlayer")
 
 [node name="TargetingModule" parent="." index="5" instance=ExtResource("3_vxc22")]
-line_length_limit = 120.0
+line_length_limit = 150.0
 
 [node name="EnemyPop" parent="DeathSprite" index="0"]
 visible = false

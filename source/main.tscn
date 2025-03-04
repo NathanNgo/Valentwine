@@ -10,10 +10,10 @@
 [node name="Main" type="Node2D" node_paths=PackedStringArray("level", "ui_manager")]
 y_sort_enabled = true
 script = ExtResource("1_h5u32")
-level = NodePath("LevelIntroduction")
+level = NodePath("LevelGarden")
 ui_manager = NodePath("UIManager")
 levels = Array[PackedScene]([ExtResource("4_sw1s8"), ExtResource("3_gsn8o"), ExtResource("4_dmxw4"), ExtResource("5_jedus")])
 
 [node name="UIManager" parent="." instance=ExtResource("2_0qhe6")]
 
-[node name="LevelIntroduction" parent="." instance=ExtResource("4_sw1s8")]
+[node name="LevelGarden" parent="." instance=ExtResource("3_gsn8o")]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://cxr5vmhcdk1jp"]
+[gd_scene load_steps=13 format=3 uid="uid://cxr5vmhcdk1jp"]
 
 [ext_resource type="Script" path="res://source/characters/player_character/player_character.gd" id="1_bh3u0"]
-[ext_resource type="Texture2D" uid="uid://clvrr10lpekjk" path="res://assets/characters/characters/P1.png" id="2_c5wbp"]
-[ext_resource type="Texture2D" uid="uid://coo5080oisyij" path="res://assets/characters/characters/P2.png" id="3_xsn50"]
-[ext_resource type="Texture2D" uid="uid://cp2ghf6m5evgk" path="res://assets/UI/UI_flat_Arrow01c.png" id="4_mvl4h"]
+[ext_resource type="Texture2D" uid="uid://b881kamfivchh" path="res://assets/characters/characters/bride/bride_spritesheet.png" id="2_22t56"]
+[ext_resource type="Texture2D" uid="uid://hmronxh0e7qk" path="res://assets/characters/characters/groom/groom_spritesheet.png" id="3_s4f8h"]
+[ext_resource type="Texture2D" uid="uid://b7s2wcnw2rygu" path="res://assets/UI/arrow_left.png" id="4_xqv26"]
+[ext_resource type="Texture2D" uid="uid://cgkdkmqtilrc4" path="res://assets/UI/arrow_right.png" id="5_wbgos"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n7o53"]
 radius = 30.0
@@ -38,7 +39,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_0xdtk"]
 resource_name = "punch0"
-length = 0.5
+length = 0.4
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -46,7 +47,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -67,10 +68,34 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerOne:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerTwo:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_3aauq"]
 resource_name = "punch1"
-length = 0.5
+length = 0.4
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -78,7 +103,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -99,10 +124,34 @@ tracks/1/keys = {
 "method": &"play"
 }]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerOne:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerTwo:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_w6swd"]
 resource_name = "punch2"
-length = 0.5
+length = 0.4
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,7 +159,7 @@ tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.5),
+"times": PackedFloat32Array(0.4),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -130,6 +179,30 @@ tracks/1/keys = {
 "args": [true],
 "method": &"play"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("PlayerOne:frame_coords")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("PlayerTwo:frame_coords")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_12w2s"]
@@ -192,14 +265,16 @@ bank_paths = ["res://assets/fmod_banks/Desktop/Master.strings.bank", "res://asse
 
 [node name="PlayerOne" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("2_c5wbp")
-hframes = 4
+texture = ExtResource("2_22t56")
+hframes = 7
+vframes = 2
 
 [node name="PlayerTwo" type="Sprite2D" parent="."]
 visible = false
 texture_filter = 1
-texture = ExtResource("3_xsn50")
-hframes = 4
+texture = ExtResource("3_s4f8h")
+hframes = 7
+vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_n7o53")
@@ -212,6 +287,7 @@ collision_mask = 5
 libraries = {
 "": SubResource("AnimationLibrary_blxu0")
 }
+autoplay = "punch1"
 
 [node name="PunchSounds" type="Node" parent="AnimationPlayer"]
 
@@ -235,15 +311,12 @@ position = Vector2(0, -100)
 [node name="left_prompt" type="Sprite2D" parent="StunContainer"]
 texture_filter = 1
 position = Vector2(-50, 0)
-rotation = -3.14159
-scale = Vector2(10, 10)
-texture = ExtResource("4_mvl4h")
+texture = ExtResource("4_xqv26")
 
 [node name="right_prompt" type="Sprite2D" parent="StunContainer"]
 texture_filter = 1
 position = Vector2(50, 0)
-scale = Vector2(10, 10)
-texture = ExtResource("4_mvl4h")
+texture = ExtResource("5_wbgos")
 
 [node name="DrawPoint" type="Node2D" parent="."]
 y_sort_enabled = true

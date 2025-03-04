@@ -1,22 +1,22 @@
 extends Node2D
 
-enum area_interaction{ON_ENTER, ON_EXIT}
+enum Interaction{ON_ENTER, ON_EXIT}
 
 @export var interactable : Interactable
 @export var area_2d : Area2D
 @export var game_events : Array[GameEvent]
 
-@export var area_behavior : area_interaction = area_interaction.ON_ENTER
+@export var area_behavior : Interaction = Interaction.ON_ENTER
 
 func _ready() -> void:
 	if interactable:
 		interactable.interaction_finished.connect(stop)
 	if area_2d:
 		match area_behavior:
-			area_interaction.ON_ENTER:
+			Interaction.ON_ENTER:
 				area_2d.body_entered.connect(stop_with_area)
 
-			area_interaction.ON_EXIT:
+			Interaction.ON_EXIT:
 				area_2d.body_exited.connect(stop_with_area)
 
 

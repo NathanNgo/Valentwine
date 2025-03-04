@@ -20,10 +20,10 @@ func _ready() -> void:
 func activate() -> void:
 	var random_spawn_location: Vector2 = spawn_locations.pick_random().global_position
 	var random_enemy: Enemy = enemies.pick_random().instantiate()
-	
+
 	spawn_enemies.emit(random_enemy, random_spawn_location)
 	target_random_player.emit(random_enemy)
-	
+
 	spawn_timer.start(spawn_time)
 
 
@@ -41,10 +41,10 @@ func _on_spawn_timer_timeout() -> void:
 func first_activation() -> void:
 	var random_spawn_location: Vector2 = spawn_locations.pick_random().global_position
 	var random_enemy: Enemy = enemies.pick_random().instantiate()
-	
+
 	spawn_enemies.emit(random_enemy, random_spawn_location)
 	target_random_player.emit(random_enemy)
-	
+
 	spawn_timer.start(spawn_time)
 	if enable_activation_time_limit:
 		activation_timer.start(activation_time_limit)
