@@ -49,7 +49,7 @@ func damage(damage_taken: float, attack_direction: Vector2 = Vector2.ZERO) -> vo
 
 func ko() -> void:
 	animation_player.play(stun_animation)
-	
+
 	if stagger_timer.is_stopped():
 		stagger_timer.start(ko_time)
 
