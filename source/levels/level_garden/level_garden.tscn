@@ -1,4 +1,4 @@
-[gd_scene load_steps=160 format=4 uid="uid://o0c2010xrmrx"]
+[gd_scene load_steps=161 format=4 uid="uid://o0c2010xrmrx"]
 
 [ext_resource type="PackedScene" uid="uid://8a1fxgbl58qp" path="res://source/levels/level.tscn" id="1_spaou"]
 [ext_resource type="Texture2D" uid="uid://bma3nqnnj4q4u" path="res://assets/tilemap_assets/Mockup.png" id="2_afwus"]
@@ -25,6 +25,7 @@
 [ext_resource type="PackedScene" uid="uid://gx56d6duee1i" path="res://source/managers/game_events/trigger_activation/area_2d.tscn" id="15_mvsx0"]
 [ext_resource type="PackedScene" uid="uid://cst3wet5gftuj" path="res://source/managers/game_events/spawn_enemies_after_enemies_inside_area_defeated/spawn_enemies_after_enemies_inside_area_defeated.tscn" id="20_f370j"]
 [ext_resource type="Theme" uid="uid://din1h03vjl4a5" path="res://source/ui/white_theme.tres" id="21_ljwh2"]
+[ext_resource type="PackedScene" uid="uid://bsn3cr3ihsp1m" path="res://source/obstacles/moving_platform.tscn" id="22_pvxyn"]
 [ext_resource type="Texture2D" uid="uid://cgkdkmqtilrc4" path="res://assets/UI/arrow_right.png" id="25_fcrb1"]
 [ext_resource type="AudioStream" uid="uid://fsfofi4w6ebt" path="res://assets/music/Game Jam Garden.wav" id="26_5kqlg"]
 
@@ -3342,7 +3343,7 @@ size = Vector2(2851.58, 71)
 size = Vector2(1630, 1810)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ho4sx"]
-size = Vector2(198, 81.25)
+size = Vector2(638, 81.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vq8oq"]
 size = Vector2(96, 230)
@@ -3364,15 +3365,17 @@ size = Vector2(3028, 1918)
 
 [node name="LevelGarden" instance=ExtResource("1_spaou")]
 
-[node name="PlayerCharacter1" parent="PlayerCharactersContainer" index="3"]
+[node name="PlayerCharacter1" parent="PlayerCharactersContainer" index="3" node_paths=PackedStringArray("other_player")]
 position = Vector2(619, 991)
 collision_layer = 24
 collision_mask = 25
+other_player = NodePath("../PlayerCharacter2")
 
-[node name="PlayerCharacter2" parent="PlayerCharactersContainer" index="4"]
+[node name="PlayerCharacter2" parent="PlayerCharactersContainer" index="4" node_paths=PackedStringArray("other_player")]
 position = Vector2(944, 308)
 collision_layer = 40
 collision_mask = 41
+other_player = NodePath("../PlayerCharacter1")
 
 [node name="Ground" type="TileMapLayer" parent="TileMaps" index="0"]
 z_index = -1
@@ -3669,7 +3672,7 @@ speed = 0.2
 follower = NodePath("PathFollow2D")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ObstaclesContainer/FearlessFiona/Path2D4" index="0"]
-position = Vector2(31, -215)
+position = Vector2(30.9999, -215)
 rotation = 1.60204
 progress = 451.047
 rotates = false
@@ -3685,7 +3688,7 @@ speed = 0.2
 follower = NodePath("PathFollow2D")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ObstaclesContainer/FearlessFiona/Path2D5" index="0"]
-position = Vector2(31, -215)
+position = Vector2(30.9999, -215)
 rotation = 1.60204
 progress = 451.047
 rotates = false
@@ -3818,6 +3821,15 @@ script = ExtResource("8_uj77p")
 [node name="Spikes2" parent="ObstaclesContainer/FearlessFiona/lever2" index="2" instance=ExtResource("5_p3154")]
 position = Vector2(170, -221)
 
+[node name="Area2D" parent="ObstaclesContainer" index="7" instance=ExtResource("22_pvxyn")]
+position = Vector2(3345, 847)
+
+[node name="Area2D2" parent="ObstaclesContainer" index="8" instance=ExtResource("22_pvxyn")]
+position = Vector2(3348, 749)
+
+[node name="Area2D3" parent="ObstaclesContainer" index="9" instance=ExtResource("22_pvxyn")]
+position = Vector2(3348, 643)
+
 [node name="lever" parent="InteractablesContainer" index="0" instance=ExtResource("7_52fan")]
 texture_filter = 1
 position = Vector2(1694, 898)
@@ -3880,9 +3892,6 @@ script = ExtResource("11_ady6u")
 interactable = NodePath("..")
 game_events = [NodePath("../../../GameEventsContainer/SpawnEnemiesWithTimer")]
 
-[node name="GameEventsContainer" parent="." index="7"]
-visible = false
-
 [node name="SetEnemiesTargetWithArea" parent="GameEventsContainer" index="0" node_paths=PackedStringArray("trigger_areas", "effected_areas") instance=ExtResource("10_cufps")]
 trigger_areas = [NodePath("TriggerArea")]
 effected_areas = [NodePath("EffectedArea")]
@@ -3905,23 +3914,32 @@ shape = SubResource("RectangleShape2D_162gu")
 effect_areas = [NodePath("../SetEnemiesTargetWithArea/EffectedArea")]
 objects_to_free = [NodePath("../../ObstaclesContainer/CombatRoom/Spikes5")]
 
-[node name="swap_visibility_hidden_on_enter" parent="GameEventsContainer" index="2" node_paths=PackedStringArray("triger_area", "target_object") instance=ExtResource("14_ibgb6")]
-triger_area = NodePath("Area2D")
+[node name="swap_visibility_hidden_on_enter" parent="GameEventsContainer" index="2" node_paths=PackedStringArray("triger_show_area", "triger_hide_area", "target_object") instance=ExtResource("14_ibgb6")]
+triger_show_area = NodePath("Area2D")
+triger_hide_area = NodePath("Area2D2")
 target_object = NodePath("../../TileMaps/Secrets")
-delay_before_hide = 5
 
 [node name="Area2D" type="Area2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter" index="0"]
 collision_layer = 9
 collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter/Area2D" index="0"]
-position = Vector2(2997, -1102)
+position = Vector2(3033, -1102)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_ho4sx")
 
-[node name="swap_visibility_hidden_on_enter2" parent="GameEventsContainer" index="3" node_paths=PackedStringArray("triger_area", "target_object") instance=ExtResource("14_ibgb6")]
-triger_area = NodePath("Area2D")
+[node name="Area2D2" type="Area2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter" index="1"]
+collision_layer = 9
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter/Area2D2" index="0"]
+position = Vector2(4088, -2247)
+shape = SubResource("RectangleShape2D_ho4sx")
+
+[node name="swap_visibility_hidden_on_enter2" parent="GameEventsContainer" index="3" node_paths=PackedStringArray("triger_show_area", "triger_hide_area", "target_object") instance=ExtResource("14_ibgb6")]
+triger_show_area = NodePath("Area2D")
+triger_hide_area = NodePath("Area2D2")
 target_object = NodePath("../../TileMaps/Secrets")
-delay_before_hide = 5
 
 [node name="Area2D" type="Area2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter2" index="0"]
 collision_layer = 9
@@ -3929,6 +3947,15 @@ collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter2/Area2D" index="0"]
 position = Vector2(1300, -2012.38)
+shape = SubResource("RectangleShape2D_ho4sx")
+
+[node name="Area2D2" type="Area2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter2" index="1"]
+collision_layer = 9
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/swap_visibility_hidden_on_enter2/Area2D2" index="0"]
+position = Vector2(-480, -2931)
+rotation = 1.5708
 shape = SubResource("RectangleShape2D_ho4sx")
 
 [node name="SpawnEnemiesWithTimer" parent="GameEventsContainer" index="4" node_paths=PackedStringArray("spawn_locations") instance=ExtResource("14_un6ak")]
