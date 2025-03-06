@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://dnvgqiothymot"]
+
+[ext_resource type="PackedScene" uid="uid://8a1fxgbl58qp" path="res://source/levels/level.tscn" id="1_qh2la"]
+[ext_resource type="TileSet" uid="uid://cptbw4u6o0umr" path="res://source/levels/tileset.tres" id="2_v51ac"]
+
+[node name="Level" instance=ExtResource("1_qh2la")]
+
+[node name="PlayerCharacter1" parent="PlayerCharactersContainer" index="3" node_paths=PackedStringArray("other_player")]
+other_player = NodePath("../PlayerCharacter2")
+
+[node name="PlayerCharacter2" parent="PlayerCharactersContainer" index="4" node_paths=PackedStringArray("other_player")]
+other_player = NodePath("../PlayerCharacter1")
+
+[node name="Ground" type="TileMapLayer" parent="TileMaps" index="0"]
+tile_set = ExtResource("2_v51ac")
+
+[node name="Walls" type="TileMapLayer" parent="TileMaps" index="1"]
+tile_set = ExtResource("2_v51ac")
+
+[node name="Props" type="TileMapLayer" parent="TileMaps" index="2"]
+tile_set = ExtResource("2_v51ac")
+
+[node name="Secrets" type="TileMapLayer" parent="TileMaps" index="3"]
+tile_set = ExtResource("2_v51ac")
+
+[editable path="PlayerCharactersContainer/TrailingLine2"]

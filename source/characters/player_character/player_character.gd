@@ -4,7 +4,7 @@ signal player_damaged(damage_amount: float)
 # signal stun_pressed
 
 enum Player { FIRST, SECOND }
-enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT }
+enum Controls { LEFT, RIGHT, UP, DOWN, INTERACT, SPECIAL }
 enum State { BLOCKED, IDLE, WALKING, ATTACK, STUNNED, STAGGERING, GRABBED }
 
 static var player_group := "player_objects"
@@ -16,11 +16,15 @@ static var walking_animation := "walking"
 @export var _player_two_sprite: Sprite2D
 @export var ray_cast_2d: RayCast2D
 @export var player_type := Player.FIRST
+@export var rope_speed := 600
 @export var speed := 400
+@export var dash_speed := 7200
+@export var dash_distance := 500
 @export var grace_time_between_punches := 1.0
 @export var stagger_amount: float = 150
 @export var stagger_speed: float = 75
 @export var attack_range := 150
+@export var maximum_distance := 800
 
 @export var stun_container: Node2D
 @export var _left_prompt: Sprite2D
@@ -30,7 +34,10 @@ static var walking_animation := "walking"
 @export var draw_point: Node2D
 @export var line_point_one: Node2D
 @export var line_point_two: Node2D
+@export var other_player : PlayerCharacter
 
+var dashing : bool = false
+var dashed_for : float = 0.0
 var grabbing_object: Enemy = null
 var staggering_distance: float = 0.0
 var staggering_towards: Vector2
@@ -47,7 +54,8 @@ var control_schemes := {
 		Controls.RIGHT: "player_one_right",
 		Controls.UP: "player_one_up",
 		Controls.DOWN: "player_one_down",
-		Controls.INTERACT: "player_one_interact"
+		Controls.INTERACT: "player_one_interact",
+		Controls.SPECIAL: "player_one_special"
 	},
 	Player.SECOND:
 	{
@@ -55,7 +63,8 @@ var control_schemes := {
 		Controls.RIGHT: "player_two_right",
 		Controls.UP: "player_two_up",
 		Controls.DOWN: "player_two_down",
-		Controls.INTERACT: "player_two_interact"
+		Controls.INTERACT: "player_two_interact",
+		Controls.SPECIAL: "player_two_special"
 	}
 }
 
@@ -65,6 +74,7 @@ var line_point: Node2D = line_point_one if player_type == Player.FIRST else line
 
 
 func _ready() -> void:
+	maximum_distance *= maximum_distance
 	_player_one_sprite.hide()
 	_player_two_sprite.hide()
 	stun_container.hide()
@@ -78,6 +88,12 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
+
+	if dashing:
+		dashed_for += (speed + int(dashing) * dash_speed) * _delta
+		if dashed_for > dash_distance:
+			dashing = false
+
 	var direction := (
 		Vector2(
 			Input.get_axis(
@@ -127,12 +143,21 @@ func _physics_process(_delta: float) -> void:
 
 			return
 
-	velocity = direction * speed
+	
+	velocity = direction * (speed + int(dashing) * dash_speed)
+	
+	var current_distance : float = other_player.global_position.distance_squared_to(global_position)
+	if current_distance > maximum_distance:
+		velocity += (other_player.global_position - global_position).normalized() * rope_speed
 
 	move_and_slide()
 
 
-func idle(direction: Vector2) -> void:
+func idle(direction: Vector2) -> void:	
+	
+	if Input.is_action_just_pressed(selected_scheme[Controls.SPECIAL]):
+		handle_special()
+		return
 	if !animation_player.is_playing():
 		animation_player.play(walking_animation)
 	if not ray_cast_2d.is_colliding():
@@ -180,6 +205,11 @@ func attack(attack_target: Node2D, attack_direction: Vector2 = Vector2.ZERO) -> 
 		animation_player.play("punch%s" % [punches_in_a_row])
 		punches_in_a_row = (punches_in_a_row + 1) % punches_in_combo
 
+
+func handle_special() -> void:
+	if player_type == Player.FIRST:
+		dashing = true
+		dashed_for = 0.0
 
 func calculate_damage_with_modifiers(number_in_combo: int) -> float:
 	var total_damage := 0.0
