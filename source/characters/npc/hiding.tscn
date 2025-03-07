@@ -1,7 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://byvsh4nk1t85v"]
+[gd_scene load_steps=9 format=3 uid="uid://byvsh4nk1t85v"]
 
 [ext_resource type="Script" path="res://source/characters/npc/hiding.gd" id="1_rxlil"]
-[ext_resource type="Texture2D" uid="uid://dgpmkji0y26uq" path="res://assets/characters/npcs/n1/npc1_spritesheet.png" id="2_jpct7"]
+[ext_resource type="Texture2D" uid="uid://cdotrhnxrn5lo" path="res://assets/characters/npcs/n1/A_Cha_N1.png" id="2_k0hre"]
 
 [sub_resource type="Animation" id="Animation_pflfs"]
 length = 0.001
@@ -31,17 +31,53 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0), Vector2i(8, 0), Vector2i(9, 0)]
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2), Vector2i(9, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_q04bn"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_xvjkp"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rx4oi"]
 _data = {
 "RESET": SubResource("Animation_pflfs"),
-"happy": SubResource("Animation_jjjf7")
+"happy": SubResource("Animation_jjjf7"),
+"idle": SubResource("Animation_q04bn"),
+"walk": SubResource("Animation_xvjkp")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6j617"]
-size = Vector2(110, 131)
+size = Vector2(95, 140)
 
 [node name="Hiding" type="Area2D" node_paths=PackedStringArray("animation_player", "sound")]
 collision_mask = 8
@@ -50,9 +86,9 @@ animation_player = NodePath("AnimationPlayer")
 sound = NodePath("FmodEventEmitter2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_jpct7")
+texture = ExtResource("2_k0hre")
 hframes = 10
-vframes = 2
+vframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -60,9 +96,19 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4, 0.5)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_6j617")
 
 [node name="FmodEventEmitter2D" type="FmodEventEmitter2D" parent="."]
+_import_path = NodePath("")
+unique_name_in_owner = false
+process_mode = 0
+process_priority = 0
+process_physics_priority = 0
+process_thread_group = 0
+physics_interpolation_mode = 0
+auto_translate_mode = 0
+editor_description = ""
 event_name = "event:/Success"
 event_guid = "{3a18f254-b756-4627-bc06-ebcd074204f6}"
+script = null

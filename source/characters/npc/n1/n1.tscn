@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgllmr55u7q3a"]
+
+[ext_resource type="PackedScene" uid="uid://byvsh4nk1t85v" path="res://source/characters/npc/hiding.tscn" id="1_6oynq"]
+
+[node name="n1" instance=ExtResource("1_6oynq")]
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0.5, 0.5)

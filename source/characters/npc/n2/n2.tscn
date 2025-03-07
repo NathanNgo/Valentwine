@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://ktmbobqyct63"]
+
+[ext_resource type="PackedScene" uid="uid://byvsh4nk1t85v" path="res://source/characters/npc/hiding.tscn" id="1_g46tp"]
+[ext_resource type="Texture2D" uid="uid://dtpd4t31tj1uw" path="res://assets/characters/npcs/n2/A_Cha_N2.png" id="2_6n1kj"]
+
+[node name="n2" instance=ExtResource("1_g46tp")]
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_6n1kj")
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(0.5, 0.5)

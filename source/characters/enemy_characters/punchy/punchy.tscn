@@ -28,6 +28,3 @@ animation_player = NodePath("../AnimationPlayer")
 
 [node name="TargetingModule" parent="." index="5" instance=ExtResource("3_vxc22")]
 line_length_limit = 150.0
-
-[node name="EnemyPop" parent="DeathSprite" index="0"]
-visible = false

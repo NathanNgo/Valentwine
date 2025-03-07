@@ -94,7 +94,7 @@ movie_writer/movie_file="/home/diego/Documents/Videojuego/Movies/GWJ.avi"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/fmod/plugin.cfg", "res://addons/gdLinter/plugin.cfg", "res://addons/softbody2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/InstanceDock/plugin.cfg", "res://addons/gdLinter/plugin.cfg", "res://addons/softbody2d/plugin.cfg")
 
 [global_group]
 
