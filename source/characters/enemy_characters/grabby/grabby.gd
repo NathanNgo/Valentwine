@@ -7,6 +7,9 @@ class_name Grabby extends Enemy
 @export var grace_timer: Timer
 @export var grace_time: float = 3.01
 @export var health : float =  100
+@export var circles_needed : int = 3
+
+var deaths : int = 0
 var has_player_escaped := false
 
 
@@ -65,11 +68,15 @@ func die() -> void:
 		grabbed_player.grabbing_object = null
 		grabbed_player.stun_container.hide()
 		player_escaped()
-
-	death_sprite.show()
-	var animation_number := randi_range(1, 4)
-	animation_player.play("death%s" % [animation_number])
-	death_sound.play()
+	deaths += 1
+	if deaths == circles_needed:
+		death_sprite.show()
+		var animation_number := randi_range(1, 4)
+		animation_player.play("death%s" % [animation_number])
+		death_sound.play()
+	else:
+	#to be implemented
+		pass
 	died.emit()
 
 
