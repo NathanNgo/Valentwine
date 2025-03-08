@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dormb0rjfd2oq"]
+
+[ext_resource type="Script" path="res://source/managers/game_events/spawn_on_specific_kill/spawn_on_specific_kill.gd" id="1_f6fa7"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_f6fa7")

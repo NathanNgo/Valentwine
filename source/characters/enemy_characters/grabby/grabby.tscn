@@ -16,6 +16,7 @@ escape_requirement = 10
 grace_timer = NodePath("GraceTimer")
 grace_time = 3.01
 health = 100.0
+circles_needed = 3
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_47ttr")
