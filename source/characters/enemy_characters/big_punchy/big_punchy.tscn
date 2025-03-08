@@ -24,9 +24,9 @@ shape = SubResource("CapsuleShape2D_bj0o3")
 path_postprocessing = 1
 
 [node name="CombatModule" parent="." index="4" node_paths=PackedStringArray("animation_player") instance=ExtResource("3_f3bhn")]
-stagger_threshold = 5.0
 health = 30.0
 damage_amount = 5.0
+stagger_threshold = 5.0
 stagger_time = 0.7
 attack_range = 200.0
 animation_player = NodePath("../AnimationPlayer")

@@ -10,37 +10,23 @@ height = 180.0
 
 [node name="Grabby" node_paths=PackedStringArray("ray_cast", "grace_timer") instance=ExtResource("1_hlvvh")]
 script = ExtResource("2_si8ks")
+ray_cast = NodePath("RayCast2D")
 attack_range = 300.0
 escape_requirement = 10
+grace_timer = NodePath("GraceTimer")
 grace_time = 3.01
 health = 100.0
-ray_cast = NodePath("RayCast2D")
-grace_timer = NodePath("GraceTimer")
 circles_needed = 3
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_name8")
-vframes = 5
 
 [node name="CollisionShape2D" parent="." index="1"]
 rotation = 0.0
 shape = SubResource("CapsuleShape2D_ncmb6")
 
-[node name="DeathSound" parent="." index="4"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
-script = null
-
 [node name="EnemyPop" parent="DeathSprite" index="0"]
 texture = ExtResource("3_name8")
-vframes = 5
 
 [node name="RayCast2D" type="RayCast2D" parent="." index="7"]
 target_position = Vector2(192, 0)

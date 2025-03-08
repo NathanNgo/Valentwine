@@ -37,6 +37,35 @@ tracks/1/keys = {
 "values": [Vector2i(0, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_4i35x"]
+resource_name = "idle"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerOne:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("PlayerTwo:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_0xdtk"]
 resource_name = "punch0"
 length = 0.4
@@ -205,35 +234,6 @@ tracks/3/keys = {
 "values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(6, 3)]
 }
 
-[sub_resource type="Animation" id="Animation_12w2s"]
-resource_name = "walking"
-length = 0.4
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PlayerOne:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("PlayerTwo:frame_coords")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_rpb4p"]
 resource_name = "stunt"
 length = 0.4
@@ -263,8 +263,8 @@ tracks/1/keys = {
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_4i35x"]
-resource_name = "idle"
+[sub_resource type="Animation" id="Animation_12w2s"]
+resource_name = "walking"
 length = 0.4
 loop_mode = 1
 tracks/0/type = "value"
@@ -321,17 +321,7 @@ line_point_one = NodePath("LinePointOne")
 line_point_two = NodePath("LinePointTwo")
 
 [node name="FmodBankLoader" type="FmodBankLoader" parent="."]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
 bank_paths = ["res://assets/fmod_banks/Desktop/Master.strings.bank", "res://assets/fmod_banks/Desktop/Master.bank", "res://assets/fmod_banks/Desktop/SFX.bank"]
-script = null
 
 [node name="PlayerOne" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -361,46 +351,16 @@ autoplay = "punch1"
 [node name="PunchSounds" type="Node" parent="AnimationPlayer"]
 
 [node name="LightPunch" type="FmodEventEmitter2D" parent="AnimationPlayer/PunchSounds"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
 event_name = "event:/LightPunch"
 event_guid = "{4a3f02e6-57f3-409e-905e-5c6309b2a770}"
-script = null
 
 [node name="MediumPunch" type="FmodEventEmitter2D" parent="AnimationPlayer/PunchSounds"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
 event_name = "event:/MediumPunch"
 event_guid = "{916e3e17-c826-476c-90bb-768330b38696}"
-script = null
 
 [node name="HeavyPunch" type="FmodEventEmitter2D" parent="AnimationPlayer/PunchSounds"]
-_import_path = NodePath("")
-unique_name_in_owner = false
-process_mode = 0
-process_priority = 0
-process_physics_priority = 0
-process_thread_group = 0
-physics_interpolation_mode = 0
-auto_translate_mode = 0
-editor_description = ""
 event_name = "event:/HeavyPunch"
 event_guid = "{f7ac2223-ee50-48fe-b1d8-646a51f5a445}"
-script = null
 
 [node name="GraceTimer" type="Timer" parent="."]
 
