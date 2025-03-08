@@ -3426,6 +3426,7 @@ position = Vector2(-3359, 1890)
 
 [node name="Grabby" parent="EnemiesContainer" index="6" instance=ExtResource("7_t7xsj")]
 position = Vector2(-2956, 4946)
+circles_needed = 3
 
 [node name="BigPunchy2" parent="EnemiesContainer" index="7" instance=ExtResource("7_0bt7g")]
 position = Vector2(-3499, 5106)
