@@ -21,8 +21,8 @@ func activate() -> void:
 		return
 	for i : int in enemy_array_per_trigger[has_been_triggered].size():
 		var object_spawned : Node2D =\
-		 enemy_array_per_trigger[has_been_triggered][i].instantiate()
+		enemy_array_per_trigger[has_been_triggered][i].instantiate()
 		var spawn_position : Vector2 =\
-		 get_node(position_per_trigger[has_been_triggered][i]).global_position
+		get_node(position_per_trigger[has_been_triggered][i]).global_position
 		spawn_enemies.emit(object_spawned, spawn_position)
 	has_been_triggered += 1

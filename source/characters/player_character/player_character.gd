@@ -143,9 +143,9 @@ func _physics_process(_delta: float) -> void:
 
 			return
 
-	
+
 	velocity = direction * (speed + int(dashing) * dash_speed)
-	
+
 	var current_distance : float = other_player.global_position.distance_squared_to(global_position)
 	if current_distance > maximum_distance:
 		velocity += (other_player.global_position - global_position).normalized() * rope_speed
@@ -153,8 +153,7 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-func idle(direction: Vector2) -> void:	
-	
+func idle(direction: Vector2) -> void:
 	if Input.is_action_just_pressed(selected_scheme[Controls.SPECIAL]):
 		handle_special()
 		return
