@@ -12,5 +12,7 @@
 "scene": "res://source/characters/enemy_characters/grabby/grabby.tscn"
 }, {
 "scene": "res://source/characters/enemy_characters/punchy/punchy.tscn"
+}, {
+"scene": "res://source/obstacles/moving_platform.tscn"
 }]
 }]

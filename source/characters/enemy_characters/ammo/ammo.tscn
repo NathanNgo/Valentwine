@@ -9,11 +9,11 @@ size = Vector2(23.25, 9)
 [node name="Ammo" type="CharacterBody2D" node_paths=PackedStringArray("_collision_area", "sprite") groups=["enemies"]]
 script = ExtResource("1_q6q4o")
 _collision_area = NodePath("Sprite2D/Area2D")
-damage_amount = 5
+damage_amount = 3
 sprite = NodePath("Sprite2D")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-rotation = -1.5708
+rotation = 1.5708
 texture = ExtResource("2_t3omr")
 
 [node name="Area2D" type="Area2D" parent="Sprite2D"]

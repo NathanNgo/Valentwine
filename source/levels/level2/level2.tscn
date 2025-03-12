@@ -1,0 +1,292 @@
+[gd_scene load_steps=18 format=4 uid="uid://dnvgqiothymot"]
+
+[ext_resource type="PackedScene" uid="uid://8a1fxgbl58qp" path="res://source/levels/level.tscn" id="1_qh2la"]
+[ext_resource type="TileSet" uid="uid://cptbw4u6o0umr" path="res://source/levels/tileset.tres" id="2_v51ac"]
+[ext_resource type="PackedScene" uid="uid://je1xgeoe3epq" path="res://source/characters/enemy_characters/grabby/grabby.tscn" id="3_hk2d8"]
+[ext_resource type="PackedScene" uid="uid://bnqkg78ob8l43" path="res://source/characters/enemy_characters/punchy/punchy.tscn" id="4_51mjw"]
+[ext_resource type="PackedScene" uid="uid://cebywpds5xqet" path="res://source/obstacles/shooter.tscn" id="5_8q12k"]
+[ext_resource type="PackedScene" uid="uid://bsn3cr3ihsp1m" path="res://source/obstacles/moving_platform.tscn" id="6_nhe5t"]
+[ext_resource type="PackedScene" uid="uid://bftw74lkxgntk" path="res://source/obstacles/damage_to_players.tscn" id="7_e8eqt"]
+[ext_resource type="PackedScene" uid="uid://clf7mvg86ldf6" path="res://source/managers/game_events/set_enemies_target_with_area/set_enemies_target_with_area.tscn" id="8_5cn64"]
+[ext_resource type="PackedScene" uid="uid://djakdqjo8fjna" path="res://source/interactables/lever/lever.tscn" id="8_xp1tn"]
+[ext_resource type="Script" path="res://source/interactables/lever/lever.gd" id="9_6fodq"]
+[ext_resource type="PackedScene" uid="uid://bps1jw3521rwo" path="res://source/obstacles/tile_objects/tile_object.tscn" id="9_lj4ka"]
+[ext_resource type="PackedScene" uid="uid://7glalxrrmg7k" path="res://source/managers/game_events/swap_visibility_of_hidden/swap_visibility_hidden_on_enter.tscn" id="11_cp00h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5tue"]
+size = Vector2(142, 1069)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_glq54"]
+size = Vector2(1301, 916)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p0ncc"]
+size = Vector2(100, 352)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ocphf"]
+size = Vector2(133, 1530)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxmrv"]
+size = Vector2(1239, 965)
+
+[node name="Level" instance=ExtResource("1_qh2la")]
+
+[node name="PlayerCharacter1" parent="PlayerCharactersContainer" index="3" node_paths=PackedStringArray("other_player")]
+other_player = NodePath("../PlayerCharacter2")
+
+[node name="PlayerCharacter2" parent="PlayerCharactersContainer" index="4" node_paths=PackedStringArray("other_player")]
+other_player = NodePath("../PlayerCharacter1")
+
+[node name="Ground" type="TileMapLayer" parent="TileMaps" index="0"]
+z_index = -1
+tile_map_data = PackedByteArray("AAD9/wcAAgAJAAAAAAD+/wcAAgAGAAAAAAD+/wYAAgAHAAAAAAD//wYAAgAGAAAAAAAAAAUAAgAKAAMAAAABAAUAAgAKAAMAAAABAAQAAgAKAAIAAAACAAQAAgAKAAIAAAADAAQAAgAKAAIAAAAEAAQAAgAHAAIAAAAEAAMAAgAKAAEAAAAFAAMAAgAKAAEAAAAGAAMAAgAHAAEAAAAHAAIAAgAGAAAAAAAIAAIAAgAIAAAAAAAJAAIAAgAIAAAAAAAKAAEAAgAGAAAAAAALAAEAAgAHAAAAAAAMAAEAAgAIAAAAAAANAAEAAgAJAAAAAAANAAAAAgAIAAAAAAAOAAAAAgAGAAAAAAAOAAcAAgAIAAAAAAAOAAYAAgAHAAAAAAAOAAUAAgAIAAAAAAAOAAQAAgAGAAAAAAAOAAMAAgAIAAAAAAAOAAIAAgAJAAAAAAAOAAEAAgAIAAAAAAANAAcAAgAIAAAAAAANAAYAAgAJAAAAAAANAAUAAgAIAAMAAAANAAQAAgAIAAIAAAANAAMAAgALAAEAAAANAAIAAgAJAAAAAAAMAAcAAgAJAAAAAAAMAAYAAgAIAAAAAAAMAAUAAgAKAAMAAAAMAAQAAgAHAAIAAAAMAAMAAgAKAAEAAAAMAAIAAgAHAAAAAAALAAcAAgAJAAAAAAALAAYAAgAIAAAAAAALAAUAAgAHAAMAAAALAAQAAgAHAAIAAAALAAMAAgAKAAEAAAALAAIAAgAHAAAAAAAKAAcAAgAHAAAAAAAKAAYAAgAGAAAAAAAKAAUAAgAKAAMAAAAKAAMAAgAHAAEAAAAKAAIAAgAGAAAAAAAJAAcAAgAIAAAAAAAJAAYAAgAGAAAAAAAJAAUAAgAKAAMAAAAJAAQAAgAHAAIAAAAJAAMAAgAHAAEAAAAIAAcAAgAHAAAAAAAIAAYAAgAIAAAAAAAIAAUAAgAHAAMAAAAIAAQAAgAKAAIAAAAIAAMAAgAKAAEAAAAHAAcAAgAHAAAAAAAHAAYAAgAHAAAAAAAHAAUAAgAKAAMAAAAHAAQAAgAHAAIAAAAHAAMAAgAHAAEAAAAGAAcAAgAIAAAAAAAGAAYAAgAGAAAAAAAGAAUAAgAHAAMAAAAGAAQAAgAKAAIAAAAFAAcAAgAIAAAAAAAFAAYAAgAJAAAAAAAFAAUAAgAHAAMAAAAFAAQAAgAHAAIAAAAEAAcAAgAJAAAAAAAEAAYAAgAJAAAAAAAEAAUAAgAHAAMAAAADAAcAAgAGAAAAAAADAAYAAgAHAAAAAAADAAUAAgAKAAMAAAACAAcAAgAJAAAAAAACAAYAAgAGAAAAAAACAAUAAgAHAAMAAAABAAcAAgAJAAAAAAABAAYAAgAHAAAAAAAAAAcAAgAHAAAAAAAAAAYAAgAIAAAAAAD//wcAAgAIAAAAAAAMAAAAAgAHAAAAAAALAAAAAgAHAAAAAAAKAAAAAgAJAAAAAAAJAAEAAgAIAAAAAAAJAAAAAgAJAAAAAAAIAAEAAgAIAAAAAAAIAAAAAgAHAAAAAAAHAAEAAgAHAAAAAAAHAAAAAgAJAAAAAAAGAAIAAgAGAAAAAAAGAAEAAgAGAAAAAAAGAAAAAgAIAAAAAAAFAAIAAgAHAAAAAAAFAAEAAgAIAAAAAAAFAAAAAgAJAAAAAAAEAAIAAgAHAAAAAAAEAAEAAgAGAAAAAAAEAAAAAgAGAAAAAAADAAMAAgAKAAEAAAADAAIAAgAGAAAAAAADAAEAAgAIAAAAAAADAAAAAgAHAAAAAAACAAMAAgAHAAEAAAACAAIAAgAGAAAAAAACAAEAAgAJAAAAAAACAAAAAgAGAAAAAAABAAMAAgAHAAEAAAABAAIAAgAJAAAAAAABAAEAAgAJAAAAAAABAAAAAgAHAAAAAAAAAAQAAgAHAAIAAAAAAAMAAgAHAAEAAAAAAAIAAgAGAAAAAAAAAAEAAgAGAAAAAAAAAAAAAgAGAAAAAAD//wUAAgAGAAMAAAD//wQAAgAJAAIAAAD//wMAAgAGAAEAAAD//wIAAgAHAAAAAAD//wEAAgAGAAAAAAD//wAAAgAHAAAAAAD+/wUAAgAJAAAAAAD+/wQAAgAGAAAAAAD+/wMAAgAGAAAAAAD+/wIAAgAHAAAAAAD+/wEAAgAJAAAAAAD+/wAAAgAHAAAAAAD9/wYAAgAJAAAAAAD9/wUAAgAHAAAAAAD9/wQAAgAGAAAAAAD9/wMAAgAHAAAAAAD9/wIAAgAJAAAAAAD9/wEAAgAJAAAAAAD9/wAAAgAJAAAAAAD9/wgAAgAHAAAAAAD9/wkAAgAHAAAAAAD+/wkAAgAIAAAAAAD+/wgAAgAIAAAAAAD//wgAAgAGAAAAAAAAAAgAAgAIAAAAAAABAAgAAgAGAAAAAAACAAgAAgAJAAAAAAADAAgAAgAIAAAAAAAEAAgAAgAHAAAAAAAFAAgAAgAGAAAAAAAGAAgAAgAGAAAAAAAHAAgAAgAHAAAAAAAIAAgAAgAIAAAAAAAJAAgAAgAIAAAAAAAKAAgAAgAHAAAAAAALAAgAAgAJAAAAAAAMAAgAAgAIAAAAAAANAAgAAgAIAAAAAAAOAAgAAgAIAAAAAAAPAAgAAgAGAAAAAAAOAAkAAgAJAAAAAAANAAkAAgAHAAAAAAAMAAkAAgAGAAAAAAALAAkAAgAIAAAAAAAKAAkAAgAIAAAAAAAJAAkAAgAJAAAAAAAIAAkAAgAIAAAAAAAHAAkAAgAIAAAAAAAGAAkAAgAHAAAAAAAFAAkAAgAGAAAAAAAEAAkAAgAGAAAAAAADAAkAAgAIAAAAAAACAAkAAgAJAAAAAAABAAkAAgAIAAAAAAAAAAkAAgAGAAAAAAD//wkAAgAIAAAAAAAPAAkAAgAGAAAAAAAPAAcAAgAGAAAAAAAPAAYAAgAJAAAAAAAPAAUAAgAHAAAAAAAPAAQAAgAGAAAAAAAPAAMAAgAJAAAAAAAPAAIAAgAGAAAAAAAPAAEAAgAJAAAAAAAPAAAAAgAJAAAAAAAQAAAAAgAGAAAAAAARAAAAAgAJAAAAAAASAAAAAgAGAAAAAAATAAAAAgAHAAAAAAATAAEAAgAIAAAAAAASAAEAAgAJAAAAAAARAAEAAgAJAAAAAAAQAAEAAgAJAAAAAAAQAAIAAgAIAAAAAAARAAIAAgAIAAAAAAASAAIAAgAHAAAAAAATAAIAAgAHAAAAAAATAAMAAgAHAAAAAAATAAQAAgAGAAAAAAASAAQAAgAHAAAAAAATAAkAAgAGAAAAAAATAAgAAgAHAAAAAAATAAcAAgAIAAAAAAATAAYAAgAIAAAAAAATAAUAAgAGAAAAAAASAAkAAgAJAAAAAAASAAgAAgAIAAAAAAASAAcAAgAGAAAAAAASAAYAAgAHAAAAAAASAAUAAgAGAAAAAAASAAMAAgAJAAAAAAARAAkAAgAIAAAAAAARAAgAAgAGAAAAAAARAAcAAgAIAAAAAAARAAYAAgAGAAAAAAARAAUAAgAIAAAAAAARAAQAAgAJAAAAAAARAAMAAgAHAAAAAAAQAAkAAgAJAAAAAAAQAAgAAgAHAAAAAAAQAAcAAgAGAAAAAAAQAAYAAgAGAAAAAAAQAAUAAgAGAAAAAAAQAAQAAgAHAAAAAAAQAAMAAgAJAAAAAAAUAAAAAgAJAAAAAAAVAAAAAgAHAAAAAAAWAAAAAgAHAAAAAAAXAAAAAgAJAAAAAAAYAAAAAgAIAAAAAAAZAAAAAgAHAAAAAAAaAAAAAgAJAAAAAAAbAAAAAgAIAAAAAAAcAAAAAgAIAAAAAAAdAAAAAgAHAAAAAAAeAAAAAgAGAAAAAAAfAAAAAgAIAAAAAAAfAAEAAgAIAAAAAAAfAAIAAgAIAAAAAAAfAAMAAgAGAAAAAAAfAAQAAgAIAAAAAAAfAAUAAgAJAAAAAAAfAAYAAgAGAAAAAAAfAAcAAgAIAAAAAAAfAAgAAgAHAAAAAAAfAAkAAgAIAAAAAAAeAAkAAgAHAAAAAAAdAAkAAgAGAAAAAAAcAAkAAgAGAAAAAAAbAAkAAgAHAAAAAAAaAAkAAgAJAAAAAAAZAAkAAgAHAAAAAAAYAAkAAgAJAAAAAAAXAAkAAgAHAAAAAAAWAAkAAgAGAAAAAAAVAAkAAgAGAAAAAAAUAAkAAgAIAAAAAAAUAAgAAgAJAAAAAAAUAAcAAgAJAAAAAAAUAAYAAgAJAAAAAAAVAAYAAgAHAAAAAAAVAAUAAgAHAAAAAAAVAAQAAgAGAAAAAAAVAAMAAgAIAAAAAAAVAAIAAgAIAAAAAAAUAAIAAgAJAAAAAAAUAAEAAgAJAAAAAAAUAAMAAgAGAAAAAAAUAAQAAgAJAAAAAAAUAAUAAgAHAAAAAAAVAAgAAgAHAAAAAAAVAAcAAgAHAAAAAAAWAAcAAgAIAAAAAAAWAAYAAgAIAAAAAAAWAAUAAgAGAAAAAAAWAAQAAgAIAAAAAAAWAAMAAgAGAAAAAAAWAAIAAgAGAAAAAAAWAAEAAgAHAAAAAAAVAAEAAgAHAAAAAAAXAAEAAgAGAAAAAAAYAAEAAgAIAAAAAAAZAAEAAgAJAAAAAAAaAAEAAgAHAAAAAAAbAAEAAgAIAAAAAAAcAAEAAgAIAAAAAAAdAAEAAgAIAAAAAAAeAAEAAgAIAAAAAAAeAAIAAgAHAAAAAAAeAAMAAgAHAAAAAAAeAAQAAgAGAAAAAAAeAAUAAgAHAAAAAAAeAAYAAgAGAAAAAAAeAAcAAgAJAAAAAAAeAAgAAgAGAAAAAAAZAAgAAgAHAAAAAAAYAAgAAgAJAAAAAAAXAAgAAgAHAAAAAAAWAAgAAgAIAAAAAAAaAAgAAgAJAAAAAAAbAAgAAgAIAAAAAAAcAAgAAgAHAAAAAAAdAAgAAgAIAAAAAAAdAAYAAgAHAAAAAAAdAAUAAgAHAAAAAAAdAAQAAgAHAAAAAAAdAAMAAgAGAAAAAAAdAAIAAgAIAAAAAAAaAAIAAgAIAAAAAAAZAAIAAgAHAAAAAAAYAAIAAgAIAAAAAAAXAAIAAgAHAAAAAAAXAAMAAgAGAAAAAAAXAAcAAgAGAAAAAAAYAAcAAgAIAAAAAAAYAAYAAgAIAAAAAAAYAAUAAgAGAAAAAAAYAAQAAgAHAAAAAAAYAAMAAgAGAAAAAAAcAAIAAgAGAAAAAAAcAAMAAgAIAAAAAAAcAAQAAgAIAAAAAAAcAAUAAgAGAAAAAAAcAAYAAgAGAAAAAAAdAAcAAgAIAAAAAAAcAAcAAgAGAAAAAAAbAAcAAgAHAAAAAAAbAAYAAgAIAAAAAAAbAAUAAgAGAAAAAAAbAAQAAgAHAAAAAAAbAAMAAgAHAAAAAAAbAAIAAgAGAAAAAAAaAAcAAgAGAAAAAAAaAAYAAgAIAAAAAAAaAAUAAgAHAAAAAAAaAAQAAgAGAAAAAAAaAAMAAgAHAAAAAAAZAAcAAgAIAAAAAAAZAAYAAgAIAAAAAAAZAAUAAgAJAAAAAAAZAAQAAgAJAAAAAAAZAAMAAgAIAAAAAAAXAAYAAgAIAAAAAAAXAAUAAgAJAAAAAAAXAAQAAgAJAAAAAAA=")
+tile_set = ExtResource("2_v51ac")
+
+[node name="Walls" type="TileMapLayer" parent="TileMaps" index="1"]
+tile_map_data = PackedByteArray("AAD9/wYAAgAJAAcAAAD9/wUAAgAJAAcAAAD9/wQAAgAJAAcAAAD9/wMAAgAJAAcAAAD9/wIAAgAJAAcAAAD9/wEAAgAJAAcAAAD9/wAAAgAJAAYAAAD+/wAAAgAKAAgAAAD//wAAAgAKAAgAAAAAAAAAAgAKAAgAAAABAAAAAgAKAAgAAAACAAAAAgAKAAgAAAADAAAAAgAKAAgAAAAEAAAAAgAKAAgAAAAFAAAAAgAKAAgAAAAGAAAAAgAKAAgAAAAHAAAAAgAKAAgAAAAIAAAAAgAKAAgAAAAKAAQAAgAQAAYAAAAKAAYAAgAJAAcAAAAKAAUAAgAJAAcAAAAKAAMAAgAJAAcAAAAKAAIAAgAJAAcAAAAKAAEAAgAKAAgAAAAKAAAAAgAJAAYAAAAJAAAAAgAKAAgAAAALAAAAAgAKAAgAAAAMAAAAAgAKAAgAAAANAAAAAgAKAAgAAAAOAAAAAgAKAAgAAAAPAAAAAgAKAAgAAAAQAAAAAgAKAAgAAAARAAAAAgAKAAgAAAASAAAAAgAKAAgAAAATAAAAAgAKAAgAAAD9/wcAAgAJAAcAAAD9/wgAAgAKAAgAAAAKAAgAAgAKAAgAAAAKAAcAAgAKAAgAAAAUAAAAAgAKAAgAAAAVAAAAAgAKAAgAAAAWAAAAAgAKAAgAAAAXAAAAAgAKAAgAAAAYAAAAAgAKAAgAAAAZAAAAAgAKAAgAAAAaAAAAAgAKAAgAAAAbAAAAAgAKAAgAAAAcAAAAAgAKAAgAAAAdAAAAAgAKAAgAAAAeAAAAAgAKAAgAAAAfAAAAAgALAAYAAAAfAAgAAgALAAgAAAAfAAcAAgAKAAgAAAAfAAYAAgALAAcAAAAfAAUAAgALAAcAAAAfAAQAAgALAAcAAAAfAAMAAgALAAcAAAAfAAIAAgALAAcAAAAfAAEAAgAKAAgAAAAeAAgAAgAKAAgAAAAdAAgAAgAKAAgAAAAcAAgAAgAKAAgAAAAbAAgAAgAKAAgAAAAaAAgAAgAKAAgAAAAZAAgAAgAKAAgAAAAYAAgAAgAKAAgAAAAXAAgAAgAKAAgAAAAWAAgAAgAKAAgAAAAVAAgAAgAKAAgAAAAUAAgAAgAKAAgAAAATAAgAAgAKAAgAAAASAAgAAgAKAAgAAAARAAgAAgAKAAgAAAAQAAgAAgAKAAgAAAAPAAgAAgAKAAgAAAAOAAgAAgAKAAgAAAANAAgAAgAKAAgAAAAMAAgAAgAKAAgAAAALAAgAAgAKAAgAAAAJAAgAAgAKAAgAAAAIAAgAAgAKAAgAAAAHAAgAAgAKAAgAAAAGAAgAAgAKAAgAAAAFAAgAAgAKAAgAAAAEAAgAAgAKAAgAAAADAAgAAgAKAAgAAAACAAgAAgAKAAgAAAABAAgAAgAKAAgAAAAAAAgAAgAKAAgAAAD//wgAAgAKAAgAAAD+/wgAAgAKAAgAAAAeAAcAAgAKAAgAAAAdAAcAAgAKAAgAAAAcAAcAAgAKAAgAAAAbAAcAAgAKAAgAAAAaAAcAAgAKAAgAAAAZAAcAAgAKAAgAAAAYAAcAAgAKAAgAAAAXAAcAAgAKAAgAAAAWAAcAAgAKAAgAAAAVAAcAAgAKAAgAAAAUAAcAAgAKAAgAAAATAAcAAgAKAAgAAAASAAcAAgAKAAgAAAARAAcAAgAKAAgAAAAQAAcAAgAKAAgAAAAPAAcAAgAKAAgAAAAOAAcAAgAKAAgAAAANAAcAAgAKAAgAAAAMAAcAAgAKAAgAAAALAAcAAgAKAAgAAAAeAAEAAgAKAAgAAAAdAAEAAgAKAAgAAAAcAAEAAgAKAAgAAAAbAAEAAgAKAAgAAAAaAAEAAgAKAAgAAAAZAAEAAgAKAAgAAAAYAAEAAgAKAAgAAAAXAAEAAgAKAAgAAAAWAAEAAgAKAAgAAAAVAAEAAgAKAAgAAAAUAAEAAgAKAAgAAAATAAEAAgAKAAgAAAASAAEAAgAKAAgAAAARAAEAAgAKAAgAAAAQAAEAAgAKAAgAAAAPAAEAAgAKAAgAAAAOAAEAAgAKAAgAAAANAAEAAgAKAAgAAAAMAAEAAgAKAAgAAAALAAEAAgAKAAgAAAA=")
+tile_set = ExtResource("2_v51ac")
+
+[node name="Props" type="TileMapLayer" parent="TileMaps" index="2"]
+tile_set = ExtResource("2_v51ac")
+
+[node name="Secrets" type="TileMapLayer" parent="TileMaps" index="3"]
+tile_set = ExtResource("2_v51ac")
+
+[node name="Grabby" parent="EnemiesContainer" index="0" instance=ExtResource("3_hk2d8")]
+position = Vector2(5424, 927)
+
+[node name="Punchy" parent="EnemiesContainer" index="1" instance=ExtResource("4_51mjw")]
+position = Vector2(4493, 533)
+
+[node name="Punchy2" parent="EnemiesContainer" index="2" instance=ExtResource("4_51mjw")]
+position = Vector2(4513, 1287)
+
+[node name="ObstaclesContainer" parent="." index="4"]
+z_index = -1
+
+[node name="FirstRoom" type="Node2D" parent="ObstaclesContainer" index="0"]
+
+[node name="Shooter4" parent="ObstaclesContainer/FirstRoom" index="0" node_paths=PackedStringArray("line", "trigger_area") instance=ExtResource("5_8q12k")]
+position = Vector2(4717, 1500)
+line = NodePath("../../../PlayerCharactersContainer/Line")
+trigger_area = NodePath("../Trigger4")
+
+[node name="Shooter8" parent="ObstaclesContainer/FirstRoom" index="1" node_paths=PackedStringArray("line", "trigger_area") instance=ExtResource("5_8q12k")]
+position = Vector2(4694, 289)
+line = NodePath("../../../PlayerCharactersContainer/Line")
+trigger_area = NodePath("../Trigger4")
+
+[node name="Trigger4" type="Area2D" parent="ObstaclesContainer/FirstRoom" index="2"]
+position = Vector2(1401, -21)
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstaclesContainer/FirstRoom/Trigger4" index="0"]
+position = Vector2(2359, 919)
+shape = SubResource("RectangleShape2D_r5tue")
+
+[node name="Platform" parent="ObstaclesContainer/FirstRoom" index="3" instance=ExtResource("6_nhe5t")]
+position = Vector2(3690, 723)
+
+[node name="Platform2" parent="ObstaclesContainer/FirstRoom" index="4" instance=ExtResource("6_nhe5t")]
+position = Vector2(3940, 723)
+
+[node name="Platform3" parent="ObstaclesContainer/FirstRoom" index="5" instance=ExtResource("6_nhe5t")]
+position = Vector2(4190, 723)
+
+[node name="Platform4" parent="ObstaclesContainer/FirstRoom" index="6" instance=ExtResource("6_nhe5t")]
+position = Vector2(4440, 723)
+
+[node name="Platform5" parent="ObstaclesContainer/FirstRoom" index="7" instance=ExtResource("6_nhe5t")]
+position = Vector2(4692, 723)
+
+[node name="Platform6" parent="ObstaclesContainer/FirstRoom" index="8" instance=ExtResource("6_nhe5t")]
+position = Vector2(4942, 723)
+
+[node name="Platform7" parent="ObstaclesContainer/FirstRoom" index="9" instance=ExtResource("6_nhe5t")]
+position = Vector2(5192, 723)
+
+[node name="Platform8" parent="ObstaclesContainer/FirstRoom" index="10" instance=ExtResource("6_nhe5t")]
+position = Vector2(5442, 723)
+
+[node name="Platform9" parent="ObstaclesContainer/FirstRoom" index="11" instance=ExtResource("6_nhe5t")]
+position = Vector2(3690, 1083)
+rotation = 3.14159
+
+[node name="Platform10" parent="ObstaclesContainer/FirstRoom" index="12" instance=ExtResource("6_nhe5t")]
+position = Vector2(3940, 1083)
+rotation = 3.14159
+
+[node name="Platform11" parent="ObstaclesContainer/FirstRoom" index="13" instance=ExtResource("6_nhe5t")]
+position = Vector2(4190, 1083)
+rotation = 3.14159
+
+[node name="Platform12" parent="ObstaclesContainer/FirstRoom" index="14" instance=ExtResource("6_nhe5t")]
+position = Vector2(4440, 1083)
+rotation = 3.14159
+
+[node name="Platform13" parent="ObstaclesContainer/FirstRoom" index="15" instance=ExtResource("6_nhe5t")]
+position = Vector2(4692, 1083)
+rotation = 3.14159
+
+[node name="Platform14" parent="ObstaclesContainer/FirstRoom" index="16" instance=ExtResource("6_nhe5t")]
+position = Vector2(4942, 1083)
+rotation = 3.14159
+
+[node name="Platform15" parent="ObstaclesContainer/FirstRoom" index="17" instance=ExtResource("6_nhe5t")]
+position = Vector2(5192, 1083)
+rotation = 3.14159
+
+[node name="Platform16" parent="ObstaclesContainer/FirstRoom" index="18" instance=ExtResource("6_nhe5t")]
+position = Vector2(5442, 1083)
+rotation = 3.14159
+
+[node name="Node2D" parent="ObstaclesContainer/FirstRoom" index="19" instance=ExtResource("7_e8eqt")]
+position = Vector2(3615, 499)
+
+[node name="Node2D2" parent="ObstaclesContainer/FirstRoom" index="20" instance=ExtResource("7_e8eqt")]
+position = Vector2(3777, 499)
+
+[node name="Node2D3" parent="ObstaclesContainer/FirstRoom" index="21" instance=ExtResource("7_e8eqt")]
+position = Vector2(3934, 499)
+
+[node name="Node2D4" parent="ObstaclesContainer/FirstRoom" index="22" instance=ExtResource("7_e8eqt")]
+position = Vector2(4105, 499)
+
+[node name="Node2D5" parent="ObstaclesContainer/FirstRoom" index="23" instance=ExtResource("7_e8eqt")]
+position = Vector2(4267, 499)
+
+[node name="Node2D6" parent="ObstaclesContainer/FirstRoom" index="24" instance=ExtResource("7_e8eqt")]
+position = Vector2(4424, 499)
+
+[node name="Node2D7" parent="ObstaclesContainer/FirstRoom" index="25" instance=ExtResource("7_e8eqt")]
+position = Vector2(4584, 499)
+
+[node name="Node2D8" parent="ObstaclesContainer/FirstRoom" index="26" instance=ExtResource("7_e8eqt")]
+position = Vector2(4746, 499)
+
+[node name="Node2D9" parent="ObstaclesContainer/FirstRoom" index="27" instance=ExtResource("7_e8eqt")]
+position = Vector2(4903, 499)
+
+[node name="Node2D10" parent="ObstaclesContainer/FirstRoom" index="28" instance=ExtResource("7_e8eqt")]
+position = Vector2(5057, 499)
+
+[node name="Node2D11" parent="ObstaclesContainer/FirstRoom" index="29" instance=ExtResource("7_e8eqt")]
+position = Vector2(5219, 499)
+
+[node name="Node2D12" parent="ObstaclesContainer/FirstRoom" index="30" instance=ExtResource("7_e8eqt")]
+position = Vector2(5376, 499)
+
+[node name="Node2D13" parent="ObstaclesContainer/FirstRoom" index="31" instance=ExtResource("7_e8eqt")]
+position = Vector2(5526, 499)
+
+[node name="Node2D14" parent="ObstaclesContainer/FirstRoom" index="32" instance=ExtResource("7_e8eqt")]
+position = Vector2(3638, 1302)
+
+[node name="Node2D15" parent="ObstaclesContainer/FirstRoom" index="33" instance=ExtResource("7_e8eqt")]
+position = Vector2(3800, 1302)
+
+[node name="Node2D16" parent="ObstaclesContainer/FirstRoom" index="34" instance=ExtResource("7_e8eqt")]
+position = Vector2(3957, 1302)
+
+[node name="Node2D17" parent="ObstaclesContainer/FirstRoom" index="35" instance=ExtResource("7_e8eqt")]
+position = Vector2(4128, 1302)
+
+[node name="Node2D18" parent="ObstaclesContainer/FirstRoom" index="36" instance=ExtResource("7_e8eqt")]
+position = Vector2(4290, 1302)
+
+[node name="Node2D19" parent="ObstaclesContainer/FirstRoom" index="37" instance=ExtResource("7_e8eqt")]
+position = Vector2(4447, 1302)
+
+[node name="Node2D20" parent="ObstaclesContainer/FirstRoom" index="38" instance=ExtResource("7_e8eqt")]
+position = Vector2(4607, 1302)
+
+[node name="Node2D21" parent="ObstaclesContainer/FirstRoom" index="39" instance=ExtResource("7_e8eqt")]
+position = Vector2(4769, 1302)
+
+[node name="Node2D22" parent="ObstaclesContainer/FirstRoom" index="40" instance=ExtResource("7_e8eqt")]
+position = Vector2(4926, 1302)
+
+[node name="Node2D23" parent="ObstaclesContainer/FirstRoom" index="41" instance=ExtResource("7_e8eqt")]
+position = Vector2(5080, 1302)
+
+[node name="Node2D24" parent="ObstaclesContainer/FirstRoom" index="42" instance=ExtResource("7_e8eqt")]
+position = Vector2(5242, 1302)
+
+[node name="Node2D25" parent="ObstaclesContainer/FirstRoom" index="43" instance=ExtResource("7_e8eqt")]
+position = Vector2(5399, 1302)
+
+[node name="Node2D26" parent="ObstaclesContainer/FirstRoom" index="44" instance=ExtResource("7_e8eqt")]
+position = Vector2(5549, 1302)
+
+[node name="Lobby" type="Node2D" parent="ObstaclesContainer" index="1"]
+
+[node name="Shooter5" parent="ObstaclesContainer/Lobby" index="0" node_paths=PackedStringArray("line", "trigger_area", "stop_area") instance=ExtResource("5_8q12k")]
+position = Vector2(470, 1523)
+line = NodePath("../../../PlayerCharactersContainer/Line")
+trigger_area = NodePath("Trigger")
+stop_area = NodePath("Stop")
+fire_delay = 2.0
+
+[node name="Trigger" type="Area2D" parent="ObstaclesContainer/Lobby/Shooter5" index="1"]
+position = Vector2(-837, -181)
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstaclesContainer/Lobby/Shooter5/Trigger" index="0"]
+position = Vector2(1717.5, -150)
+shape = SubResource("RectangleShape2D_glq54")
+
+[node name="Stop" type="Area2D" parent="ObstaclesContainer/Lobby/Shooter5" index="2"]
+position = Vector2(-6, 124)
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstaclesContainer/Lobby/Shooter5/Stop" index="0"]
+position = Vector2(1704, -763)
+shape = SubResource("RectangleShape2D_p0ncc")
+
+[node name="lever2" parent="ObstaclesContainer/Lobby" index="1" instance=ExtResource("8_xp1tn")]
+position = Vector2(1856, 1416)
+script = ExtResource("9_6fodq")
+
+[node name="TileObject" parent="ObstaclesContainer/Lobby/lever2" index="2" instance=ExtResource("9_lj4ka")]
+position = Vector2(236, -512)
+
+[node name="SetEnemiesTargetWithArea" parent="GameEventsContainer" index="0" node_paths=PackedStringArray("trigger_areas", "effected_areas") instance=ExtResource("8_5cn64")]
+trigger_areas = [NodePath("Trigger")]
+effected_areas = [NodePath("Effect")]
+
+[node name="Trigger" type="Area2D" parent="GameEventsContainer/SetEnemiesTargetWithArea" index="1"]
+collision_mask = 9
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/SetEnemiesTargetWithArea/Trigger" index="0"]
+position = Vector2(4184.5, 976)
+shape = SubResource("RectangleShape2D_ocphf")
+
+[node name="Effect" type="Area2D" parent="GameEventsContainer/SetEnemiesTargetWithArea" index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GameEventsContainer/SetEnemiesTargetWithArea/Effect" index="0"]
+position = Vector2(4955.5, 893.5)
+shape = SubResource("RectangleShape2D_cxmrv")
+
+[node name="swap_visibility_hidden_on_enter" parent="GameEventsContainer" index="1" node_paths=PackedStringArray("triger_show_area", "triger_hide_area", "target_object") instance=ExtResource("11_cp00h")]
+triger_show_area = NodePath("../../ObstaclesContainer/Lobby/Shooter5/Trigger")
+triger_hide_area = NodePath("../../ObstaclesContainer/Lobby/Shooter5/Stop")
+target_object = NodePath("../../Control/Label")
+
+[node name="Control" type="Control" parent="." index="8"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="Control" index="0"]
+visible = false
+layout_mode = 0
+offset_left = -420.0
+offset_top = 611.0
+offset_right = 1891.0
+offset_bottom = 1122.0
+theme_override_font_sizes/font_size = 186
+text = "Scissors cut the string but
+ are blocked by pencils"
+
+[editable path="PlayerCharactersContainer/TrailingLine2"]
+[editable path="PlayerCharactersContainer/Line"]

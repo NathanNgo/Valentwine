@@ -14,8 +14,7 @@ attack_range = 300.0
 escape_requirement = 10
 grace_time = 3.01
 health = 100.0
-ray_cast = NodePath("RayCast2D")
-grace_timer = NodePath("GraceTimer")
+circles_needed = 3
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("3_name8")
