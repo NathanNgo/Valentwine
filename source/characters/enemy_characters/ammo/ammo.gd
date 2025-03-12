@@ -6,7 +6,7 @@ static var enemy_group := "enemies"
 @export var speed := 300
 @export var sprite: Sprite2D
 
-var target: Line2D
+var target: CharacterBody2D
 
 var _target_position: Vector2
 
@@ -16,10 +16,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	var point_count := target.get_point_count()
-	@warning_ignore("integer_division")
-	var middle_point : int = int(point_count/2)
-	_target_position = target.get_point_position(middle_point)
+	_target_position = target.global_position
 	velocity = global_position.direction_to(_target_position) * speed
 	look_at(_target_position)
 	move_and_slide()

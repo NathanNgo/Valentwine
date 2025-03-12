@@ -2,7 +2,7 @@ extends GameEvent
 
 @export var triger_show_area: Area2D
 @export var triger_hide_area: Area2D
-@export var target_object : Node2D
+@export var target_object : Node
 
 
 func _ready() -> void:
