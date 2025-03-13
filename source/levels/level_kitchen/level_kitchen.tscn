@@ -3,3 +3,5 @@
 [ext_resource type="PackedScene" uid="uid://8a1fxgbl58qp" path="res://source/levels/level.tscn" id="1_l4ylf"]
 
 [node name="LevelIntroduction" instance=ExtResource("1_l4ylf")]
+
+[editable path="PlayerCharactersContainer/TrailingLine2"]
